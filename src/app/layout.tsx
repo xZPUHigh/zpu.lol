@@ -1,12 +1,8 @@
 import type { Metadata } from "next";
 import { DM_Mono, Instrument_Serif, Syne } from "next/font/google";
-import { cookies } from "next/headers";
 import "./globals.css";
 import { LanguagePopup } from "./_components/language-popup";
 import { LangProvider } from "./_i18n/context";
-import type { Lang } from "./_i18n/translations";
-
-const LANGS = ["en", "th", "zh", "vi", "pt"];
 
 const syne = Syne({
   subsets: ["latin"],
@@ -100,18 +96,14 @@ const personJsonLd = {
   ],
 };
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const cookieStore = await cookies();
-  const saved = cookieStore.get("spectrum-lang")?.value || cookieStore.get("zpu-lang")?.value;
-  const lang: Lang = (LANGS.includes(saved ?? "") ? saved : "en") as Lang;
-
   return (
     <html
-      lang={lang}
+      lang="en"
       className={`${syne.variable} ${dmMono.variable} ${instrumentSerif.variable}`}
     >
       <body>
@@ -120,7 +112,7 @@ export default async function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
         />
-        <LangProvider initialLang={lang}>
+        <LangProvider initialLang="en">
           <LanguagePopup />
           {children}
         </LangProvider>
