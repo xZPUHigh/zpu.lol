@@ -3832,6 +3832,7 @@ blockquote::after  { content: close-quote; color: var(--accent); }
 .footer-brand { display: flex; flex-direction: column; gap: 12px; }
 .footer-tagline {
   font-size: .85rem; color: var(--text-muted); line-height: 1.6;
+  white-space: pre-line;
 }
 .footer-links {
   display: flex; gap: 48px; flex-wrap: wrap;
