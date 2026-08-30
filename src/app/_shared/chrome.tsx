@@ -20,7 +20,7 @@ export type ZpuNavItem = { href: string; label: string; id?: string; active?: bo
 
 /* Dark is the base/OG design; light is opt-in and remembered per browser.
    The Select Language and Music popups render outside .zpu-page, so the theme
-   is mirrored onto <html> for them to pick up โ€” and cleaned up on unmount so
+   is mirrored onto <html> for them to pick up — and cleaned up on unmount so
    other pages that don't have this toggle aren't affected. */
 export function useZpuTheme() {
   const [theme, setTheme] = useState<"dark" | "light">("dark");
@@ -85,7 +85,7 @@ export function useScrollReveal() {
   }, []);
 }
 
-// Floating personal header โ€” full-width at top, collapses into a pill on scroll.
+// Floating personal header — full-width at top, collapses into a pill on scroll.
 export function ZpuTopbar({
   navItems,
   activeSection,
@@ -236,7 +236,7 @@ export function MusicPlayer() {
     return () => document.documentElement.classList.remove("music-playing");
   }, [playing]);
 
-  // Restore saved preferences only โ€” NO autoplay.
+  // Restore saved preferences only — NO autoplay.
   // Music stays silent until the user presses play themselves.
   useEffect(() => {
     const a = audioRef.current;
@@ -313,7 +313,7 @@ export function MusicPlayer() {
     <div className={`zpu-music-wrap${popupOpen ? " open" : ""}${popupClosing ? " closing" : ""}`}>
       <div className="zpu-music-backdrop" onClick={closePopup} />
     <div className="zpu-player">
-      <button className="zpu-player-close" aria-label="Close" onClick={closePopup}>โ•</button>
+      <button className="zpu-player-close" aria-label="Close" onClick={closePopup}>✕</button>
       <audio
         ref={audioRef}
         src={MUSIC.src}
@@ -339,7 +339,7 @@ export function MusicPlayer() {
           // eslint-disable-next-line @next/next/no-img-element
           <img src={MUSIC.cover} alt={MUSIC.title} onError={() => setCoverFailed(true)} />
         ) : (
-          <span className="zpu-player-cover-ph">โช</span>
+          <span className="zpu-player-cover-ph">♫</span>
         )}
       </div>
 
@@ -414,7 +414,7 @@ export function MusicPlayer() {
 }
 
 // Plain single-color icon (currentColor via CSS mask) matching the main
-// site's footer look โ€” no brand colors, just muted โ’ accent on hover.
+// site's footer look — no brand colors, just muted โ’ accent on hover.
 function FooterSocialIcon({ slug }: { slug: string }) {
   const url = si(slug);
   return (
@@ -438,7 +438,7 @@ function FooterSocialIcon({ slug }: { slug: string }) {
   );
 }
 
-// Footer scoped to the ZPU about page โ€” personal nav/socials instead of the
+// Footer scoped to the ZPU about page — personal nav/socials instead of the
 // marketing site's Platform/Legal/FAQ columns.
 export function ZpuFooter({ explore }: { explore?: ZpuNavItem[] }) {
   const { t } = useLang();
@@ -511,7 +511,7 @@ export function ZpuFooter({ explore }: { explore?: ZpuNavItem[] }) {
         </div>
 
         <div className="footer-bottom">
-          <span>ยฉ 2021โ€“{year} Spectrum Cheat. {t("zpuFooterRights")}</span>
+          <span>© 2021–{year} Spectrum Cheat. {t("zpuFooterRights")}</span>
           <div className="footer-socials">
             {bottomSocials.map((s) => (
               <a

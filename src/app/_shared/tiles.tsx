@@ -6,7 +6,7 @@ import { useState } from "react";
 import { useLang } from "../_i18n/context";
 import { si } from "./data";
 
-// Only the first ten of each collection are genuinely ranked โ€” everything
+// Only the first ten of each collection are genuinely ranked — everything
 // after them is shuffled on mount and stays deliberately unnumbered, so a
 // missing badge means "unranked", not "rank 11+".
 export const RANKED_TOP = 10;
@@ -45,7 +45,7 @@ export function GameTile({ name, image, price, rank }: { name: string; image?: s
   const [failed, setFailed] = useState(false);
   const showImg = image && !failed;
   return (
-    <div className="zpu-game" title={price ? `${name} ยท ${price}` : name}>
+    <div className="zpu-game" title={price ? `${name} • ${price}` : name}>
       <RankBadge rank={rank} />
       <div className="zpu-game-icon">
         {showImg ? (
@@ -86,7 +86,7 @@ export function CarCard({ name, image, price }: { name: string; image?: string; 
   const logo = brand ? CAR_LOGOS[brand] : undefined;
   const showImg = image && !failed;
   return (
-    <div className="zpu-car-card" title={price ? `${name} ยท ${price}` : name}>
+    <div className="zpu-car-card" title={price ? `${name} • ${price}` : name}>
       {showImg ? (
         // eslint-disable-next-line @next/next/no-img-element
         <img className="zpu-car-photo" src={image} alt={name} loading="lazy" onError={() => setFailed(true)} />
@@ -107,7 +107,7 @@ export function CarCard({ name, image, price }: { name: string; image?: string; 
 }
 
 // Same card as CarCard (photo, gradient, name pinned bottom-left) minus the
-// brand pill/logo and price โ€” animals don't have a "brand".
+// brand pill/logo and price — animals don't have a "brand".
 export function AnimalCard({ name, image }: { name: string; image?: string }) {
   const [failed, setFailed] = useState(false);
   const showImg = image && !failed;
@@ -132,7 +132,7 @@ function isLightHex(hex: string): boolean {
   return (r * 299 + g * 587 + b * 114) / 1000 > 200;
 }
 
-// Colors โ€” a single ribbon where each color owns a flat, fully-saturated
+// Colors — a single ribbon where each color owns a flat, fully-saturated
 // band and only melts into its neighbor across a narrow seam. The earlier
 // all-blobs-overlapping-at-once version turned muddy in the middle (every
 // hue stacked on every other); this keeps each color legible on its own and
@@ -182,7 +182,7 @@ export function SectionHead({ title, sub }: { title: string; sub?: string }) {
   );
 }
 
-// Games โ€” compact icon (OG); on hover the tile expands to reveal banner + logo.
+// Games — compact icon (OG); on hover the tile expands to reveal banner + logo.
 export function GameCard({ name, image, banner, rank }: { name: string; image?: string; banner?: string; rank?: number }) {
   const [failed, setFailed] = useState(false);
   const showIcon = image && !failed;
@@ -241,7 +241,7 @@ export function MangaTile({ name, image, rank }: { name: string; image?: string;
   );
 }
 
-// Books โ€” hover opens the cover (hinged on the spine) to reveal the title page.
+// Books — hover opens the cover (hinged on the spine) to reveal the title page.
 export function BookTile({ name, image, rank }: { name: string; image?: string; rank?: number }) {
   const [failed, setFailed] = useState(false);
   const showImg = image && !failed;
@@ -268,7 +268,7 @@ export function BookTile({ name, image, rank }: { name: string; image?: string; 
   );
 }
 
-// Series โ€” Netflix-style cover: play button + title appear on hover.
+// Series — Netflix-style cover: play button + title appear on hover.
 export function SeriesTile({ name, image, rank }: { name: string; image?: string; rank?: number }) {
   const [failed, setFailed] = useState(false);
   const showImg = image && !failed;
@@ -294,7 +294,7 @@ export function SeriesTile({ name, image, rank }: { name: string; image?: string
   );
 }
 
-// Places โ€” landscape photo (a 2:3 poster crops scenery badly) with the
+// Places — landscape photo (a 2:3 poster crops scenery badly) with the
 // country's flag chipped in below. Flags come from flagcdn by ISO code, the
 // same source the language chips use, so no flag files are stored here.
 export function PlaceCard({
@@ -304,7 +304,7 @@ export function PlaceCard({
   const [flagFailed, setFlagFailed] = useState(false);
   const showImg = image && !failed;
   return (
-    <div className="zpu-place" title={`${name} ยท ${country}`}>
+    <div className="zpu-place" title={`${name} • ${country}`}>
       <RankBadge rank={rank} />
       <div className="zpu-place-inner">
         {showImg ? (
@@ -338,7 +338,7 @@ export function SportCard({ sport, player, image }: { sport: string; player: str
   const [failed, setFailed] = useState(false);
   const showImg = image && !failed;
   return (
-    <div className="zpu-sport" title={`${sport} ยท ${player}`}>
+    <div className="zpu-sport" title={`${sport} • ${player}`}>
       {showImg ? (
         // eslint-disable-next-line @next/next/no-img-element
         <img className="zpu-sport-photo" src={image} alt={player} loading="lazy" onError={() => setFailed(true)} />

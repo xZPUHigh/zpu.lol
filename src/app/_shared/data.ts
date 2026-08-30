@@ -10,7 +10,7 @@ export const si = (slug: string, color?: string) =>
 export const dv = (path: string) =>
   `https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${path}`;
 
-// เธงเธฑเธเธ—เธตเนเธเธฃเธ 18 เธเธต (เนเธเนเน€เธเนเธเธงเธฑเธเน€เธเธดเธ”เธเธฃเธดเธ โ€” เธเธต เธ.เธจ. เธ—เธตเนเธญเธฒเธขเธธเธเธฃเธ 18)
+// เธงเธฑเธเธ—เธตเนเธเธฃเธ 18 เธเธต (เนเธเนเน€เธเนเธเธงเธฑเธเน€เธเธดเธ”เธเธฃเธดเธ — เธเธต เธ.เธจ. เธ—เธตเนเธญเธฒเธขเธธเธเธฃเธ 18)
 export const BIRTHDAY_18 = "2027-05-15T00:00:00+07:00";
 
 /* โ”€โ”€ Now-playing track (drop the files in /public and update paths) โ”€โ”€ */
@@ -22,10 +22,10 @@ export const MUSIC = {
 };
 
 
-/* โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•
-   EDIT YOUR PROFILE HERE  (เธเนเธญเธกเธนเธฅ/เธฅเธดเธเธเน เนเธเนเธ—เธตเนเธเธตเน)
+/* ————————————————————————————————————————————————————————————————
+   EDIT YOUR PROFILE HERE (ข้อมูล/ลิงก์ แก้ที่นี่)
    เธชเนเธงเธเธเนเธญเธเธงเธฒเธกเธ—เธตเนเนเธเธฅเธ เธฒเธฉเธฒ เธญเธขเธนเนเนเธเนเธเธฅเน _i18n/translations.ts (เธเธตเธขเนเธเธถเนเธเธ•เนเธ zpu*)
-โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ• */
+——————————————————————————————————————————————————————————————————— */
 export const ZPU = {
   brand: "ZPU",
   aka: "xZPUHigh",
@@ -54,7 +54,7 @@ export const ZPU = {
     { year: "2022-2024", name: "CPU FARM", tag: "Website / Store", href: "https://cpufarm.net", image: "/project%20images/CPU%20FARM%202023.png" }, 
   ],
 
-  // Favorite games โ€” Steam titles auto-load art from Steam CDN.
+  // Favorite games — Steam titles auto-load art from Steam CDN.
   // For non-Steam games, drop a logo in /public/images/games/ and set image,
   // otherwise an initials tile is shown automatically.
   favGames: [
@@ -100,11 +100,11 @@ export const ZPU = {
     { name: "The Last of Us", image: "https://upload.wikimedia.org/wikipedia/en/thumb/4/46/Video_Game_Cover_-_The_Last_of_Us.jpg/500px-Video_Game_Cover_-_The_Last_of_Us.jpg" },
   ] as { name: string; image?: string; banner?: string }[],
 
-  // Favorite food / movies / artists โ€” same style as games.
+  // Favorite food / movies / artists — same style as games.
   // Send name + image (or just name โ’ initials tile fallback).
   favFood: [] as { name: string; image?: string }[],
 
-  // Favorite animals โ€” same style as games/food. Unranked (shuffled in full).
+  // Favorite animals — same style as games/food. Unranked (shuffled in full).
   favAnimals: [
     { name: "Giraffe", image: "https://d1jyxxz9imt9yb.cloudfront.net/article/4992/meta_image/regular/AdobeStock_331202050_538219_reduced.jpg" },
     { name: "Penguin", image: "https://a-z-animals.com/media/Penguin-Aptenodytes-Forsteri-walking-on-beach.jpg" },
@@ -123,7 +123,7 @@ export const ZPU = {
     { name: "Norwegian Forest Cat", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Dalaja-Doll-norv%C3%A9gien-ambre-blotched-tabby_avec-blanc_2008_%28cropped%29.jpg/500px-Dalaja-Doll-norv%C3%A9gien-ambre-blotched-tabby_avec-blanc_2008_%28cropped%29.jpg" },
   ] as { name: string; image?: string }[],
 
-  // Places & countries. `code` is an ISO-3166 alpha-2 code โ€” the card pulls
+  // Places & countries. `code` is an ISO-3166 alpha-2 code — the card pulls
   // the flag straight from flagcdn.com, same source the language chips in the
   // tech stack already use, so no flag assets need adding.
   favPlaces: [] as { name: string; country: string; code: string; image?: string }[],
@@ -244,8 +244,8 @@ export const ZPU = {
     { name: "Harry Potter and the Goblet of Fire", image: "https://upload.wikimedia.org/wikipedia/en/thumb/c/c9/Harry_Potter_and_the_Goblet_of_Fire_Poster.jpg/500px-Harry_Potter_and_the_Goblet_of_Fire_Poster.jpg" },
     { name: "Harry Potter and the Order of the Phoenix", image: "https://upload.wikimedia.org/wikipedia/en/thumb/e/e7/Harry_Potter_and_the_Order_of_the_Phoenix_poster.jpg/500px-Harry_Potter_and_the_Order_of_the_Phoenix_poster.jpg" },
     { name: "Harry Potter and the Half-Blood Prince", image: "https://upload.wikimedia.org/wikipedia/en/thumb/3/3f/Harry_Potter_and_the_Half-Blood_Prince_poster.jpg/500px-Harry_Potter_and_the_Half-Blood_Prince_poster.jpg" },
-    { name: "Harry Potter and the Deathly Hallows โ€“ Part 1", image: "https://upload.wikimedia.org/wikipedia/en/thumb/2/2d/Harry_Potter_and_the_Deathly_Hallows_%E2%80%93_Part_1.jpg/500px-Harry_Potter_and_the_Deathly_Hallows_%E2%80%93_Part_1.jpg" },
-    { name: "Harry Potter and the Deathly Hallows โ€“ Part 2", image: "https://upload.wikimedia.org/wikipedia/en/thumb/d/df/Harry_Potter_and_the_Deathly_Hallows_%E2%80%93_Part_2.jpg/500px-Harry_Potter_and_the_Deathly_Hallows_%E2%80%93_Part_2.jpg" },
+    { name: "Harry Potter and the Deathly Hallows – Part 1", image: "https://upload.wikimedia.org/wikipedia/en/thumb/2/2d/Harry_Potter_and_the_Deathly_Hallows_%E2%80%93_Part_1.jpg/500px-Harry_Potter_and_the_Deathly_Hallows_%E2%80%93_Part_1.jpg" },
+    { name: "Harry Potter and the Deathly Hallows – Part 2", image: "https://upload.wikimedia.org/wikipedia/en/thumb/d/df/Harry_Potter_and_the_Deathly_Hallows_%E2%80%93_Part_2.jpg/500px-Harry_Potter_and_the_Deathly_Hallows_%E2%80%93_Part_2.jpg" },
     { name: "Spider-Man: Brand New Day", image: "https://upload.wikimedia.org/wikipedia/en/thumb/9/9a/Spider-Man_Brand_New_Day_poster.jpg/500px-Spider-Man_Brand_New_Day_poster.jpg" },
     { name: "Spider-Man: Homecoming", image: "https://upload.wikimedia.org/wikipedia/en/thumb/f/f9/Spider-Man_Homecoming_poster.jpg/500px-Spider-Man_Homecoming_poster.jpg" },
     { name: "Spider-Man: Far From Home", image: "https://upload.wikimedia.org/wikipedia/en/thumb/b/bd/Spider-Man_Far_From_Home_poster.jpg/500px-Spider-Man_Far_From_Home_poster.jpg" },
@@ -332,12 +332,12 @@ export const ZPU = {
     { name: "Prometheus", image: "https://upload.wikimedia.org/wikipedia/en/thumb/a/a3/Prometheusposterfixed.jpg/500px-Prometheusposterfixed.jpg" },
     { name: "Alien: Covenant", image: "https://upload.wikimedia.org/wikipedia/en/thumb/3/33/Alien_Covenant_Teaser_Poster.jpg/500px-Alien_Covenant_Teaser_Poster.jpg" },
     { name: "Alien: Romulus", image: "https://upload.wikimedia.org/wikipedia/en/thumb/c/cb/Alien_Romulus_2024_%28poster%29.jpg/500px-Alien_Romulus_2024_%28poster%29.jpg" },
-    { name: "Star Wars: Episode I โ€“ The Phantom Menace", image: "https://upload.wikimedia.org/wikipedia/en/thumb/4/40/Star_Wars_Phantom_Menace_poster.jpg/500px-Star_Wars_Phantom_Menace_poster.jpg" },
-    { name: "Star Wars: Episode II โ€“ Attack of the Clones", image: "https://upload.wikimedia.org/wikipedia/en/thumb/3/32/Star_Wars_-_Episode_II_Attack_of_the_Clones_%28movie_poster%29.jpg/500px-Star_Wars_-_Episode_II_Attack_of_the_Clones_%28movie_poster%29.jpg" },
-    { name: "Star Wars: Episode III โ€“ Revenge of the Sith", image: "https://upload.wikimedia.org/wikipedia/en/thumb/9/93/Star_Wars_Episode_III_Revenge_of_the_Sith_poster.jpg/500px-Star_Wars_Episode_III_Revenge_of_the_Sith_poster.jpg" },
-    { name: "Star Wars: Episode IV โ€“ A New Hope", image: "https://upload.wikimedia.org/wikipedia/en/thumb/8/87/StarWarsMoviePoster1977.jpg/500px-StarWarsMoviePoster1977.jpg" },
-    { name: "Star Wars: Episode V โ€“ The Empire Strikes Back", image: "https://upload.wikimedia.org/wikipedia/en/thumb/3/3f/The_Empire_Strikes_Back_%281980_film%29.jpg/500px-The_Empire_Strikes_Back_%281980_film%29.jpg" },
-    { name: "Star Wars: Episode VI โ€“ Return of the Jedi", image: "https://upload.wikimedia.org/wikipedia/en/thumb/b/b2/ReturnOfTheJediPoster1983.jpg/500px-ReturnOfTheJediPoster1983.jpg" },
+    { name: "Star Wars: Episode I – The Phantom Menace", image: "https://upload.wikimedia.org/wikipedia/en/thumb/4/40/Star_Wars_Phantom_Menace_poster.jpg/500px-Star_Wars_Phantom_Menace_poster.jpg" },
+    { name: "Star Wars: Episode II – Attack of the Clones", image: "https://upload.wikimedia.org/wikipedia/en/thumb/3/32/Star_Wars_-_Episode_II_Attack_of_the_Clones_%28movie_poster%29.jpg/500px-Star_Wars_-_Episode_II_Attack_of_the_Clones_%28movie_poster%29.jpg" },
+    { name: "Star Wars: Episode III – Revenge of the Sith", image: "https://upload.wikimedia.org/wikipedia/en/thumb/9/93/Star_Wars_Episode_III_Revenge_of_the_Sith_poster.jpg/500px-Star_Wars_Episode_III_Revenge_of_the_Sith_poster.jpg" },
+    { name: "Star Wars: Episode IV – A New Hope", image: "https://upload.wikimedia.org/wikipedia/en/thumb/8/87/StarWarsMoviePoster1977.jpg/500px-StarWarsMoviePoster1977.jpg" },
+    { name: "Star Wars: Episode V – The Empire Strikes Back", image: "https://upload.wikimedia.org/wikipedia/en/thumb/3/3f/The_Empire_Strikes_Back_%281980_film%29.jpg/500px-The_Empire_Strikes_Back_%281980_film%29.jpg" },
+    { name: "Star Wars: Episode VI – Return of the Jedi", image: "https://upload.wikimedia.org/wikipedia/en/thumb/b/b2/ReturnOfTheJediPoster1983.jpg/500px-ReturnOfTheJediPoster1983.jpg" },
     { name: "Star Wars: The Force Awakens", image: "https://upload.wikimedia.org/wikipedia/en/thumb/a/a2/Star_Wars_The_Force_Awakens_Theatrical_Poster.jpg/500px-Star_Wars_The_Force_Awakens_Theatrical_Poster.jpg" },
     { name: "Star Wars: The Last Jedi", image: "https://upload.wikimedia.org/wikipedia/en/thumb/7/7f/Star_Wars_The_Last_Jedi.jpg/500px-Star_Wars_The_Last_Jedi.jpg" },
     { name: "Star Wars: The Rise of Skywalker", image: "https://upload.wikimedia.org/wikipedia/en/thumb/a/af/Star_Wars_The_Rise_of_Skywalker_poster.jpg/500px-Star_Wars_The_Rise_of_Skywalker_poster.jpg" },
@@ -458,7 +458,7 @@ export const ZPU = {
     { name: "Michael", image: "https://upload.wikimedia.org/wikipedia/en/thumb/3/37/Michael_%282026_film_poster%29.png/500px-Michael_%282026_film_poster%29.png" },
     { name: "The Pursuit of Happyness", image: "https://upload.wikimedia.org/wikipedia/en/thumb/8/81/Poster-pursuithappyness.jpg/500px-Poster-pursuithappyness.jpg" },
   ] as { name: string; image?: string }[],
-  // Favorite TV series โ€” shown in their own section.
+  // Favorite TV series — shown in their own section.
   favSeries: [
     { name: "Lupin", image: "https://image.tmdb.org/t/p/w500/vlEclUk0MpCRhLMOxRpTnlAJ7sf.jpg" },
     { name: "Peaky Blinders", image: "https://i.ebayimg.com/images/g/t94AAOSweNFj454I/s-l1200.jpg" },
@@ -731,7 +731,7 @@ export const ZPU = {
     { name: "Tower of God", image: "https://uploads.mangadex.org/covers/c0ee660b-f9f2-45c3-8068-5123ff53f84a/311cf373-290a-47f6-a3f1-5d7c4085c5b2.jpg" },
     { name: "Omniscient Reader's Viewpoint", image: "https://uploads.mangadex.org/covers/9a414441-bbad-43f1-a3a7-dc262ca790a3/be18dc9a-7f1c-4ca5-b318-ffff2d7d58c3.jpg" },
   ] as { name: string; image?: string }[],
-  // Artists โ€” each with their top 10 songs.
+  // Artists — each with their top 10 songs.
   favArtists: [
     { name: "Drake", image: "https://pbs.twimg.com/media/HIcfr1WXMAI3VH9.jpg", songs: ["Teenage Fever", "Passionfruit", "Rich Baby Daddy", "Die Trying", "Make Them Pay", "Hold On We're Going Home", "CN Tower", "Tried Our Best", "Greedy", "Fortworth"] },
     { name: "PARTYNEXTDOOR", image: "https://i.scdn.co/image/ab6761610000e5eb957320981e31e862bc2fb844", songs: ["TBH", "Break from Toronto", "Make It To The Morning", "Belong to the City", "Some of Your Love", "Grown Women", "FWU", "Resentment", "Her Way", "Come and See Me"] },
@@ -747,19 +747,19 @@ export const ZPU = {
     { name: "Pimmie", image: "https://i.scdn.co/image/ab6761610000e5eb758738053bedb013fae42cea", songs: ["PIMMIE'S DILEMMA", "Call Me When You Can", "Wish I Never", "One Deep", "Slauson", "Bless Up", "Bet", "Changes", "D.N.D", "3 am things"] },
     { name: "Roy Woods", image: "https://i.scdn.co/image/ab6761610000e5ebdc9e4a93c54b2e477060aa29", songs: ["Drama", "Gwan Big Up Urself", "Get You Good", "Balance", "How I Feel", "Snow White", "What Are You On?", "Jealousy", "Say Less", "Monday to Monday"] },
     { name: "Chris Brown", image: "https://i.scdn.co/image/ab6761610000e5eb913ab85302df0ddfb77131e9", songs: ["Under the Influence", "No Guidance", "Go Crazy", "Loyal", "With You", "Forever", "Run It!", "Kiss Kiss", "Sensational", "Fine China"] },
-    { name: "The Toys", image: "https://i.scdn.co/image/ab6761610000e5eb3edf0563fc7413d0c62fd9a7", songs: ["เธซเธเนเธฒเธซเธเธฒเธงเธ—เธตเนเนเธฅเนเธง", "เธเธ”เธซเธกเธฒเธข", "เนเธซเนเน€เธเธญเนเธซเนเธญเธ เธฑเธข", "Stars", "04:00", "เธเธญเนเธ—เธฉเธ—เธตเนเน€เธเนเธเนเธเธเธเธตเน", "เธเธนเธ”เนเธกเนเธญเธญเธ", "TOY", "เนเธงเธเนเธฅเธ”เธฒ", "เธเธญเธเธเธงเธฑเธ - Cover Version"] },
-    { name: "YOUNGOHM", image: "https://i.scdn.co/image/ab6761610000e5ebae5e02b462ee6517e378a502", songs: ["I JUST WANNA BE FREE", "HOW I LIKE, Pt. 2", "Bottom", "SMOKING ON THE ROOFTOP", "Mom I'm Sorry 2559", "เธเธนเธเธฅเธฒ", "เธเธเธฃเธ”เธฒเธฃเธฒ", "เน€เธเธดเธ”เธเธฃเธฑเธช", "เธซเธฑเธงเนเธเธชเธตเธ”เธณ", "11 เน€เธ”เธทเธญเธ"] },
-    { name: "Musketeers", image: "https://i.scdn.co/image/ab6761610000e5eb9ce1effcd929f5776754ffd8", songs: ["เธเธญเธเธเธงเธฑเธ", "เนเธเนเธเธธเธ“", "เนเธเธฅ", "เธเธดเธเธฒเธฃเธ“เธฒ", "เธเธงเธฒเธกเธ—เธฃเธเธเธณ", "เนเธเธเธงเธฒเธกเธชเธณเธเธฑเธ", "เธเธดเธ—เธฒเธ", "เธเธฒเธเน€เธ•เนเธเธฃเธณ", "เธญเธขเธฒเธเนเธซเนเน€เธเธญเธฅเธญเธ", "เนเธเนเธเธฒเธเธเธณ"] },
-    { name: "Diamond MQT", image: "https://i.scdn.co/image/ab6761610000e5eb5378fc9a53720ff91c1a1e99", songs: ["Victoria's Secret", "W.R.U", "เธ—เธฒเธเธเธฑเธ", "เธเธฃเธฃเธกเธ”เธฒ", "เธฃเนเธงเธเธซเธฅเนเธ", "เน€เธ”เนเธเธเธฃเธฃเธกเธ”เธฒ", "Panda", "เธเธญเธเธ•เธฑเธงเน€เธญเธ", "เน€เธเธเธฃ", "imfellinlovewithmyself"] },
-    { name: "Timethai", image: "https://i.scdn.co/image/ab6761610000e5eb7f7f0b908b35408ab43797e1", songs: ["เธเธนเธ”เน€เธซเธกเธทเธญเธเธเธณ เธ—เธณเน€เธซเธกเธทเธญเธเน€เธ”เธดเธก (SAME AGAIN)", "เนเธกเนเธญเธขเธฒเธเนเธซเนเน€เธเนเธเน€เธเธฒ", "เนเธกเนเธกเธตเนเธเธฃ", "เธขเธฑเธเนเธกเนเธเธดเธ (NOT USED TO)", "เธฃเธฑเธเนเธ”เนเธฃเธฑเธเนเธเนเธฅเนเธง (TIMETHAI Cover)", "เธกเธตเธญเธฐเนเธฃเธญเธตเธเธกเธฑเนเธขเธ—เธตเนเธฅเธทเธกเธเธญเธ", "เธฃเธฑเธเธเธงเธฃเธกเธตเธชเธญเธเธเธ (TIMETHAI Cover)", "ONE KISS (TIMETHAI Cover)", "เธเธฒเธเน€เธฃเธตเธขเธเธเนเธณเธ•เธฒ", "เธเธนเธ”เธญเธฐเนเธฃเธเนเน€เธเธดเธ"] },
-    { name: "Saran", image: "https://i.scdn.co/image/ab6761610000e5ebc4ad328ec19e61cafddb0f04", songs: ["เน€เธ•เธดเธเนเธ• (เนเธ”เธขเนเธกเนเธกเธตเน€เธเธญ)", "เธกเธฒเธเธเธงเนเธฒเธฃเธฑเธ", "21", "CURSE (เธฃเธฑเธเนเธเธฃเนเธกเนเน€เธเนเธ)", "เธญเธฐเนเธฃเธเธฑเธเธเนเธขเธญเธก", "เธเธตเธงเธดเธ•เธเธทเธญเธเธฒเธฃเน€เธ”เธดเธเธ—เธฒเธ", "เน€เธซเธฃเธตเธขเธเธฃเธดเธกเธ—เธฒเธ", "เธชเธฃเธฑเธฅ", "Family", "เนเธซเธฅเธกเธเธฒเธฅเธตเธฎเธฒเธข"] },
-    { name: "D Gerrard", image: "https://i.scdn.co/image/ab6761610000e5eb4c0ae621a5d9335104363c9d", songs: ["Galaxy (feat. Kob The X Factor)", "เธฃเธ–เนเธเธเธเธเนเธฒ", "เนเธฅเธเธเธนเนเธเธเธฒเธ", "Luxury", "เธเธฑเธเธงเธดเธ—เธขเธฒเธจเธฒเธชเธ•เธฃเน", "เธฃเธฑเธเธฃเธฑเธเธฃเธฑเธเธฃเธฑเธเธฃเธฑเธเธฃเธฑเธเธฃเธฑเธ (Talk Less)", "เนเธกเนเน€เธซเธกเธทเธญเธเนเธเธฃ", "เธฃเธนเนเธญเธขเธนเน", "Galaxy Express", "เนเธกเธเน€เธกเนเธฒ"] },
-    { name: "Atom Chanakan", image: "https://i.scdn.co/image/ab6761610000e5ebb235bc9418aa6ed743d87ee1", songs: ["PLEASE", "เธ—เธฒเธเธเธญเธเธเธธเนเธ (Dust)", "เนเธเธฅเน€เธเนเธ (SCAR)", "เธเธฅเนเธญเธขเธเธฒเธ", "เธญเนเธฒเธง", "เธญเธขเนเธฒเธเธญเธ", "เธเธญ", "เธฃเธ–เธเธฑเธเน€เธเนเธฒ", "เนเธซเธฅเนเธญเนเธญเธ (Soft Shoulder)", "Good Morning Teacher"] },
-    { name: "MEYOU", image: "https://i.scdn.co/image/ab6761610000e5eb52dee609c17e86bd732dc1e6", songs: ["เธเธญเธ”เธซเธกเธญเธ", "เธญเธตเธเนเธฅเนเธง", "เธชเธฑเธเธชเธ (NO ONE)", "เธชเธฃเนเธฒเธ (SOBER)", "December", "DAY 1 (feat. VALENTINA PLOY)", "เธเนเธญเธเธฅเธฒ", "เธเธณเธฅเธฑเธเน€เธซเธเธฒ", "เธ–เธฒเธก", "เธเธนเธ”เธเธฃเธดเธ"] },
-    { name: "1MILL", image: "https://i.scdn.co/image/ab6761610000e5ebd478825d6533bd8cc64fa5e8", songs: ["What I Been On", "Better Day", "Testimony", "One Call", "เน€เธเธฅเธตเนเธขเธเนเธ (Changed)", "SINCE I WAS YOUNG FREESTYLE", "เธชเธนเนเธเธตเธงเธดเธ•", "เธขเธญเธกเนเธกเนเนเธ”เน (Never Give Up)", "Lifestyle", "B5"] },
+    { name: "The Toys", image: "https://i.scdn.co/image/ab6761610000e5eb3edf0563fc7413d0c62fd9a7", songs: ["หน้าหนาวที่แล้ว", "จดหมาย", "ให้เธอให้อภัย", "Stars", "04:00", "ขอโทษที่เป็นแบบนี้", "พูดไม่ออก", "TOY", "ไวน์ลดา", "ของขวัญ - Cover Version"] },
+    { name: "YOUNGOHM", image: "https://i.scdn.co/image/ab6761610000e5ebae5e02b462ee6517e378a502", songs: ["I JUST WANNA BE FREE", "HOW I LIKE, Pt. 2", "Bottom", "SMOKING ON THE ROOFTOP", "Mom I'm Sorry 2559", "จูบลาก่อน", "นครดารา", "เจิดจรัส", "หัวใจสีดำ", "11 เดือน"] },
+    { name: "Musketeers", image: "https://i.scdn.co/image/ab6761610000e5eb9ce1effcd929f5776754ffd8", songs: ["ของขวัญ", "แค่คุณ", "ไกล", "พิจารณา", "ความทรงจำ", "ใจความสำคัญ", "นิทาน", "งานเต้นรำ", "อยากให้เธอลอง", "แค่บางคำ"] },
+    { name: "Diamond MQT", image: "https://i.scdn.co/image/ab6761610000e5eb5378fc9a53720ff91c1a1e99", songs: ["Victoria's Secret", "W.R.U", "ทางชัน", "ธรรมดา", "ร่วงหล่น", "เด็กธรรมดา", "Panda", "บอกตัวเอง", "เพชร", "imfellinlovewithmyself"] },
+    { name: "Timethai", image: "https://i.scdn.co/image/ab6761610000e5eb7f7f0b908b35408ab43797e1", songs: ["พูดเหมือนจำ ทำเหมือนเดิม (SAME AGAIN)", "ไม่อยากให้เป็นเขา", "ไม่มีใคร", "ยังไม่ชิน (NOT USED TO)", "รักได้รักไปแล้ว (TIMETHAI Cover)", "มีอะไรอีกมั้•ี่ลืมบอก", "รักควรมีสองคน (TIMETHAI Cover)", "ONE KISS (TIMETHAI Cover)", "ฉากเรียกน้ำตา", "พูดอะไรก็เชิญ"] },
+    { name: "Saran", image: "https://i.scdn.co/image/ab6761610000e5ebc4ad328ec19e61cafddb0f04", songs: ["เติบโต (โดยไม่มีเธอ)", "มากกว่ารัก", "21", "CURSE (รักใครไม่เป็น)", "อะไรฉันก็ยอม", "ชีวิตคือการเดินทาง", "เหรียญริมทาง", "สรัล", "Family", "แหลมบาลีฮาย"] },
+    { name: "D Gerrard", image: "https://i.scdn.co/image/ab6761610000e5eb4c0ae621a5d9335104363c9d", songs: ["Galaxy (feat. Kob The X Factor)", "รถไฟบนฟ้า", "โลกคู่ขนาน", "Luxury", "นักวิทยาศาสตร์", "รักรักรักรักรักรักรัก (Talk Less)", "ไม่เหมือนใคร", "รู้อยู่", "Galaxy Express", "แมงเม่า"] },
+    { name: "Atom Chanakan", image: "https://i.scdn.co/image/ab6761610000e5ebb235bc9418aa6ed743d87ee1", songs: ["PLEASE", "ทางของฝุ่น (Dust)", "แผลเป็น (SCAR)", "ปล่อยปาก", "อ้าว", "อย่าบอก", "พอ", "รถคันเก่า", "ไหล่อ่อน (Soft Shoulder)", "Good Morning Teacher"] },
+    { name: "MEYOU", image: "https://i.scdn.co/image/ab6761610000e5eb52dee609c17e86bd732dc1e6", songs: ["กอดหมอน", "อีกแล้ว", "สับสน (NO ONE)", "สร่าง (SOBER)", "December", "DAY 1 (feat. VALENTINA PLOY)", "ก่อนลา", "กำลังเหงา", "ถาม", "พูดจริง"] },
+    { name: "1MILL", image: "https://i.scdn.co/image/ab6761610000e5ebd478825d6533bd8cc64fa5e8", songs: ["What I Been On", "Better Day", "Testimony", "One Call", "เปลี่ยนไป (Changed)", "SINCE I WAS YOUNG FREESTYLE", "สู้ชีวิต", "ยอมไม่ได้ (Never Give Up)", "Lifestyle", "B5"] },
   ] as { name: string; image?: string; songs: string[] }[],
 
-  // Favorite colors โ€” shown as solid swatches (no photos needed).
+  // Favorite colors — shown as solid swatches (no photos needed).
   favColors: [
     { name: "Purple", hex: "#8b5cf6" },
     { name: "White", hex: "#ffffff" },
@@ -817,24 +817,24 @@ export const ZPU = {
     ] },
   ] as { catKey: TranslationKey; items: { name: string; icon?: string }[] }[],
 
-  // Everyday carry โ€” Apple gear, current daily drivers + previously owned.
+  // Everyday carry — Apple gear, current daily drivers + previously owned.
   everyday: [
-    { cat: "Phone", name: "iPhone 17 Pro Max", detail: "Silver ยท 512GB", status: "current", priceThb: 54900, icon: "/images/everyday/iphone17promax.png", url: "https://www.apple.com/th/shop/buy-iphone/iphone-17-pro" },
-    { cat: "Tablet", name: "iPad Air M4", detail: "13 Inch ยท Space Gray ยท 256GB", status: "current", priceThb: 32900, icon: "/images/everyday/ipadair.png", url: "https://www.apple.com/th/shop/buy-ipad/ipad-air" },
+    { cat: "Phone", name: "iPhone 17 Pro Max", detail: "Silver • 512GB", status: "current", priceThb: 54900, icon: "/images/everyday/iphone17promax.png", url: "https://www.apple.com/th/shop/buy-iphone/iphone-17-pro" },
+    { cat: "Tablet", name: "iPad Air M4", detail: "13 Inch • Space Gray • 256GB", status: "current", priceThb: 32900, icon: "/images/everyday/ipadair.png", url: "https://www.apple.com/th/shop/buy-ipad/ipad-air" },
     { cat: "Earbuds", name: "AirPods 4", detail: "Active Noise Cancellation", status: "current", priceThb: 7490, icon: "/images/everyday/airpods4.png", url: "https://www.apple.com/th/airpods-4/" },
     { cat: "Accessory", name: "Apple Pencil Pro", detail: "Bluetooth", status: "current", priceThb: 4590, icon: "/images/everyday/applepencilpro.png", url: "https://www.apple.com/th/apple-pencil/" },
     { cat: "Card Holder", name: "Goyard Saint Sulpice", detail: "Green", status: "current", priceThb: 24900, icon: "/images/everyday/goyard.png" },
     { cat: "Wallet", name: "LV Slender Wallet", detail: "Monogram Eclipse", status: "current", priceThb: 16900, icon: "/images/everyday/lvmarco.png" },
     { cat: "Eyewear", name: "Square Frame Glasses", detail: "Minimal design. Maximum versatility", status: "current", priceThb: 3490, icon: "/images/everyday/glasses.png" },
-    { cat: "Phone", name: "iPhone 15 Pro", detail: "Black Titanium ยท 512GB", status: "previous", priceThb: 52900, icon: "/images/everyday/iphone15pro.png" },
-    { cat: "Phone", name: "iPhone 13", detail: "Midnight ยท 256GB", status: "previous", priceThb: 17900, icon: "/images/everyday/iphone13.png" },
-    { cat: "Phone", name: "iPhone X", detail: "Space Gray ยท 64GB", status: "previous", priceThb: 12900, icon: "/images/everyday/iphonex.png" },
-    { cat: "Earbuds", name: "AirPods Pro 2", detail: "USBโ€‘C ยท ANC", status: "previous", priceThb: 8900, icon: "/images/everyday/airpodspro2.png" },
+    { cat: "Phone", name: "iPhone 15 Pro", detail: "Black Titanium • 512GB", status: "previous", priceThb: 52900, icon: "/images/everyday/iphone15pro.png" },
+    { cat: "Phone", name: "iPhone 13", detail: "Midnight • 256GB", status: "previous", priceThb: 17900, icon: "/images/everyday/iphone13.png" },
+    { cat: "Phone", name: "iPhone X", detail: "Space Gray • 64GB", status: "previous", priceThb: 12900, icon: "/images/everyday/iphonex.png" },
+    { cat: "Earbuds", name: "AirPods Pro 2", detail: "USB‐C • ANC", status: "previous", priceThb: 8900, icon: "/images/everyday/airpodspro2.png" },
     { cat: "Earbuds", name: "AirPods (3rd gen)", detail: "MagSafe Case", status: "previous", priceThb: 6490, icon: "/images/everyday/airpods3.png" },
-    { cat: "Ring", name: "Cartier LOVE Ring", detail: "Classic Model ยท 18K Yellow Gold with 3 Diamonds", status: "current", priceThb: 149000, icon: "/images/accessories/cartier-love-ring.png", url: "https://www.cartier.com/en-us/jewelry/rings/love/love-ring-classic-model-3-diamonds-CRB4032400.html" },
+    { cat: "Ring", name: "Cartier LOVE Ring", detail: "Classic Model • 18K Yellow Gold with 3 Diamonds", status: "current", priceThb: 149000, icon: "/images/accessories/cartier-love-ring.png", url: "https://www.cartier.com/en-us/jewelry/rings/love/love-ring-classic-model-3-diamonds-CRB4032400.html" },
   ] as { cat: string; name: string; detail: string; status: "current" | "previous"; priceThb: number; icon?: string; url?: string }[],
 
-  // PC build โ€” real JIB Thailand prices (THB) with product image + link.
+  // PC build — real JIB Thailand prices (THB) with product image + link.
   setup: [
     { part: "CPU", name: "Intel Core i5-14400F", priceThb: 5990, icon: "/images/setup/cpu.png", url: "https://www.intel.com/content/www/us/en/products/sku/236777/intel-core-i5-processor-14400f-20m-cache-up-to-4-70-ghz/specifications.html" },
     { part: "GPU", name: "MSI GeForce RTX 5060 Ti 16G Ventus 2X OC Plus", priceThb: 20800, icon: "/images/setup/gpu.png", url: "https://www.msi.com/Graphics-Card/GeForce-RTX-5060-Ti-16G-VENTUS-2X-OC-PLUS" },
@@ -846,24 +846,24 @@ export const ZPU = {
     { part: "PSU", name: "Thermaltake Toughpower GF 750W 80+ Gold", priceThb: 3490, icon: "/images/setup/psu.png", url: "https://www.thermaltake.com/toughpower-gf-750w.html" },
   ] as { part: string; name: string; priceThb: number; icon?: string; url?: string }[],
 
-  // Peripherals / gaming gear on the desk โ€” real prices (THB) + product links.
+  // Peripherals / gaming gear on the desk — real prices (THB) + product links.
   gear: [
-    { part: "Monitor ยท Main", name: "ASUS TUF VG259QMR5A ยท 24.5โ€ณ FHD 310Hz", priceThb: 5900, icon: "/images/gear/monitor-tuf.png", url: "https://www.asus.com/displays-desktops/monitors/tuf-gaming/tuf-gaming-vg259qmrl5a/" },
-    { part: "Monitor", name: "ASUS ROG Strix XG27ACMES ยท 27โ€ณ 2K 255Hz", priceThb: 7950, icon: "/images/gear/monitor-rog.png", url: "https://rog.asus.com/monitors/27-to-31-5-inches/rog-strix-xg27acmes/" },
-    { part: "Mouse ยท Main", name: "Hitscan Hyperlight Wireless ยท Black", priceThb: 3100, icon: "/images/gear/mouse-hitscan.png", url: "https://hitscan.com/products/hyperlight" },
-    { part: "Mouse", name: "Logitech G Pro X Superlight 2 ยท Pink", priceThb: 3990, icon: "/images/gear/mouse-superlight.png", url: "https://www.logitechg.com/en-us/shop/p/pro-x2-superlight-wireless-mouse" },
+    { part: "Monitor • Main", name: "ASUS TUF VG259QMR5A • 24.5\" FHD 310Hz", priceThb: 5900, icon: "/images/gear/monitor-tuf.png", url: "https://www.asus.com/displays-desktops/monitors/tuf-gaming/tuf-gaming-vg259qmrl5a/" },
+    { part: "Monitor", name: "ASUS ROG Strix XG27ACMES • 27\" 2K 255Hz", priceThb: 7950, icon: "/images/gear/monitor-rog.png", url: "https://rog.asus.com/monitors/27-to-31-5-inches/rog-strix-xg27acmes/" },
+    { part: "Mouse • Main", name: "Hitscan Hyperlight Wireless • Black", priceThb: 3100, icon: "/images/gear/mouse-hitscan.png", url: "https://hitscan.com/products/hyperlight" },
+    { part: "Mouse", name: "Logitech G Pro X Superlight 2 • Pink", priceThb: 3990, icon: "/images/gear/mouse-superlight.png", url: "https://www.logitechg.com/en-us/shop/p/pro-x2-superlight-wireless-mouse" },
     { part: "Headset", name: "HyperX Cloud III", priceThb: 2590, icon: "/images/gear/headset-cloud3.png", url: "https://row.hyperx.com/products/hyperx-cloud-iii-wired-gaming-headset" },
     { part: "Microphone", name: "HyperX QuadCast", priceThb: 4390, icon: "/images/gear/mic-quadcast.png", url: "https://hyperx.com/products/hyperx-quadcast-usb-microphone" },
   ] as { part: string; name: string; priceThb: number; icon?: string; url?: string }[],
 };
-/* โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ• */
+/* ——————————————————————————————————————————————————————————————— */
 
 // Localised price from a THB base amount (rates approximate).
 export const CURRENCY: Record<string, { sym: string; factor: number; step: number; suffix?: boolean }> = {
-  th: { sym: "เธฟ", factor: 1, step: 1 },
+  th: { sym: "฿", factor: 1, step: 1 },
   en: { sym: "$", factor: 1 / 34.5, step: 1 },
-  zh: { sym: "ยฅ", factor: 1 / 4.8, step: 1 },
-  vi: { sym: "โซ", factor: 725, step: 1000, suffix: true },
+  zh: { sym: "¥", factor: 1 / 4.8, step: 1 },
+  vi: { sym: "₫", factor: 725, step: 1000, suffix: true },
   pt: { sym: "R$", factor: 1 / 6.4, step: 1 },
 };
 export function fmtPrice(thb: number, lang: string): string {
@@ -890,7 +890,7 @@ export type FavTopic = {
   covers: string[];
 };
 
-// Solid-color data-URI swatch โ€” lets color entries (no photo) feed the same
+// Solid-color data-URI swatch — lets color entries (no photo) feed the same
 // cover-fan preview as every other topic.
 const swatch = (hex: string) =>
   `data:image/svg+xml,${encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' width='64' height='64'><rect width='64' height='64' fill='${hex}'/></svg>`)}`;

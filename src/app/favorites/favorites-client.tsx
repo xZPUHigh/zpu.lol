@@ -1,7 +1,7 @@
 "use client";
 
 // Every favorites collection in full. These sections used to live on
-// /about/zpu, where ten of them buried the rest of the page โ€” now the about
+// /about/zpu, where ten of them buried the rest of the page — now the about
 // page shows one overview shelf that deep-links here (#fav-<topic>).
 
 import { useEffect, useState } from "react";
@@ -52,7 +52,7 @@ const rankOfManga = (i: number) => (i < MANGA_RANKED_TOP ? i + 1 : undefined);
 // Books chart runs 24 deep instead of the usual 10.
 const rankOfBook = (i: number) => (i < BOOKS_RANKED_TOP ? i + 1 : undefined);
 
-// "Explore all" toggle shared by every collection โ€” each section starts
+// "Explore all" toggle shared by every collection — each section starts
 // clipped to `preview` items so the page opens at a scannable length.
 function ShowMore({ open, onToggle }: { open: boolean; onToggle: () => void }) {
   const { t } = useLang();
@@ -80,7 +80,7 @@ export function ZpuFavorites() {
   // Randomize movies on the client after mount, but SPREAD each franchise
   // (Spider-Man, John Wick, Iron Man, ...) so no two films from the same
   // series ever land next to each other (keeps SSR order first to avoid
-  // hydration mismatch). The ranked top ten is held out of the shuffle โ€”
+  // hydration mismatch). The ranked top ten is held out of the shuffle —
   // a numbered chart that reorders itself on every reload is not a chart.
   const [moviesOrder, setMoviesOrder] = useState(ZPU.favMovies);
   useEffect(() => {
@@ -139,7 +139,7 @@ export function ZpuFavorites() {
       const k = franchise(m.name);
       (groups.get(k) ?? groups.set(k, []).get(k)!).push(m);
     }
-    // largest groups first, then place into even indices, then odd โ€” this
+    // largest groups first, then place into even indices, then odd — this
     // guarantees no two same-group items are adjacent.
     const flat = [...groups.values()].sort((a, b) => b.length - a.length).flat();
     const n = flat.length;
@@ -152,7 +152,7 @@ export function ZpuFavorites() {
 
   // Shuffle books / anime / manga / cars / series on mount, keeping the ranked
   // top ten pinned in place (SSR keeps source order to avoid a hydration
-  // mismatch). Cars pass keep=0 โ€” they carry no ranks, so there is nothing to
+  // mismatch). Cars pass keep=0 — they carry no ranks, so there is nothing to
   // pin and the whole list can move.
   const shuffleTail = <T,>(src: T[], keep = RANKED_TOP) => {
     const arr = src.slice(keep);
@@ -170,7 +170,7 @@ export function ZpuFavorites() {
     }
     return arr;
   };
-  // Books: the Lupin (20) + Dune (23) run shuffles among itself every load โ€”
+  // Books: the Lupin (20) + Dune (23) run shuffles among itself every load —
   // still always ranks #1-43, just not the same book in the same slot twice.
   // The remaining top-48 picks (#44-48) and the unranked tail stay/shuffle
   // as usual.
@@ -303,7 +303,7 @@ export function ZpuFavorites() {
   };
 
   // Same seven entries as the about page so the header doesn't change shape
-  // between the two โ€” every one except Interests jumps back to /about/zpu.
+  // between the two — every one except Interests jumps back to /about/zpu.
   const navItems = [
     { href: "/#zpu-top", label: t("zpuNavHome") },
     { href: "/#zpu-facts", label: t("zpuNavAbout") },
@@ -340,7 +340,7 @@ export function ZpuFavorites() {
           </div>
         </section>
 
-        {/* Sticky topic rail โ€” same scroll-spy the top nav uses, so the chip
+        {/* Sticky topic rail — same scroll-spy the top nav uses, so the chip
             for whichever collection you are scrolled into stays lit. */}
         <nav className="zpu-fav-rail" aria-label={t("zpuCollectionsTitle")}>
           <div className="zpu-fav-rail-inner">

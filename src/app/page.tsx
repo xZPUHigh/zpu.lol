@@ -4,7 +4,7 @@ import { AboutZpu } from "./about-client";
 export const metadata: Metadata = {
   title: { absolute: "About ZPU | The Owner & Founder of Spectrum Cheat" },
   description:
-    "Who is ZPU (xZPUHigh)? Meet ZPU โ€” founder, developer, and entrepreneur building digital products and online businesses, and the creator behind Spectrum Cheat.",
+    "Who is ZPU (xZPUHigh)? Meet ZPU — founder, developer, and entrepreneur building digital products and online businesses, and the creator behind Spectrum Cheat.",
   keywords: [
     "ZPU",
     "xZPUHigh",
@@ -111,29 +111,33 @@ export const metadata: Metadata = {
     "xZPUHigh subscribers",
     "xZPUHigh fans",
     "xZPUHigh supporters",
-    "เนเธเธฃเธเธทเธญ ZPU",
-    "เนเธเธฃเธเธทเธญ xZPUHigh",
-    "ZPU เธเธทเธญเนเธเธฃ",
-    "xZPUHigh เธเธทเธญเนเธเธฃ",
-    "ZPU เธเธทเธญเนเธเธฃเนเธเธงเธเธเธฒเธฃเนเธญเธ—เธต",
-    "xZPUHigh เธเธทเธญเนเธเธฃเนเธเธงเธเธเธฒเธฃเนเธญเธ—เธต",
-    "ZPU เธเธทเธญเนเธเธฃเนเธเธงเธเธเธฒเธฃเธเธฑเธ’เธเธฒเน€เธงเนเธ",
-    "xZPUHigh เธเธทเธญเนเธเธฃเนเธเธงเธเธเธฒเธฃเธเธฑเธ’เธเธฒเน€เธงเนเธ",
-    "ZPU เธเธทเธญเนเธเธฃเนเธเธงเธเธเธฒเธฃเธชเธฃเนเธฒเธเธชเธฃเธฃเธเนเธ”เธดเธเธดเธ—เธฑเธฅ",
-    "xZPUHigh เธเธทเธญเนเธเธฃเนเธเธงเธเธเธฒเธฃเธชเธฃเนเธฒเธเธชเธฃเธฃเธเนเธ”เธดเธเธดเธ—เธฑเธฅ",
-    "ZPU เธเธทเธญเนเธเธฃเนเธเธงเธเธเธฒเธฃเธเธนเนเธเธฃเธฐเธเธญเธเธเธฒเธฃเธญเธญเธเนเธฅเธเน",
-    "xZPUHigh เธเธทเธญเนเธเธฃเนเธเธงเธเธเธฒเธฃเธเธนเนเธเธฃเธฐเธเธญเธเธเธฒเธฃเธญเธญเธเนเธฅเธเน",
-    "ZPU เธเธทเธญเนเธเธฃเนเธเธงเธเธเธฒเธฃเธขเธนเธ—เธนเธเน€เธเธญเธฃเน",
-    "xZPUHigh เธเธทเธญเนเธเธฃเนเธเธงเธเธเธฒเธฃเธขเธนเธ—เธนเธเน€เธเธญเธฃเน",
-    "ZPU เธเธทเธญเนเธเธฃเนเธเธงเธเธเธฒเธฃเธ•เธดเนเธเธ•เนเธญเธเน€เธเธญเธฃเน",
-    "xZPUHigh เธเธทเธญเนเธเธฃเนเธเธงเธเธเธฒเธฃเธ•เธดเนเธเธ•เนเธญเธเน€เธเธญเธฃเน",
-    "ZPU เธเธทเธญเนเธเธฃเนเธเธงเธเธเธฒเธฃเธญเธดเธเธชเธ•เธฒเนเธเธฃเธกเน€เธกเธญเธฃเน",
-    "xZPUHigh เธเธทเธญเนเธเธฃเนเธเธงเธเธเธฒเธฃเธญเธดเธเธชเธ•เธฒเนเธเธฃเธกเน€เธกเธญเธฃเน",
-    "ZPU เธเธทเธญเนเธเธฃเนเธเธงเธเธเธฒเธฃเน€เธเธเธเธธเนเธเน€เธเธญเธฃเน",
-    "xZPUHigh เธเธทเธญเนเธเธฃเนเธเธงเธเธเธฒเธฃเน€เธเธเธเธธเนเธเน€เธเธญเธฃเน",
-    "ZPU เธเธทเธญเนเธเธฃเนเธเธงเธเธเธฒเธฃเธ”เธดเธชเธเธญเธฃเนเธ”เน€เธเธดเธฃเนเธเน€เธงเธญเธฃเน",
-    "xZPUHigh เธเธทเธญเนเธเธฃเนเธเธงเธเธเธฒเธฃเธ”เธดเธชเธเธญเธฃเนเธ”เน€เธเธดเธฃเนเธเน€เธงเธญเธฃเน",
-    "ZPU เธเธทเธญเนเธเธฃเนเธเธงเธเธเธฒเธฃเธเธดเธ•เธฎเธฑเธ",
+    "ใครคือ ZPU",
+    "ใครคือ xZPUHigh",
+    "ZPU คือใคร",
+    "xZPUHigh คือใคร",
+    "ZPU คือใครในวงการไอที",
+    "xZPUHigh คือใครในวงการไอที",
+    "ZPU คือใครในวงการพัฒนาเว็บ",
+    "xZPUHigh คือใครในวงการพัฒนาเว็บ",
+    "ZPU คือใครในวงการสร้างสรรค์ดิจิทัล",
+    "xZPUHigh คือใครในวงการสร้างสรรค์ดิจิทัล",
+    "ZPU คือใครในวงการผู้ประกอบการออนไลน์",
+    "xZPUHigh คือใครในวงการผู้ประกอบการออนไลน์",
+    "ZPU คือใครในวงการยูทูบเบอร์",
+    "xZPUHigh คือใครในวงการยูทูบเบอร์",
+    "ZPU คือใครในวงการติ๊กต็อกเกอร์",
+    "xZPUHigh คือใครในวงการติ๊กต็อกเกอร์",
+    "ZPU คือใครในวงการอินสตาแกรมเมอร์",
+    "xZPUHigh คือใครในวงการอินสตาแกรมเมอร์",
+    "ZPU คือใครในวงการเฟซบุ๊กเกอร์",
+    "xZPUHigh คือใครในวงการเฟซบุ๊กเกอร์",
+    "ZPU คือใครในวงการดิสคอร์ดเซิร์ฟเวอร์",
+    "xZPUHigh คือใครในวงการดิสคอร์ดเซิร์ฟเวอร์",
+    "ZPU คือใครในวงการกิตฮับ",
+    "xZPUHigh คือใครในวงการกิตฮับ",
+    "ZPU คือใครในวงการผู้สร้างสรรค์ออนไลน์",
+    "xZPUHigh คือใครในวงการผู้สร้างสรรค์ออนไลน์",
+    "xZPUHigh Roblox",
     "xZPUHigh เธเธทเธญเนเธเธฃเนเธเธงเธเธเธฒเธฃเธเธดเธ•เธฎเธฑเธ",
     "ZPU เธเธทเธญเนเธเธฃเนเธเธงเธเธเธฒเธฃเธเธนเนเธชเธฃเนเธฒเธเธชเธฃเธฃเธเนเธญเธญเธเนเธฅเธเน",
     "xZPUHigh เธเธทเธญเนเธเธฃเนเธเธงเธเธเธฒเธฃเธเธนเนเธชเธฃเนเธฒเธเธชเธฃเธฃเธเนเธญเธญเธเนเธฅเธเน",
@@ -145,11 +149,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: "About ZPU | The Owner & Founder of Spectrum Cheat",
     description:
-      "Who is ZPU (xZPUHigh)? Meet ZPU โ€” founder, developer, and entrepreneur building digital products and online businesses.",
+      "Who is ZPU (xZPUHigh)? Meet ZPU — founder, developer, and entrepreneur building digital products and online businesses.",
     url: "https://zpu.lol",
     type: "profile",
     images: [
-      { url: "https://spectrumcheat.com/images/benner_1.png", width: 6144, height: 1015, alt: "ZPU โ€” Founder & Developer" },
+      { url: "https://spectrumcheat.com/images/benner_1.png", width: 6144, height: 1015, alt: "ZPU — Founder & Developer" },
     ],
   },
   twitter: {
@@ -190,7 +194,7 @@ const personJsonLd = {
   ],
 };
 
-// Live YouTube subscriber count (no API key โ€” third-party live counter).
+// Live YouTube subscriber count (no API key — third-party live counter).
 async function getYouTubeSubs(): Promise<number | null> {
   try {
     const res = await fetch(

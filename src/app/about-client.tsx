@@ -54,8 +54,8 @@ function LiveDate({ timezone }: { timezone: string }) {
   return <>{date}</>;
 }
 
-// A live "status" that picks a random thing ZPU is into โ€” reshuffled every refresh.
-// All 77 Thai provinces โ€” "Living in" picks a fresh one on every refresh.
+// A live "status" that picks a random thing ZPU is into — reshuffled every refresh.
+// All 77 Thai provinces — "Living in" picks a fresh one on every refresh.
 const TH_PROVINCES = [
   "Chiang Mai, Thailand", "Chiang Rai, Thailand", "Lampang, Thailand", "Lamphun, Thailand",
   "Mae Hong Son, Thailand", "Nan, Thailand", "Phayao, Thailand", "Phrae, Thailand",
@@ -72,59 +72,47 @@ const TH_PROVINCES = [
   "Satun, Thailand", "Songkhla, Thailand", "Pattani, Thailand", "Yala, Thailand", "Narathiwat, Thailand",
 ];
 
-// Quote card under "Facts About Me" โ€” shows one quote in the currently
+// Quote card under "Facts About Me" — shows one quote in the currently
 // selected site language, rotating on its own.
 const QUOTES: Record<"en" | "th" | "zh" | "vi" | "pt", string>[] = [
-  { th: "เธเธเน€เธฃเธดเนเธก เนเธกเนเธเธฐเธขเธฑเธเนเธกเนเธเธฃเนเธญเธก", en: "Start before you're ready.", zh: "ๅณไฝฟ่ฟๆฒกๅๅคๅฅฝ๏ผไน่ฆๅผ€ๅงใ€", vi: "Hรฃy bแบฏt ฤ‘แบงu dรน chฦฐa sแบตn sร ng.", pt: "Comece mesmo sem estar pronto." },
-  { th: "เธ—เธณเนเธเธ—เธฑเนเธเธ—เธตเนเธเธฅเธฑเธง เธ—เธณเนเธเธ—เธฑเนเธเธ—เธตเนเน€เธซเธเธทเนเธญเธข เนเธ•เนเธเธเธ—เธณเธ•เนเธญ", en: "Do it scared, do it tired, just do it anyway.", zh: "ๅฎณๆ€•ไนๅ๏ผ็–ฒๆซไนๅ๏ผๆ— ่ฎบๅฆไฝ•้ฝๅปๅใ€", vi: "Hรฃy lร m dรน sแปฃ, dรน mแปt, cแปฉ lร m thรดi.", pt: "Faรงa com medo, faรงa cansado, mas faรงa mesmo assim." },
-  { th: "เธเธงเธฒเธกเธชเธกเนเธณเน€เธชเธกเธญเธเธเธฐเธเธฃเธชเธงเธฃเธฃเธเน", en: "Consistency beats talent.", zh: "ๅๆ่่ฟๅคฉ่ตใ€", vi: "Sแปฑ kiรชn trรฌ vฦฐแปฃt qua tร i nฤng.", pt: "A consistรชncia vence o talento." },
-  { th: "เธเธงเธฒเธกเธเนเธฒเธงเธซเธเนเธฒเน€เธฅเนเธ เน เธขเธฑเธเธ”เธตเธเธงเนเธฒเนเธกเนเน€เธฃเธดเนเธกเน€เธฅเธข", en: "Small progress is still progress.", zh: "ๅฐๅฐ็่ฟๆญฅไนๆฏ่ฟๆญฅใ€", vi: "Tiแบฟn bแป nhแป vแบซn lร  tiแบฟn bแป.", pt: "Pequenos progressos ainda sรฃo progresso." },
-  { th: "เธญเธขเนเธฒเธซเธขเธธเธ”เน€เธเธตเธขเธเน€เธเธฃเธฒเธฐเธกเธฑเธเธขเธฒเธ", en: "Don't stop because it's hard.", zh: "ไธ่ฆๅ ไธบๅฐ้พ่€ๅๆญขใ€", vi: "ฤแปซng dแปซng lแบกi chแป vรฌ khรณ.", pt: "Nรฃo pare sรณ porque รฉ difรญcil." },
-  { th: "เธ—เธธเธเธงเธฑเธเธ—เธตเนเธเธธเธ“เธฅเธเธกเธทเธญ เธเธธเธ“เธเธณเธฅเธฑเธเน€เธเนเธฒเนเธเธฅเนเธเธงเธฒเธกเธเธฑเธ", en: "Every day you show up, you're closer to your dream.", zh: "ๆฏไธ€ๅคฉๅๆ๏ผ้ฝไผๆดๆฅ่ฟ‘ๆขฆๆณใ€", vi: "Mแป—i ngร y cแป‘ gแบฏng lร  mแปt ngร y gแบงn hฦกn vแปi ฦฐแปc mฦก.", pt: "Cada dia que vocรช aparece รฉ um dia mais perto do seu sonho." },
-  { th: "เธเธงเธฒเธกเธชเธณเน€เธฃเนเธเธชเธฃเนเธฒเธเธเธฒเธเธงเธดเธเธฑเธข เนเธกเนเนเธเนเนเธฃเธเธเธฑเธเธ”เธฒเธฅเนเธ", en: "Success is built by discipline, not motivation.", zh: "ๆๅๆฅ่ช่ชๅพ๏ผ่€ไธๆฏไธ€ๆ—ถ็ๅจๅใ€", vi: "Thร nh cรดng ฤ‘แบฟn tแปซ kแปท luแบญt, khรดng phแบฃi cแบฃm hแปฉng.", pt: "O sucesso รฉ construรญdo pela disciplina, nรฃo pela motivaรงรฃo." },
-  { th: "เธญเธขเนเธฒเน€เธเธฃเธตเธขเธเน€เธ—เธตเธขเธเธ•เธฑเธงเน€เธญเธเธเธฑเธเธเธเธญเธทเนเธ", en: "Compare yourself only to who you were yesterday.", zh: "ๅชๅ’ๆจๅคฉ็่ชๅทฑๆฏ”่พใ€", vi: "Chแป so sรกnh vแปi chรญnh mรฌnh cแปงa hรดm qua.", pt: "Compare-se apenas com quem vocรช era ontem." },
-  { th: "เธเธงเธฒเธกเธญเธ”เธ—เธเธกเธฑเธเนเธ”เนเธฃเธฑเธเธเธฅเธ•เธญเธเนเธ—เธเน€เธชเธกเธญ", en: "Patience always pays off.", zh: "่€ๅฟ็ปไผๅพ—ๅฐๅๆฅใ€", vi: "Kiรชn nhแบซn luรดn ฤ‘ฦฐแปฃc ฤ‘แปn ฤ‘รกp.", pt: "A paciรชncia sempre recompensa." },
-  { th: "เธเธเน€เธเนเธเธเธเธ—เธตเนเธ•เธฑเธงเน€เธญเธเนเธเธงเธฑเธขเน€เธ”เนเธเธเธฐเธ เธนเธกเธดเนเธ", en: "Become someone your younger self would admire.", zh: "ๆไธบๅฐๆ—ถๅ€็่ชๅทฑไผ้ชๅฒ็ไบบใ€", vi: "Hรฃy trแป thร nh ngฦฐแปi mร  bแบฃn thรขn ngร y bรฉ sแบฝ tแปฑ hร o.", pt: "Torne-se alguรฉm que seu eu mais jovem admiraria." },
-  { th: "เธเธงเธฒเธกเธเธฅเนเธฒเธเธทเธญเธเธฒเธฃเธฅเธเธกเธทเธญ เนเธกเนเธเธฐเนเธกเนเธกเธฑเนเธเนเธ", en: "Courage is acting without certainty.", zh: "ๅๆ•ขๆฏๅจๆฒกๆๆๆกๆ—ถไพ็ถ่กๅจใ€", vi: "Dลฉng cแบฃm lร  hร nh ฤ‘แปng dรน chฦฐa chแบฏc chแบฏn.", pt: "Coragem รฉ agir mesmo sem certeza." },
-  { th: "เธเธเธชเธฃเนเธฒเธเธเธตเธงเธดเธ•เธ—เธตเนเธเธธเธ“เนเธกเนเธ•เนเธญเธเธซเธเธตเธเธฒเธเธกเธฑเธ", en: "Build a life you don't need to escape from.", zh: "ๅ้€ ไธ€ไธชๆ— ้€้€็ฆป็ไบบ็”ใ€", vi: "Xรขy dแปฑng cuแปc sแป‘ng mร  bแบกn khรดng muแป‘n trแป‘n khแปi.", pt: "Construa uma vida da qual vocรช nรฃo precise fugir." },
-  { th: "เธเธงเธฒเธกเธเธฑเธเธเธฐเนเธกเนเธกเธตเธงเธฑเธเธ—เธณเธเธฒเธ เธ–เนเธฒเธเธธเธ“เนเธกเนเธฅเธเธกเธทเธญ", en: "Dreams don't work unless you do.", zh: "ๆขฆๆณไธไผ่ชๅทฑๅฎ็ฐใ€", vi: "ฦฏแปc mฦก sแบฝ khรดng tแปฑ thร nh hiแปn thแปฑc.", pt: "Sonhos nรฃo funcionam sem vocรช." },
-  { th: "เธ—เธณเธงเธฑเธเธเธตเนเนเธซเนเธ”เธตเธเธงเนเธฒเน€เธกเธทเนเธญเธงเธฒเธ", en: "Be better than yesterday.", zh: "ไปๅคฉๆฏ”ๆจๅคฉๆดๅฅฝใ€", vi: "Hรดm nay tแป‘t hฦกn hรดm qua.", pt: "Seja melhor do que ontem." },
-  { th: "เธเธงเธฒเธกเธชเธณเน€เธฃเนเธเธเธทเธญเธเธฅเธฅเธฑเธเธเนเธเธญเธเธเธฒเธฃเนเธกเนเธขเธญเธกเนเธเน", en: "Success is the reward for not giving up.", zh: "ๆๅๆฏไธๆ”พๅผ็ๅๆฅใ€", vi: "Thร nh cรดng lร  phแบงn thฦฐแปng cแปงa sแปฑ khรดng bแป cuแปc.", pt: "O sucesso รฉ a recompensa por nรฃo desistir." },
-  { th: "เธเธงเธฒเธกเน€เธฃเนเธงเนเธกเนเธชเธณเธเธฑเธ เธ–เนเธฒเธขเธฑเธเน€เธ”เธดเธเนเธเธเนเธฒเธเธซเธเนเธฒ", en: "It doesn't matter how fast you go, as long as you don't stop.", zh: "่ตฐๅพ—ๆ…ขๆฒกๅ…ณ็ณป๏ผๅช่ฆไธๅไธใ€", vi: "ฤi chแบญm khรดng sao, miแป…n lร  ฤ‘แปซng dแปซng lแบกi.", pt: "Nรฃo importa a velocidade, desde que vocรช continue." },
-  { th: "เธญเธขเนเธฒเธฃเธญเน€เธงเธฅเธฒเธ—เธตเนเธชเธกเธเธนเธฃเธ“เนเนเธเธ", en: "Don't wait for perfect timing.", zh: "ไธ่ฆ็ญๅพ…ๅฎ็พๆ—ถๆบใ€", vi: "ฤแปซng chแป thแปi ฤ‘iแปm hoร n hแบฃo.", pt: "Nรฃo espere o momento perfeito." },
-  { th: "เธฅเธเธกเธทเธญเธเนเธญเธ เนเธฅเนเธงเธเนเธญเธขเน€เธเนเธเธเธถเนเธเธฃเธฐเธซเธงเนเธฒเธเธ—เธฒเธ", en: "Learn by doing.", zh: "ๅจๅฎ่ทตไธญๆ้•ฟใ€", vi: "Hแปc bแบฑng cรกch bแบฏt ฤ‘แบงu lร m.", pt: "Aprenda fazendo." },
-  { th: "เธเธงเธฒเธกเธเธขเธฒเธขเธฒเธกเนเธกเนเธกเธตเธงเธฑเธเธชเธนเธเน€เธเธฅเนเธฒ", en: "Effort is never wasted.", zh: "ๅชๅๆฐธ่ฟไธไผ็ฝ่ดนใ€", vi: "Mแปi nแป— lแปฑc ฤ‘แปu cรณ giรก trแป.", pt: "Nenhum esforรงo รฉ em vรฃo." },
-  { th: "เธญเธขเนเธฒเธเธฅเนเธญเธขเนเธซเนเธเธงเธฒเธกเธเธฅเธฑเธงเธเธณเธซเธเธ”เธเธตเธงเธดเธ•เธเธธเธ“", en: "Don't let fear decide your future.", zh: "ไธ่ฆ่ฎฉๆๆงๅณๅฎไฝ ็ๆชๆฅใ€", vi: "ฤแปซng ฤ‘แป nแป—i sแปฃ quyแบฟt ฤ‘แปnh tฦฐฦกng lai cแปงa bแบกn.", pt: "Nรฃo deixe o medo decidir seu futuro." },
-  { th: "เธญเธขเนเธฒเธเธฅเธฑเธงเธเธฒเธฃเน€เธฃเธดเนเธกเนเธซเธกเน", en: "Never be afraid to start over.", zh: "ๆฐธ่ฟไธ่ฆๅฎณๆ€•้ๆ–ฐๅผ€ๅงใ€", vi: "ฤแปซng bao giแป sแปฃ bแบฏt ฤ‘แบงu lแบกi.", pt: "Nunca tenha medo de recomeรงar." },
-  { th: "เธ—เธธเธเธเธงเธฒเธกเธชเธณเน€เธฃเนเธเน€เธเธขเน€เธเนเธเนเธเนเธเธงเธฒเธกเธเธดเธ”", en: "Every achievement was once just an idea.", zh: "ๆฏไธชๆๅฐฑ้ฝๆพๅชๆฏไธ€ไธชๆณๆณ•ใ€", vi: "Mแปi thร nh tแปฑu tแปซng chแป lร  mแปt รฝ tฦฐแปng.", pt: "Toda conquista jรก foi apenas uma ideia." },
-  { th: "เธเธฑเธขเธเธเธฐเธ—เธตเนเนเธ—เนเธเธฃเธดเธเธเธทเธญเธเธฒเธฃเนเธกเนเธซเธขเธธเธ”", en: "The real victory is refusing to quit.", zh: "็ๆญฃ็่ๅฉๆฏไธๆ”พๅผใ€", vi: "Chiแบฟn thแบฏng thแบญt sแปฑ lร  khรดng bแป cuแปc.", pt: "A verdadeira vitรณria รฉ nรฃo desistir." },
-  { th: "เธเธงเธฒเธกเน€เธเธตเธขเธเธเธทเธญเธ—เธตเนเธ—เธตเนเธเธฒเธฃเน€เธ•เธดเธเนเธ•เน€เธเธดเธ”เธเธถเนเธ", en: "Growth happens in silence.", zh: "ๆ้•ฟๅ‘็”ๅจๅฎ้ไนไธญใ€", vi: "Sแปฑ trฦฐแปng thร nh diแป…n ra trong im lแบทng.", pt: "O crescimento acontece em silรชncio." },
-  { th: 'เธญเธขเนเธฒเธเธฅเนเธญเธขเนเธซเนเธเธณเธงเนเธฒ "เธชเธฑเธเธงเธฑเธ" เธเธฅเธฒเธขเน€เธเนเธ "เนเธกเนเน€เธเธข"', en: 'Don\'t let "someday" become "never."', zh: "ๅซ่ฎฉโ€ๆ€ปๆไธ€ๅคฉโ€ๅๆโ€ๆฐธ่ฟไธไผโ€ใ€", vi: 'ฤแปซng ฤ‘แป "mแปt ngร y nร o ฤ‘รณ" trแป thร nh "khรดng bao giแป".', pt: 'Nรฃo deixe o "algum dia" virar "nunca".' },
-  { th: "เธ—เธธเธเธงเธฑเธเธ—เธตเนเธขเธฒเธ เธเธณเธฅเธฑเธเธชเธฃเนเธฒเธเธเธธเธ“เนเธซเนเนเธเนเธเนเธเธฃเนเธเธเธถเนเธ", en: "Hard days build strong people.", zh: "่ฐ้พ็ๆ—ฅๅญ้€ ๅฐฑๅๅผบ็ไบบใ€", vi: "Nhแปฏng ngร y khรณ khฤn tแบกo nรชn con ngฦฐแปi mแบกnh mแบฝ.", pt: "Dias difรญceis formam pessoas fortes." },
-  { th: "เธญเธขเนเธฒเธซเธขเธธเธ”เน€เธฃเธตเธขเธเธฃเธนเน", en: "Never stop learning.", zh: "ๆฐธ่ฟไธ่ฆๅๆญขๅญฆไน ใ€", vi: "ฤแปซng bao giแป ngแปซng hแปc hแปi.", pt: "Nunca pare de aprender." },
-  { th: "เธ—เธณเธชเธดเนเธเน€เธฅเนเธ เน เนเธซเนเธ”เธต เนเธฅเนเธงเธชเธดเนเธเนเธซเธเนเธเธฐเธ•เธฒเธกเธกเธฒ", en: "Master the small things first.", zh: "ๅ…ๅๅฅฝๅฐไบ๏ผๅคงไบ่ช็ถไผๆฅใ€", vi: "Hรฃy lร m tแป‘t nhแปฏng ฤ‘iแปu nhแป trฦฐแปc.", pt: "Domine as pequenas coisas primeiro." },
-  { th: "เธญเธขเนเธฒเน€เธชเธตเธขเน€เธงเธฅเธฒเน€เธเนเธเธเธเธญเธทเนเธ", en: "Don't waste your life being someone else.", zh: "ไธ่ฆๆตช่ดน็”ๅ‘ฝๅปๆไธบๅซไบบใ€", vi: "ฤแปซng lรฃng phรญ cuแปc ฤ‘แปi ฤ‘แป trแป thร nh ngฦฐแปi khรกc.", pt: "Nรฃo desperdice sua vida sendo outra pessoa." },
-  { th: "เธญเธเธฒเธเธ•เธชเธฃเนเธฒเธเธเธฒเธเธชเธดเนเธเธ—เธตเนเธเธธเธ“เธ—เธณเธงเธฑเธเธเธตเน", en: "Tomorrow is built by what you do today.", zh: "ๆๅคฉ็”ฑไปๅคฉ็่กๅจๅณๅฎใ€", vi: "Ngร y mai ฤ‘ฦฐแปฃc tแบกo nรชn tแปซ viแปc bแบกn lร m hรดm nay.", pt: "O amanhรฃ รฉ construรญdo pelo que vocรช faz hoje." },
-  { th: "เธญเธขเนเธฒเธเธฅเนเธญเธขเนเธซเนเธเนเธญเธญเนเธฒเธเนเธซเธเนเธเธงเนเธฒเธเธงเธฒเธกเธเธฑเธ", en: "Don't let excuses become bigger than your dreams.", zh: "ไธ่ฆ่ฎฉๅ€ๅฃๆฏ”ๆขฆๆณๆดๅคงใ€", vi: "ฤแปซng ฤ‘แป lรฝ do lแปn hฦกn ฦฐแปc mฦก.", pt: "Nรฃo deixe as desculpas serem maiores que seus sonhos." },
-  { th: "เธเธฒเธฃเธฅเธเธกเธทเธญเธเธทเธญเธเธธเธ”เน€เธฃเธดเนเธกเธ•เนเธเธเธญเธเธ—เธธเธเธญเธขเนเธฒเธ", en: "Action is where everything begins.", zh: "ไธ€ๅ้ฝๅงไบ่กๅจใ€", vi: "Hร nh ฤ‘แปng lร  nฦกi mแปi thแปฉ bแบฏt ฤ‘แบงu.", pt: "A aรงรฃo รฉ onde tudo comeรงa." },
-  { th: "เนเธกเนเธกเธตเธ—เธฒเธเธฅเธฑเธ”เธชเธนเนเธเธงเธฒเธกเธขเธดเนเธเนเธซเธเน", en: "There are no shortcuts to greatness.", zh: "้€ๅพ€ๅ“่ถๆฒกๆๆทๅพใ€", vi: "Khรดng cรณ ฤ‘ฦฐแปng tแบฏt ฤ‘แบฟn sแปฑ vฤฉ ฤ‘แบกi.", pt: "Nรฃo hรก atalhos para a grandeza." },
-  { th: "เธเธเธฐเธ•เธฑเธงเน€เธญเธเธ—เธธเธเธงเธฑเธ", en: "Win against yourself every day.", zh: "ๆฏๅคฉๆ่ๆจๅคฉ็่ชๅทฑใ€", vi: "Chiแบฟn thแบฏng chรญnh mรฌnh mแป—i ngร y.", pt: "Venรงa a si mesmo todos os dias." },
-  { th: "เธเธเธ—เธณเนเธซเนเธ•เธฑเธงเน€เธญเธเธกเธตเธเนเธฒเธเธเนเธญเธเธฒเธชเธ•เนเธญเธเธ•เธฒเธกเธซเธฒ", en: "Become so valuable that opportunities find you.", zh: "่ฎฉ่ชๅทฑ่ถณๅคไผ็ง€๏ผๆบไผ่ช็ถไผๆฅใ€", vi: "Hรฃy trแป nรชn giรก trแป ฤ‘แป cฦก hแปi tแปฑ tรฌm ฤ‘แบฟn.", pt: "Torne-se tรฃo valioso que as oportunidades encontrem vocรช." },
-  { th: "เธงเธดเธเธฑเธขเธเธฐเธเธฒเธเธธเธ“เนเธเนเธเธฅเธเธงเนเธฒเนเธฃเธเธเธนเธเนเธ", en: "Discipline will take you further than motivation.", zh: "่ชๅพๆฏ”ๅจๅๆดๅฏ้ ใ€", vi: "Kแปท luแบญt sแบฝ ฤ‘ฦฐa bแบกn ฤ‘i xa hฦกn cแบฃm hแปฉng.", pt: "A disciplina leva vocรช mais longe do que a motivaรงรฃo." },
-  { th: "เธญเธขเนเธฒเธซเธขเธธเธ”เน€เธเธฃเธฒเธฐเธเธเธญเธทเนเธเนเธกเนเน€เธเธทเนเธญ", en: "Don't stop because others don't believe.", zh: "ไธ่ฆๅ ไธบๅซไบบไธ็ธไฟกๅฐฑๅไธใ€", vi: "ฤแปซng dแปซng lแบกi chแป vรฌ ngฦฐแปi khรกc khรดng tin.", pt: "Nรฃo pare porque os outros nรฃo acreditam." },
-  { th: "เธเธงเธฒเธกเธฅเนเธกเน€เธซเธฅเธงเธเธทเธญเธเธ—เน€เธฃเธตเธขเธ เนเธกเนเนเธเนเธเธธเธ”เธเธ", en: "Failure is a lesson, not the end.", zh: "ๅคฑ่ดฅๆฏ่ฏพ็จ๏ผไธๆฏ็ป็นใ€", vi: "Thแบฅt bแบกi lร  bร i hแปc, khรดng phแบฃi kแบฟt thรบc.", pt: "O fracasso รฉ uma liรงรฃo, nรฃo um fim." },
-  { th: "เธเธงเธฒเธกเธเธฑเธเธ•เนเธญเธเธเธฒเธฃเธเธฒเธฃเธฅเธเธกเธทเธญ เนเธกเนเนเธเนเนเธเนเธเธงเธฒเธกเธซเธงเธฑเธ", en: "Dreams need action, not wishes.", zh: "ๆขฆๆณ้€่ฆ่กๅจ๏ผ่€ไธๆฏๅนปๆณใ€", vi: "ฦฏแปc mฦก cแบงn hร nh ฤ‘แปng, khรดng chแป hy vแปng.", pt: "Sonhos precisam de aรงรฃo, nรฃo apenas de desejos." },
-  { th: "เธ—เธธเธเธเนเธฒเธงเน€เธฅเนเธ เน เธกเธตเธเธงเธฒเธกเธซเธกเธฒเธข", en: "Every small step matters.", zh: "ๆฏไธ€ๆญฅ้ฝ็ฎ—ๆ•ฐใ€", vi: "Mแป—i bฦฐแปc nhแป ฤ‘แปu cรณ รฝ nghฤฉa.", pt: "Cada pequeno passo importa." },
-  { th: "เธญเธขเนเธฒเธเธฅเธฑเธงเธ—เธตเนเธเธฐเน€เธ•เธดเธเนเธ•", en: "Don't be afraid to grow.", zh: "ไธ่ฆๅฎณๆ€•ๆ้•ฟใ€", vi: "ฤแปซng sแปฃ trฦฐแปng thร nh.", pt: "Nรฃo tenha medo de crescer." },
-  { th: "เน€เธงเธฅเธฒเธเธฐเธเนเธฒเธเนเธเธญเธขเธนเนเธ”เธต เธเธเนเธเนเธกเธฑเธเนเธซเนเธเธธเนเธก", en: "Time will pass anyway, use it well.", zh: "ๆ—ถ้—ด็ปไผๆต้€๏ผๅฅฝๅฅฝๅฉ็”จๅฎใ€", vi: "Thแปi gian vแบซn sแบฝ trรดi, hรฃy tแบญn dแปฅng nรณ.", pt: "O tempo vai passar de qualquer forma, aproveite-o." },
-  { th: "เธเธงเธฒเธกเธเธขเธฒเธขเธฒเธกเนเธเธงเธฑเธเธเธตเน เธเธทเธญเธเธงเธฒเธกเธ เธนเธกเธดเนเธเนเธเธงเธฑเธเธซเธเนเธฒ", en: "Today's effort becomes tomorrow's pride.", zh: "ไปๅคฉ็ๅชๅ๏ผๆฏๆๅคฉ็้ชๅฒใ€", vi: "Nแป— lแปฑc hรดm nay lร  niแปm tแปฑ hร o ngร y mai.", pt: "O esforรงo de hoje serรก o orgulho de amanhรฃ." },
-  { th: "เธชเธดเนเธเธ—เธตเนเธขเธฒเธเธ—เธตเนเธชเธธเธ” เธกเธฑเธเธเธธเนเธกเธเนเธฒเธ—เธตเนเธชเธธเธ”", en: "The hardest things are often the most rewarding.", zh: "ๆ€้พ็ไบๆ…ๅพ€ๅพ€ๆ€ๅ€ผๅพ—ใ€", vi: "ฤiแปu khรณ nhแบฅt thฦฐแปng ฤ‘รกng giรก nhแบฅt.", pt: "As coisas mais difรญceis costumam valer mais a pena." },
-  { th: "เธญเธขเนเธฒเนเธซเนเน€เธกเธทเนเธญเธงเธฒเธเธเธณเธซเธเธ”เธเธฃเธธเนเธเธเธตเน", en: "Don't let yesterday define tomorrow.", zh: "ไธ่ฆ่ฎฉๆจๅคฉๅณๅฎๆๅคฉใ€", vi: "ฤแปซng ฤ‘แป hรดm qua quyแบฟt ฤ‘แปnh ngร y mai.", pt: "Nรฃo deixe o ontem definir o amanhรฃ." },
-  { th: "เธเธตเธงเธดเธ•เธ”เธตเธเธถเนเธเน€เธกเธทเนเธญเธเธธเธ“เธ”เธตเธเธถเนเธ", en: "Your life improves when you do.", zh: "ๅฝ“ไฝ ๅๅพ—ๆดๅฅฝ๏ผ็”ๆดปไนไผๅๅฅฝใ€", vi: "Cuแปc sแป‘ng tแป‘t hฦกn khi bแบกn tแป‘t hฦกn.", pt: "Sua vida melhora quando vocรช melhora." },
-  { th: "เธเธงเธฒเธกเธเธฑเธเนเธซเธเน เน€เธฃเธดเนเธกเธเธฒเธเธเนเธฒเธงเน€เธฅเนเธ", en: "Big dreams begin with small steps.", zh: "ไผๅคง็ๆขฆๆณๅงไบๅฐๅฐ็ไธ€ๆญฅใ€", vi: "ฦฏแปc mฦก lแปn bแบฏt ฤ‘แบงu tแปซ nhแปฏng bฦฐแปc nhแป.", pt: "Grandes sonhos comeรงam com pequenos passos." },
-  { th: "เธ—เธณเนเธซเนเธ•เธฑเธงเน€เธญเธเธ เธนเธกเธดเนเธ เนเธกเนเนเธเนเนเธเนเธเธเธญเธทเนเธ", en: "Make yourself proud, not just others.", zh: "่ฎฉ่ชๅทฑ้ชๅฒ๏ผ่€ไธไป…ๆฏๅซไบบใ€", vi: "Hรฃy khiแบฟn chรญnh mรฌnh tแปฑ hร o, khรดng chแป ngฦฐแปi khรกc.", pt: "Orgulhe a si mesmo, nรฃo apenas os outros." },
-  { th: "เนเธกเนเธกเธตเนเธเธฃเธ—เธณเนเธ—เธเธเธธเธ“เนเธ”เน", en: "No one can do it for you.", zh: "ๆฒกๆไบบ่ฝๆฟไฝ ๅฎๆใ€", vi: "Khรดng ai cรณ thแป lร m thay bแบกn.", pt: "Ninguรฉm pode fazer isso por vocรช." },
-  { th: "เธเธเน€เธเนเธเน€เธซเธ•เธธเธเธฅเธ—เธตเนเธ—เธณเนเธซเนเธ•เธฑเธงเน€เธญเธเธขเธดเนเธกเนเธ”เน", en: "Be your own reason to smile.", zh: "ๆไธบ่ฎฉ่ชๅทฑๅพฎ็ฌ‘็็็”ฑใ€", vi: "Hรฃy lร  lรฝ do ฤ‘แป chรญnh mรฌnh mแปm cฦฐแปi.", pt: "Seja o seu prรณprio motivo para sorrir." },
+  { th: "ความฝันจะไม่มีวันทำงาน ถ้าคุณไม่ลงมือ", en: "Dreams don't work unless you do.", zh: "梦想不会自己实现。", vi: "Ước mơ sẽ không tự thành hiện thực.", pt: "Sonhos não funcionam sem você." },
+  { th: "ทำวันนี้ให้ดีกว่าเมื่อวาน", en: "Be better than yesterday.", zh: "今天比昨天更好。", vi: "Hôm nay tốt hơn hôm qua.", pt: "Seja melhor do que ontem." },
+  { th: "ความสำเร็จคือผลลัพธ์ของการไม่ยอมแพ้", en: "Success is the reward for not giving up.", zh: "成功是不放弃的回报。", vi: "Thành công là phần thưởng của sự không bỏ cuộc.", pt: "O sucesso é a recompensa por não desistir." },
+  { th: "ความเร็วไม่สำคัญ ถ้ายังเดินไปข้างหน้า", en: "It doesn't matter how fast you go, as long as you don't stop.", zh: "走得慢没关系，只要不停下。", vi: "Đi chậm không sao, miễn là đừng dừng lại.", pt: "Não importa a velocidade, desde que você continue." },
+  { th: "อย่ารอเวลาที่สมบูรณ์แบบ", en: "Don't wait for perfect timing.", zh: "不要等待完美时机。", vi: "Đừng chờ thời điểm hoàn hảo.", pt: "Não espere o momento perfeito." },
+  { th: "ลงมือก่อน แล้วค่อยเก่งขึ้นระหว่างทาง", en: "Learn by doing.", zh: "在实践中成长。", vi: "Học bằng cách bắt đầu làm.", pt: "Aprenda fazendo." },
+  { th: "ความพยายามไม่มีวันสูญเปล่า", en: "Effort is never wasted.", zh: "努力永远不会白费。", vi: "Mọi nỗ lực đều có giá trị.", pt: "Nenhum esforço é em vão." },
+  { th: "อย่าปล่อยให้ความกลัวกำหนดชีวิตคุณ", en: "Don't let fear decide your future.", zh: "不要让恐惧决定你的未来。", vi: "Đừng để nỗi sợ quyết định tương lai của bạn.", pt: "Não deixe o medo decidir seu futuro." },
+  { th: "อย่ากลัวการเริ่มใหม่", en: "Never be afraid to start over.", zh: "永远不要害怕重新开始。", vi: "Đừng bao giờ sợ bắt đầu lại.", pt: "Nunca tenha medo de recomeçar." },
+  { th: "ทุกความสำเร็จเคยเป็นแค่ความคิด", en: "Every achievement was once just an idea.", zh: "每个成就都曾只是一个想法。", vi: "Mọi thành tựu từng chỉ là một ý tưởng.", pt: "Toda conquista já foi apenas uma ideia." },
+  { th: "ชัยชนะที่แท้จริงคือการไม่หยุด", en: "The real victory is refusing to quit.", zh: "真正的胜利是不放弃。", vi: "Chiến thắng thật sự là không bỏ cuộc.", pt: "A verdadeira vitória é não desistir." },
+  { th: "ความเงียบคือที่ที่การเติบโตเกิดขึ้น", en: "Growth happens in silence.", zh: "成长发生在安静之中。", vi: "Sự trưởng thành diễn ra trong im lặng.", pt: "O crescimento acontece em silêncio." },
+  { th: 'อย่าปล่อยให้คำว่า "สักวัน" กลายเป็น "ไม่เคย"', en: 'Don\'t let "someday" become "never."', zh: '别让“总有一天”变成“永远不会”。', vi: 'Đừng để "một ngày nào đó" trở thành "không bao giờ".', pt: 'Não deixe o "algum dia" virar "nunca".' },
+  { th: "ทุกวันที่ยาก กำลังสร้างคุณให้แข็งแกร่งขึ้น", en: "Hard days build strong people.", zh: "艰难的日子造就坚强的人。", vi: "Những ngày khó khăn tạo nên con người mạnh mẽ.", pt: "Dias difíceis formam pessoas fortes." },
+  { th: "อย่าหยุดเรียนรู้", en: "Never stop learning.", zh: "永远不要停止学习。", vi: "Đừng bao giờ ngừng học hỏi.", pt: "Nunca pare de aprender." },
+  { th: "ทำสิ่งเล็ก ๆ ให้ดี แล้วสิ่งใหญ่จะตามมา", en: "Master the small things first.", zh: "先做好小事，大事自然会来。", vi: "Hãy làm tốt những điều nhỏ trước.", pt: "Domine as pequenas coisas primeiro." },
+  { th: "อย่าเสียเวลาเป็นคนอื่น", en: "Don't waste your life being someone else.", zh: "不要浪费生命去成为别人。", vi: "Đừng lãng phí cuộc đời để trở thành người khác.", pt: "Não desperdice sua vida sendo outra pessoa." },
+  { th: "อนาคตสร้างจากสิ่งที่คุณทำวันนี้", en: "Tomorrow is built by what you do today.", zh: "明天由今天的行动决定。", vi: "Ngày mai được tạo nên từ việc bạn làm hôm nay.", pt: "O amanhã é construído pelo que você faz hoje." },
+  { th: "อย่าปล่อยให้ข้ออ้างใหญ่กว่าความฝัน", en: "Don't let excuses become bigger than your dreams.", zh: "不要让借口比梦想更大。", vi: "Đừng để lý do lớn hơn ước mơ.", pt: "Não deixe as desculpas serem maiores que seus sonhos." },
+  { th: "การลงมือคือจุดเริ่มต้นของทุกอย่าง", en: "Action is where everything begins.", zh: "一切都始于行动。", vi: "Hành động là nơi mọi thứ bắt đầu.", pt: "A ação é onde tudo começa." },
+  { th: "ไม่มีทางลัดสู่ความยิ่งใหญ่", en: "There are no shortcuts to greatness.", zh: "通往卓越没有捷径。", vi: "Không có đường tắt đến sự vĩ đại.", pt: "Não há atalhos para a grandeza." },
+  { th: "ชนะตัวเองทุกวัน", en: "Win against yourself every day.", zh: "每天战胜昨天的自己。", vi: "Chiến thắng chính mình mỗi ngày.", pt: "Vença a si mesmo todos os dias." },
+  { th: "จงทำให้ตัวเองมีค่าจนโอกาสต้องตามหา", en: "Become so valuable that opportunities find you.", zh: "让自己足够优秀，机会自然会来。", vi: "Hãy trở nên giá trị để cơ hội tự tìm đến.", pt: "Torne-se tão valioso que as oportunidades encontrem você." },
+  { th: "วินัยจะพาคุณไปไกลกว่าแรงจูงใจ", en: "Discipline will take you further than motivation.", zh: "自律比动力更可靠。", vi: "Kỷ luật sẽ đưa bạn đi xa hơn cảm hứng.", pt: "A disciplina leva você mais longe do que a motivação." },
+  { th: "อย่าหยุดเพราะคนอื่นไม่เชื่อ", en: "Don't stop because others don't believe.", zh: "不要因为别人不相信就停下。", vi: "Đừng dừng lại chỉ vì người khác không tin.", pt: "Não pare porque os outros não acreditam." },
+  { th: "ความล้มเหลวคือบทเรียน ไม่ใช่จุดจบ", en: "Failure is a lesson, not the end.", zh: "失败是课业，不是终点。", vi: "Thất bại là bài học, không phải kết thúc.", pt: "O fracasso é uma lição, não um fim." },
+  { th: "ความฝันต้องการการลงมือ ไม่ใช่แค่ความหวัง", en: "Dreams need action, not wishes.", zh: "梦想需要行动，而不仅是幻想。", vi: "Ước mơ cần hành động, không chỉ hy vọng.", pt: "Sonhos precisam de ação, não apenas de desejos." },
+  { th: "ทุกก้าวเล็ก ๆ มีความหมาย", en: "Every small step matters.", zh: "每一步都算数。", vi: "Mỗi bước nhỏ đều có ý nghĩa.", pt: "Cada pequeno passo importa." },
+  { th: "อย่ากลัวที่จะเติบโต", en: "Don't be afraid to grow.", zh: "不要害怕成长。", vi: "Đừng sợ trưởng thành.", pt: "Não tenha medo de crescer." },
+  { th: "เวลาจะผ่านไปอยู่ดี จงใช้มันให้คุ้ม", en: "Time will pass anyway, use it well.", zh: "时间终会流逝，好好利用它。", vi: "Thời gian vẫn sẽ trôi, hãy tận dụng nó.", pt: "O tempo vai passar de qualquer forma, aproveite-o." },
+  { th: "ความพยายามในวันนี้ คือความภูมิใจในวันหน้า", en: "Today's effort becomes tomorrow's pride.", zh: "今天的努力，是明天的骄傲。", vi: "Nỗ lực hôm nay là niềm tự hào ngày mai.", pt: "O esforço de hoje será o orgulho de amanhã." },
+  { th: "สิ่งที่ยากที่สุด มักคุ้มค่าที่สุด", en: "The hardest things are often the most rewarding.", zh: "最难的事情往往最值得。", vi: "Điều khó nhất thường đáng giá nhất.", pt: "As coisas mais difíceis costumam valer mais a pena." },
+  { th: "อย่าให้เมื่อวานกำหนดพรุ่งนี้", en: "Don't let yesterday define tomorrow.", zh: "不要让昨天决定明天。", vi: "Đừng để hôm qua quyết định ngày mai.", pt: "Não deixe o ontem definir o amanhã." },
+  { th: "ชีวิตดีขึ้นเมื่อคุณดีขึ้น", en: "Your life improves when you do.", zh: "当你变得更好，生活也会变好。", vi: "Cuộc sống tốt hơn khi bạn tốt hơn.", pt: "Sua vida melhora quando você melhora." },
+  { th: "ความฝันใหญ่ เริ่มจากก้าวเล็ก", en: "Big dreams begin with small steps.", zh: "伟大的梦想始于小小的一步。", vi: "Ước mơ lớn bắt đầu từ những bước nhỏ.", pt: "Grandes sonhos começam com pequenos passos." },
+  { th: "ทำให้ตัวเองภูมิใจ ไม่ใช่แค่คนอื่น", en: "Make yourself proud, not just others.", zh: "让自己骄傲，而不仅是别人。", vi: "Hãy khiến chính mình tự hào, không chỉ người khác.", pt: "Orgulhe a si mesmo, não apenas os outros." },
+  { th: "ไม่มีใครทำแทนคุณได้", en: "No one can do it for you.", zh: "没有人能替你完成。", vi: "Không ai có thể làm thay bạn.", pt: "Ninguém pode fazer isso por você." },
+  { th: "จงเป็นเหตุผลที่ทำให้ตัวเองยิ้มได้", en: "Be your own reason to smile.", zh: "成为让自己微笑的理由。", vi: "Hãy là lý do để chính mình mỉm cười.", pt: "Seja o seu próprio motivo para sorrir." },
 ];
 
 function QuoteCard() {
@@ -159,12 +147,12 @@ function QuoteCard() {
   );
 }
 
-// The heatmap is decorative โ€” there is no tracker behind it. Each day's count
+// The heatmap is decorative — there is no tracker behind it. Each day's count
 // is hashed from its own date so the pattern is identical on the server and
 // the client (no hydration mismatch) and stays put across reloads, instead of
 // reshuffling on every visit the way Math.random() would.
 function activityCount(dateKey: string): number {
-  // FNV-1a โ€” mixes adjacent dates far better than a plain *31 rolling hash,
+  // FNV-1a — mixes adjacent dates far better than a plain *31 rolling hash,
   // which left visible diagonal streaks across the grid.
   let h = 2166136261;
   for (let i = 0; i < dateKey.length; i++) {
@@ -176,7 +164,7 @@ function activityCount(dateKey: string): number {
   // working rhythm rather than uniform noise.
   const weekday = new Date(`${dateKey}T00:00:00Z`).getUTCDay();
   const idle = weekday === 0 || weekday === 6 ? 0.44 : 0.19;
-  if (r < idle) return 0; // day off โ€” left uncoloured
+  if (r < idle) return 0; // day off — left uncoloured
   const t = (r - idle) / (1 - idle);
   return 1 + Math.floor(t * t * 17); // squared: mostly light days, rare spikes
 }
@@ -193,7 +181,7 @@ const ACTIVITY_MONTH_NAMES = [
   "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec",
 ];
 
-// GitHub-style contribution heatmap โ€” 12 months ร— 7 days, "Mon 'YY" labels
+// GitHub-style contribution heatmap — 12 months ร— 7 days, "Mon 'YY" labels
 // above the week each month starts, count + legend below.
 function ActivityOverview() {
   const { t } = useLang();
@@ -213,7 +201,7 @@ function ActivityOverview() {
     for (let w = 0; w < WEEKS; w++) {
       const col: { date: Date; key: string; level: number }[] = [];
       for (let d = 0; d < 7; d++) {
-        // Local date parts โ€” toISOString() would shift to UTC and hand the
+        // Local date parts — toISOString() would shift to UTC and hand the
         // day before its neighbour's key in UTC+7.
         const key = `${cursor.getFullYear()}-${String(cursor.getMonth() + 1).padStart(2, "0")}-${String(cursor.getDate()).padStart(2, "0")}`;
         let level = -1;
@@ -226,10 +214,10 @@ function ActivityOverview() {
         cursor.setDate(cursor.getDate() + 1);
       }
       const firstOfWeek = col[0].date;
-      // Months land ~4.3 columns apart, too tight for "Month, Year" โ€” use a
+      // Months land ~4.3 columns apart, too tight for "Month, Year" — use a
       // compact "Mon 'YY". The very first column is often a partial month
       // (grid starts mid-month), which would otherwise get its own label
-      // just 1-2 columns before the next real one โ€” enforce a minimum gap.
+      // just 1-2 columns before the next real one — enforce a minimum gap.
       const MIN_LABEL_GAP = 3;
       const lastLabelCol = labels.length > 0 ? labels[labels.length - 1].col : -Infinity;
       if (firstOfWeek.getMonth() !== lastMonth && firstOfWeek <= today && w - lastLabelCol >= MIN_LABEL_GAP) {
@@ -290,13 +278,13 @@ function RandomFact() {
   useEffect(() => {
     const pick = <T,>(a: T[]): T => a[Math.floor(Math.random() * a.length)];
     const pools: { icon: string; labelKey: TranslationKey; get: () => string }[] = [
-      { icon: "๐“–", labelKey: "zpuFactReadingBook", get: () => pick(ZPU.favBooks).name },
-      { icon: "๐ง", labelKey: "zpuFactListening", get: () => { const a = pick(ZPU.favArtists); return `${pick(a.songs)} ยท ${a.name}`; } },
-      { icon: "๐ฎ", labelKey: "zpuFactPlaying", get: () => pick(ZPU.favGames).name },
-      { icon: "๐ฌ", labelKey: "zpuFactWatchingMovie", get: () => pick(ZPU.favMovies).name },
-      { icon: "๐ฟ", labelKey: "zpuFactWatchingAnime", get: () => pick(ZPU.favAnime).name },
-      { icon: "๐“บ", labelKey: "zpuFactWatchingSeries", get: () => pick(ZPU.favSeries).name },
-      { icon: "๐“•", labelKey: "zpuFactReadingManga", get: () => pick(ZPU.favManga).name },
+      { icon: "📖", labelKey: "zpuFactReadingBook", get: () => pick(ZPU.favBooks).name },
+      { icon: "🎧", labelKey: "zpuFactListening", get: () => { const a = pick(ZPU.favArtists); return `${pick(a.songs)} • ${a.name}`; } },
+      { icon: "🎮", labelKey: "zpuFactPlaying", get: () => pick(ZPU.favGames).name },
+      { icon: "🎬", labelKey: "zpuFactWatchingMovie", get: () => pick(ZPU.favMovies).name },
+      { icon: "🍥", labelKey: "zpuFactWatchingAnime", get: () => pick(ZPU.favAnime).name },
+      { icon: "📺", labelKey: "zpuFactWatchingSeries", get: () => pick(ZPU.favSeries).name },
+      { icon: "📕", labelKey: "zpuFactReadingManga", get: () => pick(ZPU.favManga).name },
     ];
     const p = pick(pools);
     setFact({ icon: p.icon, labelKey: p.labelKey, value: p.get() });
@@ -396,7 +384,7 @@ function FactIcon({ k }: { k: string }) {
 // Facts that get a full-width card (long, listy values).
 const FACT_WIDE = new Set(["zpuFactsPassions"]);
 
-// Section header โ€” pulls the trailing emoji off the title to use as a left icon,
+// Section header — pulls the trailing emoji off the title to use as a left icon,
 // with the title + a short subtitle stacked beside it.
 // Horizontal rail that auto-scrolls (looping seamlessly over duplicated
 // content) yet can be grabbed and dragged with the mouse. Auto and manual both
@@ -542,14 +530,14 @@ function AgeCountdown({ target }: { target: string }) {
   const pad = (n: number) => n.toString().padStart(2, "0");
   return (
     <span className="zpu-age-badge">
-      {d} {t("zpuCdDay")} {pad(h)}:{pad(m)}:{pad(s)} โ’ 18
+      {d} {t("zpuCdDay")} {pad(h)}:{pad(m)}:{pad(s)} → 18
     </span>
   );
 }
 
 // Animated, self-ticking live number (livecounts.io style).
 // - Counts up smoothly to `target` whenever it increases (e.g. after a poll).
-// - Between polls, drifts up by +1 every 5โ€“17s so it always feels alive,
+// - Between polls, drifts up by +1 every 5–17s so it always feels alive,
 //   but never runs more than LEAD ahead of the real value (self-correcting).
 function LiveTicker({ target, fallback }: { target: number | null; fallback: string }) {
   const [display, setDisplay] = useState<number | null>(null);
@@ -621,10 +609,10 @@ function LiveTicker({ target, fallback }: { target: number | null; fallback: str
 
 const YT_CHANNEL = "UCgMktyw9e816q0GzhBL2dnQ";
 
-// Fetch YouTube subs straight from the browser โ€” both sources allow CORS (*),
+// Fetch YouTube subs straight from the browser — both sources allow CORS (*),
 // and the browser's network reaches them reliably even when the host can't.
 async function fetchYouTubeSubsClient(): Promise<number | null> {
-  // socialcounts โ€” finer "estimation" value.
+  // socialcounts — finer "estimation" value.
   try {
     const r = await fetch(
       `https://api.socialcounts.org/youtube-live-subscriber-count/${YT_CHANNEL}`,
@@ -638,7 +626,7 @@ async function fetchYouTubeSubsClient(): Promise<number | null> {
   } catch {
     /* try next */
   }
-  // mixerno โ€” fallback.
+  // mixerno — fallback.
   try {
     const r = await fetch(
       `https://mixerno.space/api/youtube-channel-counter/user/${YT_CHANNEL}`,
@@ -656,7 +644,7 @@ async function fetchYouTubeSubsClient(): Promise<number | null> {
   return null;
 }
 
-// Live stat cards โ€” seeded by the server, then polled every 30s for realtime updates.
+// Live stat cards — seeded by the server, then polled every 30s for realtime updates.
 function LiveStats({ ytSubs, discordMembers }: { ytSubs?: number | null; discordMembers?: number | null }) {
   const { t } = useLang();
   const [yt, setYt] = useState<number | null>(ytSubs ?? null);
@@ -724,7 +712,7 @@ function LiveStats({ ytSubs, discordMembers }: { ytSubs?: number | null; discord
 }
 
 // Collapses the EDC grid to its first visual row (however many cards that
-// is at the current viewport width) instead of an arbitrary item count โ€”
+// is at the current viewport width) instead of an arbitrary item count —
 // the auto-fill grid's column count changes with container width, so the
 // row height is measured from the DOM rather than assumed.
 function EdcRowGrid({
@@ -779,112 +767,112 @@ function EdcRowGrid({
   );
 }
 
-// Short "what's on its mind" lines for the thought bubble above the brain โ€”
+// Short "what's on its mind" lines for the thought bubble above the brain —
 // same rotating-quote structure as QUOTES above.
 const THOUGHTS: Record<"en" | "th" | "zh" | "vi" | "pt", string>[] = [
-  { th: "เธเธณเธฅเธฑเธเธเธดเธ”เนเธญเน€เธ”เธตเธขเนเธซเธกเน...", en: "Thinking of a new idea...", zh: "ๆญฃๅจๆๆ€ๆ–ฐ็นๅญโ€ฆ", vi: "ฤang nghฤฉ รฝ tฦฐแปng mแปi...", pt: "Pensando em uma nova ideia..." },
-  { th: "เนเธเนเธเธฑเนเธเธ•เธฑเธงเธฃเนเธฒเธขเธญเธขเธนเน...", en: "Hunting down a stubborn bug...", zh: "ๆญฃๅจ่ฟฝๆฅไธ€ไธช้กฝๅบ็ๆผๆดโ€ฆ", vi: "ฤang sฤn lรนng mแปt con bug cแปฉng ฤ‘แบงu...", pt: "Caรงando um bug teimoso..." },
-  { th: "เนเธเธฅเธเธเธฒเนเธเน€เธเนเธเนเธเนเธ”...", en: "Turning coffee into code...", zh: "ๆญฃๅจๆๅ’–ๅ•กๅๆไปฃ็ โ€ฆ", vi: "ฤang biแบฟn cร  phรช thร nh code...", pt: "Transformando cafรฉ em cรณdigo..." },
-  { th: "เธงเธฒเธเนเธเธเนเธเธฃเน€เธเธเธ•เนเธญเนเธ...", en: "Sketching the next project...", zh: "ๆญฃๅจๆๆ€ไธไธ€ไธช้กน็ฎโ€ฆ", vi: "ฤang phรกc thแบฃo dแปฑ รกn tiแบฟp theo...", pt: "Esboรงando o prรณximo projeto..." },
-  { th: "เธขเธฑเธเนเธกเนเธซเธขเธธเธ”เน€เธฃเธตเธขเธเธฃเธนเน...", en: "Still learning, always...", zh: "ไปๅจไธๆ–ญๅญฆไน โ€ฆ", vi: "Vแบซn luรดn hแปc hแปi...", pt: "Sempre aprendendo..." },
-  { th: "เธเธญเธกเนเธเธฅเนเธเธงเธฒเธกเธเธฑเธเธญเธขเธนเน...", en: "Compiling dreams into reality...", zh: "ๆญฃๅจๆๆขฆๆณ็ผ–่ฏ‘ๆ็ฐๅฎโ€ฆ", vi: "ฤang biรชn dแปch ฦฐแปc mฦก thร nh hiแปn thแปฑc...", pt: "Compilando sonhos em realidade..." },
-  { th: "เน€เธเธทเนเธญเธกเธเธธเธ”เธ•เนเธฒเธ เน เน€เธเนเธฒเธ”เนเธงเธขเธเธฑเธ...", en: "Connecting the dots...", zh: "ๆญฃๅจๆ็ข็ๆผๆฅ่ตทๆฅโ€ฆ", vi: "ฤang kแบฟt nแป‘i cรกc mแบฃnh ghรฉp...", pt: "Conectando os pontos..." },
-  { th: "เนเธฅเนเธ•เธฒเธกเธเธณเธ–เธฒเธก 'เธ–เนเธฒ...เธเธฐเน€เธเนเธเธขเธฑเธเนเธ'...", en: "Chasing a 'what if'...", zh: "ๆญฃๅจ่ฟฝ้€ไธ€ไธชโ€ๅฆๆโ€ฆโ€ฆไผๆ€ๆ ทโ€โ€ฆ", vi: "ฤang theo ฤ‘uแป•i mแปt cรขu hแปi 'nแบฟu nhฦฐ'...", pt: "Perseguindo um 'e se'..." },
-  { th: "เธเธณเธฅเธฑเธเธเธดเธ”เน€เธฃเธทเนเธญเธเธเธญเธกเธกเธนเธเธดเธ•เธตเน...", en: "Thinking about the community...", zh: "ๆญฃๅจๆณๅฟต็คพๅบ็ๅคงๅฎถโ€ฆ", vi: "ฤang nghฤฉ vแป cแปng ฤ‘แป“ng...", pt: "Pensando na comunidade..." },
-  { th: "เธฃเธตเธเธฒเธฃเนเธเธเธงเธฒเธกเธเธดเธ”เธชเธฃเนเธฒเธเธชเธฃเธฃเธเน...", en: "Recharging creativity...", zh: "ๆญฃๅจ็ปๅ้€ ๅๅ……็”ตโ€ฆ", vi: "ฤang nแบกp lแบกi nฤng lฦฐแปฃng sรกng tแบกo...", pt: "Recarregando a criatividade..." },
-  { th: "เน€เธเธตเธขเธเธเธเนเธซเธกเนเนเธซเนเธ•เธฑเธงเน€เธญเธ...", en: "Rewriting my own rules...", zh: "ๆญฃๅจไธบ่ชๅทฑๆ”นๅ่งๅโ€ฆ", vi: "ฤang viแบฟt lแบกi luแบญt chฦกi cแปงa riรชng mรฌnh...", pt: "Reescrevendo minhas prรณprias regras..." },
-  { th: "เธเธฑเธเน€เธเนเธเธ เธฒเธฉเธฒเนเธเธเธฒเธฃเธต...", en: "Dreaming in binary...", zh: "ๆญฃๅจ็”จไบ่ฟๅถๅๆขฆโ€ฆ", vi: "ฤang mฦก bแบฑng ngรดn ngแปฏ nhแป phรขn...", pt: "Sonhando em binรกrio..." },
-  { th: "เธชเธณเธซเธฃเธฑเธเธเธก เธ—เธธเธเธญเธขเนเธฒเธเธเธทเธญเนเธเธเธฒเธฃเธต เธจเธนเธเธขเนเธเธฑเธเธซเธเธถเนเธ", en: "To me, everything is binary. Zeros and ones.", zh: "ๅฏนๆ‘ๆฅ่ฏด๏ผไธ€ๅ้ฝๆฏไบ่ฟๅถใ€้ถๅ’ไธ€ใ€", vi: "Vแปi tรดi, mแปi thแปฉ ฤ‘แปu lร  nhแป phรขn. Sแป‘ khรดng vร  sแป‘ mแปt.", pt: "Para mim, tudo รฉ binรกrio. Zeros e uns." },
-  { th: "เธเธณเธฅเธฑเธเธ•เนเธญเนเธญเน€เธ”เธตเธขเน€เธเนเธฒเธ”เนเธงเธขเธเธฑเธ...", en: "Piecing ideas together...", zh: "ๆญฃๅจๆๆณๆณ•ๆผๅ‘่ตทๆฅโ€ฆ", vi: "ฤang ghรฉp cรกc รฝ tฦฐแปng lแบกi vแปi nhau...", pt: "Juntando as peรงas das ideias..." },
-  { th: "เธเธณเธฅเธฑเธเธชเธฃเนเธฒเธเธเธญเธเน€เธเนเธ เน...", en: "Building something cool...", zh: "ๆญฃๅจๆ“้€ ไธ€ไธชๅพ้…ท็ไธ่ฅฟโ€ฆ", vi: "ฤang tแบกo ra thแปฉ gรฌ ฤ‘รณ thแบญt ngแบงu...", pt: "Construindo algo incrรญvel..." },
-  { th: "เธเธณเธฅเธฑเธเธกเธญเธเธซเธฒเนเธฃเธเธเธฑเธเธ”เธฒเธฅเนเธ...", en: "Looking for inspiration...", zh: "ๆญฃๅจๅฏปๆพ็ตๆโ€ฆ", vi: "ฤang tรฌm kiแบฟm cแบฃm hแปฉng...", pt: "Buscando inspiraรงรฃo..." },
-  { th: "เธเธฅเนเธญเธขเนเธซเนเนเธญเน€เธ”เธตเธขเธเนเธญเธข เน เน€เธ•เธดเธเนเธ•...", en: "Letting ideas grow...", zh: "่ฎฉๆณๆณ•ๆ…ขๆ…ขๆ้•ฟโ€ฆ", vi: "ฤang ฤ‘แป รฝ tฦฐแปng lแปn dแบงn...", pt: "Deixando as ideias crescerem..." },
-  { th: "เธฃเนเธฒเธเธญเธเธฒเธเธ•เธ—เธตเธฅเธฐเธเธฃเธฃเธ—เธฑเธ”...", en: "Sketching the future line by line...", zh: "ไธ€่กไธ€่กๅฐๆ็ปๆชๆฅโ€ฆ", vi: "ฤang phรกc hแปa tฦฐฦกng lai tแปซng dรฒng mแปt...", pt: "Esboรงando o futuro linha por linha..." },
-  { th: "เธเธณเธฅเธฑเธเธเธถเธเธ เธฒเธเธงเนเธฒเธญเธฐเนเธฃเธเธฐเน€เธเธดเธ”เธเธถเนเธเธ•เนเธญเนเธ...", en: "Imagining what comes next...", zh: "ๆญฃๅจๆณ่ฑกๆฅไธๆฅไผๅ‘็”ไป€ไนโ€ฆ", vi: "ฤang hรฌnh dung ฤ‘iแปu gรฌ sแบฝ ฤ‘แบฟn tiแบฟp theo...", pt: "Imaginando o que vem a seguir..." },
-  { th: "เธเธณเธฅเธฑเธเธ—เธ”เธฅเธญเธเนเธญเน€เธ”เธตเธขเนเธซเธกเน เน...", en: "Experimenting with new ideas...", zh: "ๆญฃๅจๅฐ่ฏ•ๆ–ฐๆณๆณ•โ€ฆ", vi: "ฤang thแปญ nghiแปm nhแปฏng รฝ tฦฐแปng mแปi...", pt: "Experimentando novas ideias..." },
-  { th: "เน€เธเธฅเธตเนเธขเธเธเธงเธฒเธกเธเธดเธ”เนเธซเนเธเธฅเธฒเธขเน€เธเนเธเธเธงเธฒเธกเธเธฃเธดเธ...", en: "Turning thoughts into reality...", zh: "ๆญฃๅจๆๆณๆณ•ๅๆ็ฐๅฎโ€ฆ", vi: "ฤang biแบฟn suy nghฤฉ thร nh hiแปn thแปฑc...", pt: "Transformando pensamentos em realidade..." },
-  { th: "เธเธณเธฅเธฑเธเธชเธฃเนเธฒเธเธเธฒเธเธจเธนเธเธขเน...", en: "Building from scratch...", zh: "ๆญฃๅจไป้ถๅผ€ๅงๆญๅปบโ€ฆ", vi: "ฤang xรขy dแปฑng tแปซ con sแป‘ khรดng...", pt: "Construindo do zero..." },
-  { th: "เนเธญเน€เธ”เธตเธขเนเธซเธกเนเธเธณเธฅเธฑเธเธเธนเธ•เธเธถเนเธเธกเธฒ...", en: "Booting up new ideas...", zh: "ๆ–ฐ็นๅญๆญฃๅจๅฏๅจโ€ฆ", vi: "ร tฦฐแปng mแปi ฤ‘ang khแปi ฤ‘แปng...", pt: "Inicializando novas ideias..." },
-  { th: "เธเธณเธฅเธฑเธเธ”เธตเธเธฑเธเธเธตเธงเธดเธ•...", en: "Debugging life...", zh: "ๆญฃๅจ่ฐ่ฏ•ไบบ็”โ€ฆ", vi: "ฤang gแปก lแป—i cuแปc sแป‘ng...", pt: "Depurando a vida..." },
-  { th: "เธเธณเธฅเธฑเธเน€เธเธตเธขเธเนเธเนเธ”เธญเธขเธนเนเนเธเธเธงเธฒเธกเน€เธเธตเธขเธ...", en: "Coding in silence...", zh: "ๆญฃๅจๅฎ้ๅฐๅไปฃ็ โ€ฆ", vi: "ฤang lแบทng lแบฝ viแบฟt mรฃ...", pt: "Programando em silรชncio..." },
-  { th: "เธเธณเธฅเธฑเธเธเธฑเธ”เน€เธเธฅเธฒเธเธฃเธฃเธ—เธฑเธ”เธชเธธเธ”เธ—เนเธฒเธข...", en: "Polishing the final lines...", zh: "ๆญฃๅจๆ“็ฃจๆ€ๅๅ ่กโ€ฆ", vi: "ฤang trau chuแป‘t nhแปฏng dรฒng cuแป‘i...", pt: "Lapidando as รบltimas linhas..." },
-  { th: "เธเธณเธฅเธฑเธเธฃเธตเนเธเธเน€เธ•เธญเธฃเนเธ—เธธเธเธญเธขเนเธฒเธ...", en: "Refactoring everything...", zh: "ๆญฃๅจ้ๆไธ€ๅโ€ฆ", vi: "ฤang tรกi cแบฅu trรบc mแปi thแปฉ...", pt: "Refatorando tudo..." },
-  { th: "เธเธณเธฅเธฑเธเธเธญเธกเนเธเธฅเน...", en: "Compiling...", zh: "ๆญฃๅจ็ผ–่ฏ‘โ€ฆ", vi: "ฤang biรชn dแปch...", pt: "Compilando..." },
-  { th: "เธเธณเธฅเธฑเธเธฃเธฑเธเธ—เธธเธเธเธงเธฒเธกเน€เธเนเธเนเธเนเธ”เน...", en: "Running every possibility...", zh: "ๆญฃๅจ่ท‘้ๆฏไธ€็งๅฏ่ฝโ€ฆ", vi: "ฤang chแบกy mแปi khแบฃ nฤng...", pt: "Executando todas as possibilidades..." },
-  { th: "เธเธณเธฅเธฑเธเธเธธเธเน€เธงเธญเธฃเนเธเธฑเธเนเธซเธกเน...", en: "Pushing a new version...", zh: "ๆญฃๅจๆจ้€ๆ–ฐ็ๆฌโ€ฆ", vi: "ฤang ฤ‘แบฉy mแปt phiรชn bแบฃn mแปi...", pt: "Enviando uma nova versรฃo..." },
-  { th: "เธเธณเธฅเธฑเธเน€เธเธฅเธตเธขเธฃเนเธฃเธฒเธขเธเธฒเธฃเธชเธดเนเธเธ—เธตเนเธ•เนเธญเธเธ—เธณ...", en: "Clearing the to-do list...", zh: "ๆญฃๅจๆธ…็ฉบๅพ…ๅๆธ…ๅ•โ€ฆ", vi: "ฤang dแปn danh sรกch viแปc cแบงn lร m...", pt: "Limpando a lista de tarefas..." },
-  { th: "เธเธณเธฅเธฑเธเธเธฑเธ”เธฃเธฐเน€เธเธตเธขเธเธเธงเธฒเธกเธเธดเธ”...", en: "Organizing thoughts...", zh: "ๆญฃๅจๆ•ด็ๆ€็ปชโ€ฆ", vi: "ฤang sแบฏp xแบฟp lแบกi suy nghฤฉ...", pt: "Organizando os pensamentos..." },
-  { th: "เธเธณเธฅเธฑเธเธฃเธญเนเธซเนเธเธดเธฅเธ”เนเน€เธชเธฃเนเธ...", en: "Waiting for the build...", zh: "ๆญฃๅจ็ญๅพ…ๆๅปบๅฎๆโ€ฆ", vi: "ฤang chแป bแบฃn dแปฑng hoร n tแบฅt...", pt: "Esperando a build terminar..." },
-  { th: "เธเธณเธฅเธฑเธเธชเธฃเนเธฒเธเธญเธเธฒเธเธ•...", en: "Building the future...", zh: "ๆญฃๅจๆ“้€ ๆชๆฅโ€ฆ", vi: "ฤang xรขy dแปฑng tฦฐฦกng lai...", pt: "Construindo o futuro..." },
-  { th: "เธ—เธตเธฅเธฐเธเนเธฒเธง เธ—เธตเธฅเธฐเนเธเธฃเน€เธเธเธ•เน...", en: "One step, one project at a time...", zh: "ไธ€ๆญฅไธ€ๆญฅ๏ผไธ€ไธช้กน็ฎๆฅ็€ไธ€ไธช้กน็ฎโ€ฆ", vi: "Tแปซng bฦฐแปc mแปt, tแปซng dแปฑ รกn mแปt...", pt: "Um passo e um projeto de cada vez..." },
-  { th: "เธเธณเธฅเธฑเธเธ—เธณเนเธซเนเธกเธฑเธเน€เธเธดเธ”เธเธถเนเธ...", en: "Making it happen...", zh: "ๆญฃๅจ่ฎฉๅฎๆ็โ€ฆ", vi: "ฤang biแบฟn nรณ thร nh hiแปn thแปฑc...", pt: "Fazendo acontecer..." },
-  { th: "เธเธดเธ”เนเธซเนเธเนเธญเธขเธฅเธ เธชเธฃเนเธฒเธเนเธซเนเธกเธฒเธเธเธถเนเธ...", en: "Thinking less, building more...", zh: "ๅฐ‘ๆณไธ€็น๏ผๅคๅไธ€็นโ€ฆ", vi: "Nghฤฉ รญt hฦกn, xรขy dแปฑng nhiแปu hฦกn...", pt: "Pensando menos, construindo mais..." },
-  { th: "เธเธณเธฅเธฑเธเธงเธฒเธเธญเธดเธเธเนเธญเธเธ•เนเธญเนเธ...", en: "Laying the next brick...", zh: "ๆญฃๅจๆ”พไธไธ€ๅ—็ –โ€ฆ", vi: "ฤang ฤ‘แบทt viรชn gแบกch tiแบฟp theo...", pt: "Assentando o prรณximo tijolo..." },
-  { th: "เธ—เธณเธชเธดเนเธเน€เธฅเนเธ เน เนเธซเนเธกเธตเธเธงเธฒเธกเธซเธกเธฒเธข...", en: "Making small things matter...", zh: "่ฎฉๅฐไบไนๅๅพ—ๆๆไนโ€ฆ", vi: "ฤang khiแบฟn nhแปฏng ฤ‘iแปu nhแป bรฉ trแป nรชn รฝ nghฤฉa...", pt: "Fazendo as pequenas coisas importarem..." },
-  { th: "เธเธณเธฅเธฑเธเธชเธฃเนเธฒเธเธชเธดเนเธเธ—เธตเนเธกเธตเธเธงเธฒเธกเธซเธกเธฒเธข...", en: "Building something meaningful...", zh: "ๆญฃๅจๆ“้€ ๆๆไน็ไธ่ฅฟโ€ฆ", vi: "ฤang xรขy dแปฑng ฤ‘iแปu gรฌ ฤ‘รณ cรณ รฝ nghฤฉa...", pt: "Construindo algo significativo..." },
-  { th: "เธเธณเธฅเธฑเธเธชเนเธเน€เธงเธญเธฃเนเธเธฑเธเนเธซเธกเนเธญเธญเธเนเธ...", en: "Shipping another version...", zh: "ๆญฃๅจๅ‘ๅธๅฆไธ€ไธช็ๆฌโ€ฆ", vi: "ฤang phรกt hร nh mแปt phiรชn bแบฃn mแปi...", pt: "Lanรงando mais uma versรฃo..." },
-  { th: "เธเธงเธฒเธกเธเนเธฒเธงเธซเธเนเธฒเธชเธณเธเธฑเธเธเธงเนเธฒเธเธงเธฒเธกเธชเธกเธเธนเธฃเธ“เนเนเธเธ...", en: "Progress over perfection...", zh: "่ฟๆญฅ่่ฟๅฎ็พโ€ฆ", vi: "Tiแบฟn bแป quan trแปng hฦกn hoร n hแบฃo...", pt: "Progresso acima da perfeiรงรฃo..." },
-  { th: "เน€เธฃเธดเนเธกเนเธซเธกเนเนเธซเนเธ”เธตเธเธงเนเธฒเน€เธ”เธดเธก...", en: "Starting over, better...", zh: "้ๆ–ฐๅผ€ๅง๏ผๅๅพ—ๆดๅฅฝโ€ฆ", vi: "Bแบฏt ฤ‘แบงu lแบกi theo cรกch tแป‘t hฦกn...", pt: "Recomeรงando, ainda melhor..." },
-  { th: "เธเธณเธฅเธฑเธเธเธฃเธฐเธกเธงเธฅเธเธฅ...", en: "Processing...", zh: "ๆญฃๅจๅค็โ€ฆ", vi: "ฤang xแปญ lรฝ...", pt: "Processando..." },
-  { th: "เธเธณเธฅเธฑเธเธเธฃเธฐเธกเธงเธฅเธเธฅเธเธงเธฒเธกเธเธดเธ”...", en: "Processing thoughts...", zh: "ๆญฃๅจๅค็ๆ€็ปชโ€ฆ", vi: "ฤang xแปญ lรฝ suy nghฤฉ...", pt: "Processando pensamentos..." },
-  { th: "เธเธณเธฅเธฑเธเน€เธฃเธตเธขเธเธฃเธนเนเนเธเธ—เน€เธ—เธดเธฃเนเธเนเธซเธกเน...", en: "Learning new patterns...", zh: "ๆญฃๅจๅญฆไน ๆ–ฐ็ๆจกๅผโ€ฆ", vi: "ฤang hแปc nhแปฏng mแบซu mแปi...", pt: "Aprendendo novos padrรตes..." },
-  { th: "เธเธณเธฅเธฑเธเธเธดเธเธเนเนเธญเน€เธ”เธตเธข...", en: "Syncing ideas...", zh: "ๆญฃๅจๅๆญฅๆณๆณ•โ€ฆ", vi: "ฤang ฤ‘แป“ng bแป รฝ tฦฐแปng...", pt: "Sincronizando ideias..." },
-  { th: "เธเธณเธฅเธฑเธเธเธขเธฒเธขเธเธญเธเน€เธเธ•เธเธงเธฒเธกเน€เธเนเธเนเธเนเธ”เน...", en: "Expanding possibilities...", zh: "ๆญฃๅจๆฉๅฑ•ๅ็งๅฏ่ฝโ€ฆ", vi: "ฤang mแป rแปng nhแปฏng khแบฃ nฤng...", pt: "Expandindo possibilidades..." },
-  { th: "เธเธณเธฅเธฑเธเธเธถเธเธกเธธเธกเธกเธญเธเธเธงเธฒเธกเธเธดเธ”เนเธซเธกเน...", en: "Training a new way of thinking...", zh: "ๆญฃๅจ่ฎญ็ปไธ€็งๆ–ฐ็ๆ€็ปดๆ–นๅผโ€ฆ", vi: "ฤang rรจn luyแปn mแปt cรกch tฦฐ duy mแปi...", pt: "Treinando uma nova forma de pensar..." },
-  { th: "เธเธณเธฅเธฑเธเน€เธเธทเนเธญเธกเนเธขเธเนเธญเน€เธ”เธตเธข...", en: "Linking ideas...", zh: "ๆญฃๅจ่ฟ็ป“ๅ็งๆณๆณ•โ€ฆ", vi: "ฤang liรชn kแบฟt cรกc รฝ tฦฐแปng...", pt: "Ligando ideias..." },
-  { th: "เธเธณเธฅเธฑเธเธเธณเธฅเธญเธเธงเธฑเธเธเธฃเธธเนเธเธเธตเน...", en: "Simulating tomorrow...", zh: "ๆญฃๅจๆจกๆๆๅคฉโ€ฆ", vi: "ฤang mรด phแปng ngร y mai...", pt: "Simulando o amanhรฃ..." },
-  { th: "เธเธณเธฅเธฑเธเธชเธณเธฃเธงเธเน€เธชเนเธเธ—เธฒเธเนเธซเธกเน...", en: "Exploring new paths...", zh: "ๆญฃๅจๆข็ดขๆ–ฐ็่ทฏๅพโ€ฆ", vi: "ฤang khรกm phรก nhแปฏng con ฤ‘ฦฐแปng mแปi...", pt: "Explorando novos caminhos..." },
-  { th: "เธเธณเธฅเธฑเธเธเธฃเธฐเธกเธงเธฅเธเธฅเนเธฃเธเธเธฑเธเธ”เธฒเธฅเนเธ...", en: "Processing inspiration...", zh: "ๆญฃๅจๅค็็ตๆโ€ฆ", vi: "ฤang xแปญ lรฝ nguแป“n cแบฃm hแปฉng...", pt: "Processando inspiraรงรฃo..." },
-  { th: "เธญเธขเธนเนเนเธเนเธซเธกเธ”เธชเธฃเนเธฒเธเธชเธฃเธฃเธเน...", en: "In creative mode...", zh: "ๅทฒ่ฟๅ…ฅๅๆๆจกๅผโ€ฆ", vi: "ฤang แป chแบฟ ฤ‘แป sรกng tแบกo...", pt: "No modo criativo..." },
-  { th: "เธเธณเธฅเธฑเธเนเธเธเธฑเธชเธชเธธเธ”เธ•เธฑเธง...", en: "Locked in...", zh: "ๆญฃๅจๅ…จ็ฅ่ดฏๆณจโ€ฆ", vi: "ฤang tแบญp trung hแบฟt mแปฉc...", pt: "Totalmente focado..." },
-  { th: "เธขเธฑเธเธญเธขเธนเนเธฃเธฐเธซเธงเนเธฒเธเธ”เธณเน€เธเธดเธเธเธฒเธฃ...", en: "Work in progress...", zh: "ไปๅจ่ฟ่กไธญโ€ฆ", vi: "Vแบซn ฤ‘ang trong quรก trรฌnh hoร n thiแปn...", pt: "Trabalho em andamento..." },
-  { th: "เธ—เธธเธเนเธญเน€เธ”เธตเธขเน€เธฃเธดเนเธกเธ•เนเธเธ—เธตเนเธเธตเน...", en: "Every idea starts here...", zh: "ๆฏไธชๆณๆณ•้ฝไป่ฟ้ๅผ€ๅงโ€ฆ", vi: "Mแปi รฝ tฦฐแปng ฤ‘แปu bแบฏt ฤ‘แบงu tแปซ ฤ‘รขy...", pt: "Toda ideia comeรงa aqui..." },
-  { th: "เธเธณเธฅเธฑเธเธเธดเธ”เธญเธขเนเธฒเธเน€เธเธตเธขเธ เน...", en: "Thinking quietly...", zh: "ๆญฃๅจๅฎ้ๅฐๆ€่€โ€ฆ", vi: "ฤang lแบทng lแบฝ suy nghฤฉ...", pt: "Pensando em silรชncio..." },
-  { th: "เธขเธฑเธเธชเธฃเนเธฒเธเธ•เนเธญเนเธ...", en: "Still building...", zh: "ไปๅจๆ็ปญๆญๅปบโ€ฆ", vi: "Vแบซn ฤ‘ang tiแบฟp tแปฅc xรขy dแปฑng...", pt: "Ainda construindo..." },
-  { th: "เธเธณเธฅเธฑเธเธเนเธญเธฃเนเธฒเธเน€เธเนเธเธฃเธนเธเน€เธเนเธเธฃเนเธฒเธ...", en: "In the making...", zh: "ๆญฃๅจ้€ๆธๆๅฝขโ€ฆ", vi: "ฤang dแบงn thร nh hรฌnh...", pt: "Em construรงรฃo..." },
-  { th: "เธชเธกเธญเธเธเธณเธฅเธฑเธเธ—เธณเธเธฒเธ...", en: "Mind at work...", zh: "ๅคง่‘ๆญฃๅจ่ฟไฝโ€ฆ", vi: "Bแป nรฃo ฤ‘ang hoแบกt ฤ‘แปng...", pt: "Mente trabalhando..." },
-  { th: "เนเธเธฅเนเน€เธชเธฃเนเธเนเธฅเนเธง...", en: "Almost there...", zh: "ๅฟซๅฎๆไบโ€ฆ", vi: "Sแบฏp xong rแป“i...", pt: "Quase lรก..." },
-  { th: "เธเธณเธฅเธฑเธเน€เธ•เธดเธเนเธ•เธ—เธธเธเธงเธฑเธ...", en: "Growing every day...", zh: "ๆฏๅคฉ้ฝๅจๆ้•ฟโ€ฆ", vi: "ฤang trฦฐแปng thร nh mแป—i ngร y...", pt: "Crescendo a cada dia..." },
-  { th: "เธเธณเธฅเธฑเธเธญเธฑเธเน€เธเธฃเธ”เธ•เธฑเธงเน€เธญเธ...", en: "Upgrading myself...", zh: "ๆญฃๅจๅ็บง่ชๅทฑโ€ฆ", vi: "ฤang nรขng cแบฅp bแบฃn thรขn...", pt: "Atualizando a mim mesmo..." },
-  { th: "เธเธณเธฅเธฑเธเธเธดเธ”เธเธญเธเธเธฃเธญเธ...", en: "Thinking outside the box...", zh: "ๆญฃๅจ่ทณ่ฑๆกๆถๆ€่€โ€ฆ", vi: "ฤang suy nghฤฉ vฦฐแปฃt khแปi khuรดn khแป•...", pt: "Pensando fora da caixa..." },
-  { th: "เธเธณเธฅเธฑเธเน€เธเธฅเธตเนเธขเธเธเธงเธฒเธกเธชเธเธชเธฑเธขเนเธซเนเธเธฅเธฒเธขเน€เธเนเธเธเธณเธ•เธญเธ...", en: "Turning curiosity into answers...", zh: "ๆญฃๅจๆๅฅฝๅฅๅฟๅๆ็ญ”ๆกโ€ฆ", vi: "ฤang biแบฟn sแปฑ tรฒ mรฒ thร nh cรขu trแบฃ lแปi...", pt: "Transformando curiosidade em respostas..." },
-  { th: "เธเธณเธฅเธฑเธเธ—เธณเนเธซเนเธเธงเธฒเธกเธขเธธเนเธเธขเธฒเธเธ”เธนเน€เธฃเธตเธขเธเธเนเธฒเธข...", en: "Making complexity feel simple...", zh: "ๆญฃๅจ่ฎฉๅคๆๅๅพ—็ฎ€ๅ•โ€ฆ", vi: "ฤang khiแบฟn ฤ‘iแปu phแปฉc tแบกp trแป nรชn ฤ‘ฦกn giแบฃn...", pt: "Fazendo o complexo parecer simples..." },
-  { th: "เธเธณเธฅเธฑเธเนเธเนเธเธฑเธเธซเธฒเธ—เธตเธฅเธฐเธเธดเธเน€เธเธฅ...", en: "Solving problems pixel by pixel...", zh: "ๆญฃๅจไธ€ไธชๅ็ด ไธ€ไธชๅ็ด ๅฐ่งฃๅณ้—ฎ้ขโ€ฆ", vi: "ฤang giแบฃi quyแบฟt vแบฅn ฤ‘แป tแปซng pixel mแปt...", pt: "Resolvendo problemas pixel por pixel..." },
-  { th: "เธเธณเธฅเธฑเธเธซเธฒเน€เธงเธญเธฃเนเธเธฑเธเธ—เธตเนเธ”เธตเธเธงเนเธฒ...", en: "Searching for a better version...", zh: "ๆญฃๅจๅฏปๆพๆดๅฅฝ็็ๆฌโ€ฆ", vi: "ฤang tรฌm kiแบฟm mแปt phiรชn bแบฃn tแป‘t hฦกn...", pt: "Buscando uma versรฃo melhor..." },
-  { th: "เธเธณเธฅเธฑเธเน€เธเธฅเธตเนเธขเธเธเธญเธเน€เธเธ•เนเธซเนเธเธฅเธฒเธขเน€เธเนเธเนเธญเธเธฒเธช...", en: "Turning limits into possibilities...", zh: "ๆญฃๅจๆ้ๅถๅๆๅฏ่ฝโ€ฆ", vi: "ฤang biแบฟn giแปi hแบกn thร nh khแบฃ nฤng...", pt: "Transformando limites em possibilidades..." },
-  { th: "เธเธณเธฅเธฑเธเธญเธญเธเนเธเธเธเธฃเธฐเธชเธเธเธฒเธฃเธ“เนเนเธซเธกเน...", en: "Designing a new experience...", zh: "ๆญฃๅจ่ฎพ่ฎกๅ…จๆ–ฐ็ไฝ“้ชโ€ฆ", vi: "ฤang thiแบฟt kแบฟ mแปt trแบฃi nghiแปm mแปi...", pt: "Criando uma nova experiรชncia..." },
-  { th: "เธเธณเธฅเธฑเธเธชเธฃเนเธฒเธเธชเธดเนเธเธ—เธตเนเธญเธขเธฒเธเนเธซเนเนเธฅเธเธเธตเนเธกเธต...", en: "Building what I want to see in the world...", zh: "ๆญฃๅจๆ“้€ ๆ‘ๆณๅจไธ–็•ไธ็่ง็ไบ็ฉโ€ฆ", vi: "ฤang xรขy dแปฑng ฤ‘iแปu tรดi muแป‘n thแบฅy trรชn thแบฟ giแปi...", pt: "Construindo o que quero ver no mundo..." },
-  { th: "เธเธณเธฅเธฑเธเน€เธเธดเธ”เนเธ—เนเธเนเธซเธกเนเนเธเธซเธฑเธง...", en: "Opening a new tab in my mind...", zh: "ๆญฃๅจ่‘ไธญๅผ€ๅฏๆ–ฐๅ้กตโ€ฆ", vi: "ฤang mแป mแปt tab mแปi trong ฤ‘แบงu...", pt: "Abrindo uma nova aba na mente..." },
-  { th: "เธเธณเธฅเธฑเธเนเธซเธฅเธ”เธกเธธเธกเธกเธญเธเนเธซเธกเน...", en: "Loading a new perspective...", zh: "ๆญฃๅจ่ฝฝๅ…ฅๆ–ฐ็่ง็นโ€ฆ", vi: "ฤang tแบฃi mแปt gรณc nhรฌn mแปi...", pt: "Carregando uma nova perspectiva..." },
-  { th: "เธเธณเธฅเธฑเธเธฃเธตเน€เธเนเธ•เน€เธเธทเนเธญเธเนเธฒเธงเธ•เนเธญ...", en: "Resetting to move forward...", zh: "ๆญฃๅจ้็ฝฎ๏ผๅๅค็ปง็ปญๅ่ฟโ€ฆ", vi: "ฤang ฤ‘แบทt lแบกi ฤ‘แป tiแบฟp tแปฅc tiแบฟn lรชn...", pt: "Reiniciando para seguir em frente..." },
-  { th: "เธเธณเธฅเธฑเธเธ—เธ”เธชเธญเธเธเธญเธเน€เธเธ•เธเธญเธเธ•เธฑเธงเน€เธญเธ...", en: "Testing my limits...", zh: "ๆญฃๅจๆต่ฏ•่ชๅทฑ็ๆ้โ€ฆ", vi: "ฤang thแปญ thรกch giแปi hแบกn cแปงa bแบฃn thรขn...", pt: "Testando meus limites..." },
-  { th: "เธเธณเธฅเธฑเธเน€เธเธตเธขเธเธเธ—เธ•เนเธญเนเธ...", en: "Writing the next chapter...", zh: "ๆญฃๅจไนฆๅไธไธ€ไธช็ซ ่โ€ฆ", vi: "ฤang viแบฟt chฦฐฦกng tiแบฟp theo...", pt: "Escrevendo o prรณximo capรญtulo..." },
-  { th: "เธเธณเธฅเธฑเธเธชเธฃเนเธฒเธเธเธฒเธเธเธงเธฒเธกเธญเธขเธฒเธเธฃเธนเน...", en: "Building from curiosity...", zh: "ๆญฃๅจไปฅๅฅฝๅฅๅฟไธบ่ตท็นๆญๅปบโ€ฆ", vi: "ฤang xรขy dแปฑng tแปซ sแปฑ tรฒ mรฒ...", pt: "Construindo a partir da curiosidade..." },
-  { th: "เธเธณเธฅเธฑเธเน€เธเธฅเธตเนเธขเธเน€เธชเธตเธขเธเธฃเธเธเธงเธเนเธซเนเธเธฅเธฒเธขเน€เธเนเธเธชเธฑเธเธเธฒเธ“...", en: "Turning noise into signal...", zh: "ๆญฃๅจๆๅช้ณๅๆ่ฎฏๅทโ€ฆ", vi: "ฤang biแบฟn nhiแป…u thร nh tรญn hiแปu...", pt: "Transformando ruรญdo em sinal..." },
-  { th: "เธเธณเธฅเธฑเธเธซเธฒเธเธงเธฒเธกเน€เธฃเธตเธขเธเธเนเธฒเธขเนเธเธเธงเธฒเธกเธเธฑเธเธเนเธญเธ...", en: "Finding simplicity in complexity...", zh: "ๆญฃๅจๅคๆไธญๅฏปๆพ็ฎ€ๅ•โ€ฆ", vi: "ฤang tรฌm sแปฑ ฤ‘ฦกn giแบฃn trong phแปฉc tแบกp...", pt: "Encontrando simplicidade na complexidade..." },
-  { th: "เธเธณเธฅเธฑเธเธชเธฃเนเธฒเธเธชเธฐเธเธฒเธเธฃเธฐเธซเธงเนเธฒเธเนเธญเน€เธ”เธตเธข...", en: "Building bridges between ideas...", zh: "ๆญฃๅจไธบๆณๆณ•ไน้—ดๆญ่ตทๆกฅๆขโ€ฆ", vi: "ฤang xรขy cแบงu nแป‘i giแปฏa cรกc รฝ tฦฐแปng...", pt: "Construindo pontes entre ideias..." },
-  { th: "เธเธณเธฅเธฑเธเธเธฃเธฑเธเธเธนเธเธงเธดเธชเธฑเธขเธ—เธฑเธจเธเน...", en: "Fine-tuning the vision...", zh: "ๆญฃๅจๅพฎ่ฐๆฟๆฏโ€ฆ", vi: "ฤang tinh chแปnh tแบงm nhรฌn...", pt: "Ajustando a visรฃo..." },
-  { th: "เธเธณเธฅเธฑเธเธญเธฑเธเน€เธ”เธ•เธฃเธฐเธเธเธเธงเธฒเธกเธเธดเธ”...", en: "Updating the thought system...", zh: "ๆญฃๅจๆดๆ–ฐๆ€็ปด็ณป็ปโ€ฆ", vi: "ฤang cแบญp nhแบญt hแป thแป‘ng tฦฐ duy...", pt: "Atualizando o sistema de pensamento..." },
-  { th: "เธเธณเธฅเธฑเธเน€เธฃเธเน€เธ”เธญเธฃเนเธญเธเธฒเธเธ•...", en: "Rendering the future...", zh: "ๆญฃๅจๆธฒๆ“ๆชๆฅโ€ฆ", vi: "ฤang kแบฟt xuแบฅt tฦฐฦกng lai...", pt: "Renderizando o futuro..." },
-  { th: "เธเธณเธฅเธฑเธเธชเธฃเนเธฒเธเธ•เนเธเนเธเธเธเธญเธเธชเธดเนเธเธ—เธตเนเธเธฐเน€เธเธดเธ”เธ•เนเธญเนเธ...", en: "Prototyping what comes next...", zh: "ๆญฃๅจๅถไฝไธไธ€ๆญฅ็ๅๅโ€ฆ", vi: "ฤang tแบกo nguyรชn mแบซu cho ฤ‘iแปu tiแบฟp theo...", pt: "Prototipando o que vem a seguir..." },
-  { th: "เธเธณเธฅเธฑเธเน€เธฃเธตเธขเธเธฃเธนเนเธเธฒเธเธ—เธธเธเธเธงเธฒเธกเธเธดเธ”เธเธฅเธฒเธ”...", en: "Learning from every mistake...", zh: "ๆญฃๅจไปๆฏไธช้”่ฏฏไธญๅญฆไน โ€ฆ", vi: "ฤang hแปc hแปi tแปซ mแปi sai lแบงm...", pt: "Aprendendo com cada erro..." },
-  { th: "เธเธณเธฅเธฑเธเธ—เธ”เธชเธญเธเธชเธกเธกเธ•เธดเธเธฒเธเนเธซเธกเน...", en: "Testing a new hypothesis...", zh: "ๆญฃๅจๆต่ฏ•ๆ–ฐ็ๅ่ฎพโ€ฆ", vi: "ฤang kiแปm thแปญ mแปt giแบฃ thuyแบฟt mแปi...", pt: "Testando uma nova hipรณtese..." },
-  { th: "เธเธณเธฅเธฑเธเธเนเธเธซเธฒเธเธงเธฒเธกเน€เธเนเธเนเธเนเธ”เนเธ—เธตเนเธเนเธญเธเธญเธขเธนเน...", en: "Searching for hidden possibilities...", zh: "ๆญฃๅจๅฏปๆพ้่—็ๅฏ่ฝๆ€งโ€ฆ", vi: "ฤang tรฌm kiแบฟm nhแปฏng khแบฃ nฤng แบฉn giแบฅu...", pt: "Buscando possibilidades escondidas..." },
-  { th: "เธเธณเธฅเธฑเธเธเธฑเธเธ—เธถเธเนเธญเน€เธ”เธตเธขเธเนเธญเธเธกเธฑเธเธซเธฒเธขเนเธ...", en: "Saving an idea before it disappears...", zh: "ๆญฃๅจ่ถๆณๆณ•ๆถๅคฑๅๆๅฎ่ฎฐไธๆฅโ€ฆ", vi: "ฤang lฦฐu mแปt รฝ tฦฐแปng trฦฐแปc khi nรณ biแบฟn mแบฅt...", pt: "Salvando uma ideia antes que desapareรงa..." },
-  { th: "เธเธณเธฅเธฑเธเน€เธเธฅเธตเนเธขเธเนเธฃเธเธเธฑเธเธ”เธฒเธฅเนเธเนเธซเนเธเธฅเธฒเธขเน€เธเนเธเธเธฒเธฃเธฅเธเธกเธทเธญเธ—เธณ...", en: "Turning inspiration into action...", zh: "ๆญฃๅจๆ็ตๆๅ–ไธบ่กๅจโ€ฆ", vi: "ฤang biแบฟn cแบฃm hแปฉng thร nh hร nh ฤ‘แปng...", pt: "Transformando inspiraรงรฃo em aรงรฃo..." },
-  { th: "เธเธณเธฅเธฑเธเธ—เธณเนเธซเนเธชเธดเนเธเธ—เธตเนเน€เธเนเธเนเธเนเธกเนเนเธ”เนเธ”เธนเนเธเธฅเนเน€เธเนเธฒเธกเธฒ...", en: "Making the impossible feel closer...", zh: "ๆญฃๅจ่ฎฉไธๅฏ่ฝๅๅพ—ๆดๆฅ่ฟ‘โ€ฆ", vi: "ฤang khiแบฟn ฤ‘iแปu khรดng thแป trแป nรชn gแบงn hฦกn...", pt: "Fazendo o impossรญvel parecer mais prรณximo..." },
-  { th: "เธเธณเธฅเธฑเธเธซเธฒเน€เธชเนเธเธ—เธฒเธเธ—เธตเนเธขเธฑเธเนเธกเนเธกเธตเนเธเธฃเธชเธฃเนเธฒเธ...", en: "Finding a path no one has built yet...", zh: "ๆญฃๅจๅฏปๆพๅฐๆชๆไบบๅผ€่พ็้“่ทฏโ€ฆ", vi: "ฤang tรฌm mแปt con ฤ‘ฦฐแปng chฦฐa ai tแบกo ra...", pt: "Encontrando um caminho que ninguรฉm construiu ainda..." },
-  { th: "เธเธณเธฅเธฑเธเน€เธฃเธตเธขเธเธฃเธนเนเธฃเธฐเธซเธงเนเธฒเธเธฅเธเธกเธทเธญเธ—เธณ...", en: "Learning by building...", zh: "ๆญฃๅจๅฎไฝไธญๅญฆไน โ€ฆ", vi: "ฤang hแปc bแบฑng cรกch xรขy dแปฑng...", pt: "Aprendendo ao construir..." },
-  { th: "เธเธฅเนเธญเธขเนเธซเนเธเธงเธฒเธกเธญเธขเธฒเธเธฃเธนเนเธเธณเธ—เธฒเธ...", en: "Letting curiosity lead the way...", zh: "่ฎฉๅฅฝๅฅๅฟๅธฆ่ทฏโ€ฆ", vi: "ฤang ฤ‘แป sแปฑ tรฒ mรฒ dแบซn ฤ‘ฦฐแปng...", pt: "Deixando a curiosidade guiar o caminho..." },
-  { th: "เธเธณเธฅเธฑเธเธชเธฃเนเธฒเธเธชเธดเนเธเนเธซเธกเนเธเธฒเธเน€เธจเธฉเนเธญเน€เธ”เธตเธข...", en: "Building something new from fragments...", zh: "ๆญฃๅจไป้ถ็ข็ๆณๆณ•ไธญๅ้€ ๆ–ฐไบ็ฉโ€ฆ", vi: "ฤang tแบกo ฤ‘iแปu mแปi tแปซ nhแปฏng mแบฃnh รฝ tฦฐแปng...", pt: "Construindo algo novo a partir de fragmentos..." },
-  { th: "เธเธณเธฅเธฑเธเน€เธเธดเนเธกเธฃเธฒเธขเธฅเธฐเน€เธญเธตเธขเธ”เธ—เธตเนเนเธกเนเธกเธตเนเธเธฃเธชเธฑเธเน€เธเธ•...", en: "Adding details no one notices...", zh: "ๆญฃๅจๅ ๅ…ฅๆฒกไบบๆณจๆๅฐ็็ป่โ€ฆ", vi: "ฤang thรชm nhแปฏng chi tiแบฟt khรดng ai ฤ‘แป รฝ...", pt: "Adicionando detalhes que ninguรฉm percebe..." },
-  { th: "เธเธณเธฅเธฑเธเธฅเธ”เธเธงเธฒเธกเธเธฑเธเธเนเธญเธเธ—เธตเธฅเธฐเธเธฑเนเธ...", en: "Removing complexity layer by layer...", zh: "ๆญฃๅจไธ€ๅฑไธ€ๅฑ็งป้คๅคๆๆ€งโ€ฆ", vi: "ฤang loแบกi bแป sแปฑ phแปฉc tแบกp tแปซng lแปp mแปt...", pt: "Removendo a complexidade camada por camada..." },
-  { th: "เธเธณเธฅเธฑเธเธซเธฒเธเธฑเธเธซเธงเธฐเธ—เธตเนเธฅเธเธ•เธฑเธง...", en: "Finding the right rhythm...", zh: "ๆญฃๅจๅฏปๆพๆฐๅฐๅฅฝๅค็่ๅฅโ€ฆ", vi: "ฤang tรฌm nhแปp ฤ‘iแปu phรน hแปฃp...", pt: "Encontrando o ritmo certo..." },
-  { th: "เธเธณเธฅเธฑเธเธชเธฃเนเธฒเธเธเธทเนเธเธ—เธตเนเนเธซเนเนเธญเน€เธ”เธตเธขเนเธซเธกเน...", en: "Making room for new ideas...", zh: "ๆญฃๅจไธบๆ–ฐๆณๆณ•่…พๅบ็ฉบ้—ดโ€ฆ", vi: "ฤang tแบกo chแป— cho nhแปฏng รฝ tฦฐแปng mแปi...", pt: "Abrindo espaรงo para novas ideias..." },
-  { th: "เธเธณเธฅเธฑเธเธเธฃเธฑเธเน€เธเนเธกเธ—เธดเธจเธ เธฒเธขเนเธเนเธซเธกเน...", en: "Recalibrating the inner compass...", zh: "ๆญฃๅจ้ๆ–ฐๆ กๅๅ…ๅจ็็ฝ—็โ€ฆ", vi: "ฤang hiแปu chแปnh lแบกi la bร n bรชn trong...", pt: "Recalibrando a bรบssola interior..." },
+  { th: "กำลังคิดไอเดียใหม่...", en: "Thinking of a new idea...", zh: "正在构想新点子...", vi: "Đang nghĩ ý tưởng mới...", pt: "Pensando em uma nova ideia..." },
+  { th: "แก้บั๊กตัวร้ายอยู่...", en: "Hunting down a stubborn bug...", zh: "正在排查顽固的Bug...", vi: "Đang sửa một con bug khó...", pt: "Caçando um bug teimoso..." },
+  { th: "แปลงกาแฟเป็นโค้ด...", en: "Turning coffee into code...", zh: "正在把咖啡变成代码...", vi: "Đang biến cà phê thành code...", pt: "Transformando café em código..." },
+  { th: "วางแผนโปรเจกต์ต่อไป...", en: "Sketching the next project...", zh: "正在构思下一个项目...", vi: "Đang phác thảo dự án tiếp theo...", pt: "Esboçando o próximo projeto..." },
+  { th: "ยังไม่หยุดเรียนรู้...", en: "Still learning, always...", zh: "一直在不断学习...", vi: "Vẫn luôn học hỏi...", pt: "Sempre aprendendo..." },
+  { th: "คอมไพล์ความฝันอยู่...", en: "Compiling dreams into reality...", zh: "正在把梦想编译成现实...", vi: "Đang biến ước mơ thành hiện thực...", pt: "Compilando sonhos em realidade..." },
+  { th: "เชื่อมจุดต่าง ๆ เข้าด้วยกัน...", en: "Connecting the dots...", zh: "正在把碎片拼凑起来...", vi: "Đang kết nối các mảnh ghép...", pt: "Conectando os pontos..." },
+  { th: "ไล่ตามคำถาม 'ถ้า...จะเป็นยังไง'...", en: "Chasing a 'what if'...", zh: "正在探索'如果'的可能性...", vi: "Đang theo đuổi câu hỏi 'nếu như'...", pt: "Perseguindo um 'e se'..." },
+  { th: "กำลังคิดเรื่องคอมมูนิตี้...", en: "Thinking about the community...", zh: "正在想念社区里的大家...", vi: "Đang nghĩ về cộng đồng...", pt: "Pensando na comunidade..." },
+  { th: "รีชาร์จความคิดสร้างสรรค์...", en: "Recharging creativity...", zh: "正在给创造力充充电...", vi: "Đang nạp lại năng lượng sáng tạo...", pt: "Recarregando a criatividade..." },
+  { th: "เขียนกฎใหม่ให้ตัวเอง...", en: "Rewriting my own rules...", zh: "正在为自己重写规则...", vi: "Đang viết lại luật chơi của riêng mình...", pt: "Reescrevendo minhas próprias regras..." },
+  { th: "ฝันเป็นภาษาไบนารี...", en: "Dreaming in binary...", zh: "正在用二进制做梦...", vi: "Đang mơ bằng nhị phân...", pt: "Sonhando em binário..." },
+  { th: "สำหรับผม ทุกอย่างคือไบนารี ศูนย์กับหนึ่ง", en: "To me, everything is binary. Zeros and ones.", zh: "对我来说，一切都是二进制。零和一。", vi: "Với tôi, mọi thứ đều là nhị phân. Số 0 và 1.", pt: "Para mim, tudo é binário. Zeros e uns." },
+  { th: "กำลังต่อไอเดียเข้าด้วยกัน...", en: "Piecing ideas together...", zh: "正在把想法拼凑起来...", vi: "Đang ghép các ý tưởng lại với nhau...", pt: "Juntando as peças das ideias..." },
+  { th: "กำลังสร้างของเจ๋ง ๆ...", en: "Building something cool...", zh: "正在打造很酷的东西...", vi: "Đang tạo ra thứ gì đó thật ngầu...", pt: "Construindo algo incrível..." },
+  { th: "กำลังมองหาแรงบันดาลใจ...", en: "Looking for inspiration...", zh: "正在寻找灵感...", vi: "Đang tìm kiếm cảm hứng...", pt: "Buscando inspiração..." },
+  { th: "ปล่อยให้ไอเดียค่อย ๆ เติบโต...", en: "Letting ideas grow...", zh: "让想法慢慢生长...", vi: "Đang để ý tưởng lớn dần...", pt: "Deixando as ideias crescerem..." },
+  { th: "ร่างอนาคตทีละบรรทัด...", en: "Sketching the future line by line...", zh: "一行行地描摹未来...", vi: "Đang phác họa tương lai từng dòng một...", pt: "Esboçando o futuro linha por linha..." },
+  { th: "กำลังนึกภาพว่าอะไรจะเกิดขึ้นต่อไป...", en: "Imagining what comes next...", zh: "正在想象接下来会发生什么...", vi: "Đang hình dung điều gì sẽ đến tiếp theo...", pt: "Imaginando o que vem a seguir..." },
+  { th: "กำลังทดลองไอเดียใหม่ ๆ...", en: "Experimenting with new ideas...", zh: "正在尝试新想法...", vi: "Đang thử nghiệm những ý tưởng mới...", pt: "Experimentando novas ideias..." },
+  { th: "เปลี่ยนความคิดให้กลายเป็นความจริง...", en: "Turning thoughts into reality...", zh: "正在把想法变成现实...", vi: "Đang biến suy nghĩ thành hiện thực...", pt: "Transformando pensamentos em realidade..." },
+  { th: "กำลังสร้างจากศูนย์...", en: "Building from scratch...", zh: "正在从零开始搭建...", vi: "Đang xây dựng từ con số không...", pt: "Construindo do zero..." },
+  { th: "ไอเดียใหม่กำลังบูตขึ้นมา...", en: "Booting up new ideas...", zh: "新点子正在启动中...", vi: "Ý tưởng mới đang khởi động...", pt: "Inicializando novas ideias..." },
+  { th: "กำลังดีบั๊กชีวิต...", en: "Debugging life...", zh: "正在调试人生...", vi: "Đang gỡ lỗi cuộc sống...", pt: "Depurando a vida..." },
+  { th: "กำลังเขียนโค้ดอยู่ในความเงียบ...", en: "Coding in silence...", zh: "正在安静地写代码...", vi: "Đang lặng lẽ viết mã...", pt: "Programando em silêncio..." },
+  { th: "กำลังขัดเกลาบรรทัดสุดท้าย...", en: "Polishing the final lines...", zh: "正在打磨最后几行...", vi: "Đang trau chuốt những dòng cuối...", pt: "Lapidando as últimas linhas..." },
+  { th: "กำลังรีแฟคเตอร์ทุกอย่าง...", en: "Refactoring everything...", zh: "正在重构一切...", vi: "Đang tái cấu trúc mọi thứ...", pt: "Refatorando tudo..." },
+  { th: "กำลังคอมไพล์...", en: "Compiling...", zh: "正在编译中...", vi: "Đang biên dịch...", pt: "Compilando..." },
+  { th: "กำลังรันทุกความเป็นไปได้...", en: "Running every possibility...", zh: "正在尝试每一种可能...", vi: "Đang chạy mọi khả năng...", pt: "Executando todas as possibilidades..." },
+  { th: "กำลังพุชเวอร์ชันใหม่...", en: "Pushing a new version...", zh: "正在推送新版本...", vi: "Đang đẩy một phiên bản mới...", pt: "Enviando uma nova versão..." },
+  { th: "กำลังเคลียร์รายการสิ่งที่ต้องทำ...", en: "Clearing the to-do list...", zh: "正在清空待办清单...", vi: "Đang dọn danh sách việc cần làm...", pt: "Limpando a lista de tarefas..." },
+  { th: "กำลังจัดระเบียบความคิด...", en: "Organizing thoughts...", zh: "正在整理思绪...", vi: "Đang sắp xếp lại suy nghĩ...", pt: "Organizando os pensamentos..." },
+  { th: "กำลังรอให้บิลด์เสร็จ...", en: "Waiting for the build...", zh: "正在等待构建完成...", vi: "Đang chờ bản dựng hoàn tất...", pt: "Esperando a build terminar..." },
+  { th: "กำลังสร้างอนาคต...", en: "Building the future...", zh: "正在打造未来...", vi: "Đang xây dựng tương lai...", pt: "Construindo o futuro..." },
+  { th: "ทีละก้าว ทีละโปรเจกต์...", en: "One step, one project at a time...", zh: "一步一步，一个项目接一个项目...", vi: "Từng bước một, từng dự án một...", pt: "Um passo e um projeto de cada vez..." },
+  { th: "กำลังทำให้มันเกิดขึ้น...", en: "Making it happen...", zh: "正在让它成真...", vi: "Đang biến nó thành hiện thực...", pt: "Fazendo acontecer..." },
+  { th: "คิดให้น้อยลง สร้างให้มากขึ้น...", en: "Thinking less, building more...", zh: "少想一点，多做一点...", vi: "Nghĩ ít hơn, xây dựng nhiều hơn...", pt: "Pensando menos, construindo mais..." },
+  { th: "กำลังวางอิฐก้อนต่อไป...", en: "Laying the next brick...", zh: "正在放下下一块砖...", vi: "Đang đặt viên gạch tiếp theo...", pt: "Assentando o próximo tijolo..." },
+  { th: "ทำสิ่งเล็ก ๆ ให้มีความหมาย...", en: "Making small things matter...", zh: "让小事也变得有意义...", vi: "Đang khiến những điều nhỏ bé trở nên ý nghĩa...", pt: "Fazendo as pequenas coisas importarem..." },
+  { th: "กำลังสร้างสิ่งที่มีความหมาย...", en: "Building something meaningful...", zh: "正在打造有意义的东西...", vi: "Đang xây dựng điều gì đó có ý nghĩa...", pt: "Construindo algo significativo..." },
+  { th: "กำลังส่งเวอร์ชันใหม่ออกไป...", en: "Shipping another version...", zh: "正在发布另一个版本...", vi: "Đang phát hành một phiên bản mới...", pt: "Lançando mais uma versão..." },
+  { th: "ความก้าวหน้าสำคัญกว่าความสมบูรณ์แบบ...", en: "Progress over perfection...", zh: "进步胜过完美...", vi: "Tiến bộ quan trọng hơn hoàn hảo...", pt: "Progresso acima da perfeição..." },
+  { th: "เริ่มใหม่ให้ดีกว่าเดิม...", en: "Starting over, better...", zh: "重新开始，变得更好...", vi: "Bắt đầu lại theo cách tốt hơn...", pt: "Recomeçando, ainda melhor..." },
+  { th: "กำลังประมวลผล...", en: "Processing...", zh: "正在处理中...", vi: "Đang xử lý...", pt: "Processando..." },
+  { th: "กำลังประมวลผลความคิด...", en: "Processing thoughts...", zh: "正在整理思绪...", vi: "Đang xử lý suy nghĩ...", pt: "Processando pensamentos..." },
+  { th: "กำลังเรียนรู้แพทเทิร์นใหม่...", en: "Learning new patterns...", zh: "正在学习新的模式...", vi: "Đang học những mẫu mới...", pt: "Aprendendo novos padrões..." },
+  { th: "กำลังซิงค์ไอเดีย...", en: "Syncing ideas...", zh: "正在同步想法...", vi: "Đang đồng bộ ý tưởng...", pt: "Sincronizando ideias..." },
+  { th: "กำลังขยายขอบเขตความเป็นไปได้...", en: "Expanding possibilities...", zh: "正在拓展各种可能...", vi: "Đang mở rộng những khả năng...", pt: "Expandindo possibilidades..." },
+  { th: "กำลังฝึกมุมมองความคิดใหม่...", en: "Training a new way of thinking...", zh: "正在训练一种新的思维方式...", vi: "Đang rèn luyện một cách tư duy mới...", pt: "Treinando uma nova forma de pensar..." },
+  { th: "กำลังเชื่อมโยงไอเดีย...", en: "Linking ideas...", zh: "正在连结各种想法...", vi: "Đang liên kết các ý tưởng...", pt: "Ligando ideias..." },
+  { th: "กำลังจำลองวันพรุ่งนี้...", en: "Simulating tomorrow...", zh: "正在模拟明天...", vi: "Đang mô phỏng ngày mai...", pt: "Simulando o amanhã..." },
+  { th: "กำลังสำรวจเส้นทางใหม่...", en: "Exploring new paths...", zh: "正在探索新的路径...", vi: "Đang khám phá những con đường mới...", pt: "Explorando novos caminhos..." },
+  { th: "กำลังประมวลผลแรงบันดาลใจ...", en: "Processing inspiration...", zh: "正在处理灵感...", vi: "Đang xử lý nguồn cảm hứng...", pt: "Processando inspiração..." },
+  { th: "อยู่ในโหมดสร้างสรรค์...", en: "In creative mode...", zh: "已进入创意模式...", vi: "Đang ở chế độ sáng tạo...", pt: "No modo criativo..." },
+  { th: "กำลังโฟกัสสุดตัว...", en: "Locked in...", zh: "正在全神贯注...", vi: "Đang tập trung hết mức...", pt: "Totalmente focado..." },
+  { th: "ยังอยู่ระหว่างดำเนินการ...", en: "Work in progress...", zh: "仍在进行中...", vi: "Vẫn đang trong quá trình hoàn thiện...", pt: "Trabalho em andamento..." },
+  { th: "ทุกไอเดียเริ่มต้นที่นี่...", en: "Every idea starts here...", zh: "每个想法都从这里开始...", vi: "Mọi ý tưởng đều bắt đầu từ đây...", pt: "Toda ideia começa aqui..." },
+  { th: "กำลังคิดอย่างเงียบ ๆ...", en: "Thinking quietly...", zh: "正在安静地思考...", vi: "Đang lặng lẽ suy nghĩ...", pt: "Pensando em silêncio..." },
+  { th: "ยังสร้างต่อไป...", en: "Still building...", zh: "一直在持续搭建...", vi: "Vẫn đang tiếp tục xây dựng...", pt: "Ainda construindo..." },
+  { th: "กำลังก่อร่างเป็นรูปเป็นร่าง...", en: "In the making...", zh: "正在逐渐成型...", vi: "Đang dần thành hình...", pt: "Em construção..." },
+  { th: "สมองกำลังทำงาน...", en: "Mind at work...", zh: "大脑正在运作...", vi: "Bộ não đang hoạt động...", pt: "Mente trabalhando..." },
+  { th: "ใกล้เสร็จแล้ว...", en: "Almost there...", zh: "快完成了…", vi: "Sắp xong rồi...", pt: "Quase lá..." },
+  { th: "กำลังเติบโตทุกวัน...", en: "Growing every day...", zh: "每天都在成长...", vi: "Đang trưởng thành mỗi ngày...", pt: "Crescendo a cada dia..." },
+  { th: "กำลังอัปเกรดตัวเอง...", en: "Upgrading myself...", zh: "正在升级自己...", vi: "Đang nâng cấp bản thân...", pt: "Atualizando a mim mesmo..." },
+  { th: "กำลังคิดนอกกรอบ...", en: "Thinking outside the box...", zh: "正在跳出框架思考...", vi: "Đang suy nghĩ vượt khỏi khuôn khổ...", pt: "Pensando fora da caixa..." },
+  { th: "กำลังเปลี่ยนความสงสัยให้กลายเป็นคำตอบ...", en: "Turning curiosity into answers...", zh: "正在把好奇心变成答案...", vi: "Đang biến sự tò mò thành câu trả lời...", pt: "Transformando curiosidade em respostas..." },
+  { th: "กำลังทำให้ความยุ่งยากดูเรียบง่าย...", en: "Making complexity feel simple...", zh: "正在让复杂变得简单...", vi: "Đang khiến điều phức tạp trở nên đơn giản...", pt: "Fazendo o complexo parecer simples..." },
+  { th: "กำลังแก้ปัญหาทีละพิกเซล...", en: "Solving problems pixel by pixel...", zh: "正在一个个像素地解决问题...", vi: "Đang giải quyết vấn đề từng pixel một...", pt: "Resolvendo problemas pixel por pixel..." },
+  { th: "กำลังหาเวอร์ชันที่ดีกว่า...", en: "Searching for a better version...", zh: "正在寻找更好的版本...", vi: "Đang tìm kiếm một phiên bản tốt hơn...", pt: "Buscando uma versão melhor..." },
+  { th: "กำลังเปลี่ยนขอบเขตให้กลายเป็นโอกาส...", en: "Turning limits into possibilities...", zh: "正在把限制变成可能...", vi: "Đang biến giới hạn thành khả năng...", pt: "Transformando limites em possibilidades..." },
+  { th: "กำลังออกแบบประสบการณ์ใหม่...", en: "Designing a new experience...", zh: "正在设计全新的体验...", vi: "Đang thiết kế một trải nghiệm mới...", pt: "Criando uma nova experiência..." },
+  { th: "กำลังสร้างสิ่งที่อยากให้โลกนี้มี...", en: "Building what I want to see in the world...", zh: "正在打造我想在世界上看到的事物...", vi: "Đang xây dựng điều tôi muốn thấy trên thế giới...", pt: "Construindo o que quero ver no mundo..." },
+  { th: "กำลังเปิดแท็บใหม่ในหัว...", en: "Opening a new tab in my mind...", zh: "正在脑中开启新分页...", vi: "Đang mở một tab mới trong đầu...", pt: "Abrindo uma nova aba na mente..." },
+  { th: "กำลังโหลดมุมมองใหม่...", en: "Loading a new perspective...", zh: "正在载入新的观点...", vi: "Đang tải một góc nhìn mới...", pt: "Carregando uma nova perspectiva..." },
+  { th: "กำลังรีเซ็ตเพื่อก้าวต่อ...", en: "Resetting to move forward...", zh: "正在重置，准备继续前进...", vi: "Đang đặt lại để tiếp tục tiến lên...", pt: "Reiniciando para seguir em frente..." },
+  { th: "กำลังทดสอบขอบเขตของตัวเอง...", en: "Testing my limits...", zh: "正在测试自己的极限...", vi: "Đang thử thách giới hạn của bản thân...", pt: "Testando meus limites..." },
+  { th: "กำลังเขียนบทต่อไป...", en: "Writing the next chapter...", zh: "正在谱写下一个章节...", vi: "Đang viết chương tiếp theo...", pt: "Escrevendo o próximo capítulo..." },
+  { th: "กำลังสร้างจากความอยากรู้...", en: "Building from curiosity...", zh: "正在以好奇心为起点搭建...", vi: "Đang xây dựng từ sự tò mò...", pt: "Construindo a partir da curiosidade..." },
+  { th: "กำลังเปลี่ยนเสียงรบกวนให้กลายเป็นสัญญาณ...", en: "Turning noise into signal...", zh: "正在把噪音变成讯号...", vi: "Đang biến nhiễu thành tín hiệu...", pt: "Transformando ruído em sinal..." },
+  { th: "กำลังหาความเรียบง่ายในความซับซ้อน...", en: "Finding simplicity in complexity...", zh: "正在复杂中寻找简单...", vi: "Đang tìm sự đơn giản trong phức tạp...", pt: "Encontrando simplicidade na complexidade..." },
+  { th: "กำลังสร้างสะพานระหว่างไอเดีย...", en: "Building bridges between ideas...", zh: "正在为想法之间搭起桥梁...", vi: "Đang xây cầu nối giữa các ý tưởng...", pt: "Construindo pontes entre ideias..." },
+  { th: "กำลังปรับจูนวิสัยทัศน์...", en: "Fine-tuning the vision...", zh: "正在微调愿景...", vi: "Đang tinh chỉnh tầm nhìn...", pt: "Ajustando a visão..." },
+  { th: "กำลังอัปเดตระบบความคิด...", en: "Updating the thought system...", zh: "正在更新思维系统...", vi: "Đang cập nhật hệ thống tư duy...", pt: "Atualizando o sistema de pensamento..." },
+  { th: "กำลังเรนเดอร์อนาคต...", en: "Rendering the future...", zh: "正在渲染未来...", vi: "Đang kết xuất tương lai...", pt: "Renderizando o futuro..." },
+  { th: "กำลังสร้างต้นแบบของสิ่งที่จะเกิดต่อไป...", en: "Prototyping what comes next...", zh: "正在制作下一步的原型...", vi: "Đang tạo nguyên mẫu cho điều tiếp theo...", pt: "Prototipando o que vem a seguir..." },
+  { th: "กำลังเรียนรู้จากทุกความผิดพลาด...", en: "Learning from every mistake...", zh: "正在从每个错误中学习...", vi: "Đang học hỏi từ mỗi sai lầm...", pt: "Aprendendo com cada erro..." },
+  { th: "กำลังทดสอบสมมติฐานใหม่...", en: "Testing a new hypothesis...", zh: "正在测试新的假设...", vi: "Đang kiểm thử một giả thuyết mới...", pt: "Testando uma nova hipótese..." },
+  { th: "กำลังค้นหาความเป็นไปได้ที่ซ่อนอยู่...", en: "Searching for hidden possibilities...", zh: "正在寻找隐藏的可能性...", vi: "Đang tìm kiếm những khả năng ẩn giấu...", pt: "Buscando possibilidades escondidas..." },
+  { th: "กำลังบันทึกไอเดียก่อนมันหายไป...", en: "Saving an idea before it disappears...", zh: "正在趁想法消失前把它记下来...", vi: "Đang lưu một ý tưởng trước khi nó biến mất...", pt: "Salvando uma ideia antes que desapareça..." },
+  { th: "กำลังเปลี่ยนแรงบันดาลใจให้กลายเป็นการลงมือทำ...", en: "Turning inspiration into action...", zh: "正在把灵感化为行动...", vi: "Đang biến cảm hứng thành hành động...", pt: "Transformando inspiração em ação..." },
+  { th: "กำลังทำให้สิ่งที่เป็นไปไม่ได้ดูใกล้เข้ามา...", en: "Making the impossible feel closer...", zh: "正在让不可能变得更接近...", vi: "Đang khiến điều không thể trở nên gần hơn...", pt: "Fazendo o impossível parecer mais próximo..." },
+  { th: "กำลังหาเส้นทางที่ยังไม่มีใครสร้าง...", en: "Finding a path no one has built yet...", zh: "正在寻找尚未有人开辟的道路...", vi: "Đang tìm một con đường chưa ai tạo ra...", pt: "Encontrando um caminho que ninguém construiu ainda..." },
+  { th: "กำลังเรียนรู้ระหว่างลงมือทำ...", en: "Learning by building...", zh: "正在实作中学习...", vi: "Đang học bằng cách xây dựng...", pt: "Aprendendo ao construir..." },
+  { th: "ปล่อยให้ความอยากรู้นำทาง...", en: "Letting curiosity lead the way...", zh: "让好奇心带路...", vi: "Đang để sự tò mò dẫn đường...", pt: "Deixando a curiosidade guiar o caminho..." },
+  { th: "กำลังสร้างสิ่งใหม่จากเศษไอเดีย...", en: "Building something new from fragments...", zh: "正在从零碎的想法中创造新事物...", vi: "Đang tạo điều mới từ những mảnh ý tưởng...", pt: "Construindo algo novo a partir de fragmentos..." },
+  { th: "กำลังเพิ่มรายละเอียดที่ไม่มีใครสังเกต...", en: "Adding details no one notices...", zh: "正在加入没人注意到的细节...", vi: "Đang thêm những chi tiết không ai để ý...", pt: "Adicionando detalhes que ninguém percebe..." },
+  { th: "กำลังลดความซับซ้อนทีละชั้น...", en: "Removing complexity layer by layer...", zh: "正在一层一层移除复杂性...", vi: "Đang loại bỏ sự phức tạp từng lớp một...", pt: "Removendo a complexidade camada por camada..." },
+  { th: "กำลังหาจังหวะที่ลงตัว...", en: "Finding the right rhythm...", zh: "正在寻找恰到好处的节奏...", vi: "Đang tìm nhịp điệu phù hợp...", pt: "Encontrando o ritmo certo..." },
+  { th: "กำลังสร้างพื้นที่ให้ไอเดียใหม่...", en: "Making room for new ideas...", zh: "正在为新想法腾出空间...", vi: "Đang tạo chỗ cho những ý tưởng mới...", pt: "Abrindo espaço para novas ideias..." },
+  { th: "กำลังปรับเข็มทิศภายในใหม่...", en: "Recalibrating the inner compass...", zh: "正在重新校准内在的罗盘...", vi: "Đang hiệu chỉnh lại la bàn bên trong...", pt: "Recalibrando a bússola interior..." },
 ];
 
-// Alternate hero visual โ€” a traced circuit-board brain (public/images/ai-brain-circuit.svg,
+// Alternate hero visual — a traced circuit-board brain (public/images/ai-brain-circuit.svg,
 // adapted from Bryan C Guner's "Neural Network Visualization" CodePen, MIT) with a rotating
 // thought bubble, drifting data particles, and binary digits, meant to read as "always
 // thinking" rather than a static project shot.
@@ -945,7 +933,7 @@ function AiBrainVisual() {
         el.innerHTML = svgText;
         const svg = el.querySelector("svg");
         if (!svg) return;
-        // Only a fraction of the traced elements actually animate โ€” the SVG has
+        // Only a fraction of the traced elements actually animate — the SVG has
         // ~440 paths/rects/circles, and animating stroke-dashoffset/opacity on all
         // of them at once (each a non-composited, per-frame repaint) is what made
         // this visual janky. The rest render as static fully-drawn lines/dots,
@@ -969,12 +957,12 @@ function AiBrainVisual() {
           c.classList.add("zpu-brain-pulse-dot");
         });
       })
-      .catch(() => { /* decorative โ€” fine to no-op if it fails to load */ });
+      .catch(() => { /* decorative — fine to no-op if it fails to load */ });
     return () => { cancelled = true; };
   }, []);
 
   // Measure the bubble's and brain's actual on-screen boxes so the connector's
-  // endpoints touch both exactly โ€” the bubble's width changes with every
+  // endpoints touch both exactly — the bubble's width changes with every
   // thought/language, so guessed percentages drift out of alignment.
   useEffect(() => {
     if (thoughtIdx === null) return;
@@ -1043,7 +1031,7 @@ function AiBrainVisual() {
       {thoughtIdx !== null && (
         <>
           {/* A jagged, right-angle circuit trace from the brain up to the
-              bubble โ€” same visual language as the brain's own traces. The
+              bubble — same visual language as the brain's own traces. The
               endpoints come from measured DOM positions (see the effect
               above), not guessed percentages, so they actually touch both
               elements regardless of bubble width or screen size. */}
@@ -1077,7 +1065,7 @@ export function AboutZpu({ ytSubs, discordMembers }: { ytSubs?: number | null; d
   const [showAllEdc, setShowAllEdc] = useState(false);
   const [heroView, setHeroView] = useState<"brain" | "showcase">("brain");
   // Picked once per page load so the "Living in" fact card and the location
-  // pill always agree โ€” two independent random picks would show two cities.
+  // pill always agree — two independent random picks would show two cities.
   const [livingCity, setLivingCity] = useState<string | null>(null);
   useEffect(() => {
     setLivingCity(TH_PROVINCES[Math.floor(Math.random() * TH_PROVINCES.length)]);
@@ -1114,8 +1102,8 @@ export function AboutZpu({ ytSubs, discordMembers }: { ytSubs?: number | null; d
   ];
 
   const tinyFacts = [
-    { labelKey: "zpuTinyNickname" as const, value: "ZPU / NON ๐ด", color: "#22c55e" },
-    { labelKey: "zpuTinyStatus" as const, value: "WORK HARD ๐”ฅ", color: "#ff6f00" },
+    { labelKey: "zpuTinyNickname" as const, value: "ZPU / NON 🙂", color: "#22c55e" },
+    { labelKey: "zpuTinyStatus" as const, value: "WORK HARD 🔥", color: "#ff6f00" },
   ];
 
   return (
@@ -1130,7 +1118,7 @@ export function AboutZpu({ ytSubs, discordMembers }: { ytSubs?: number | null; d
         setHeroView={setHeroView}
       />
 
-      {/* Music player โ€” mounted outside .zpu-wrap so its popup can layer above the header */}
+      {/* Music player — mounted outside .zpu-wrap so its popup can layer above the header */}
       <MusicPlayer />
 
       <div className="zpu-wrap">
@@ -1174,7 +1162,7 @@ export function AboutZpu({ ytSubs, discordMembers }: { ytSubs?: number | null; d
           <div className="zpu-home-visual">
             <span className="zpu-home-accent" />
             {/* key={heroView} forces a remount on switch, replaying the fade/scale-in
-                keyframe below โ€” otherwise the two views just instantly swap. */}
+                keyframe below — otherwise the two views just instantly swap. */}
             <div key={heroView} className="zpu-hero-swap">
               {heroView === "brain" ? (
                 <AiBrainVisual />
@@ -1204,7 +1192,7 @@ export function AboutZpu({ ytSubs, discordMembers }: { ytSubs?: number | null; d
           </div>
         </section>
 
-        {/* About โ€” bold bento grid */}
+        {/* About — bold bento grid */}
         <section className="zpu-about-bento">
           <div className="zpu-bn-cell zpu-bn-bio">
             <p className="zpu-current-label">{t("zpuBioLabel")}</p>
@@ -1344,7 +1332,7 @@ export function AboutZpu({ ytSubs, discordMembers }: { ytSubs?: number | null; d
 
         <QuoteCard />
 
-        {/* Favorites โ€” a shelf of collections. Each card fans out real covers
+        {/* Favorites — a shelf of collections. Each card fans out real covers
             from its topic and deep-links into /favorites, so this one
             section replaces the ten full lists that used to live here. */}
         <section className="zpu-collections" id="zpu-interests">

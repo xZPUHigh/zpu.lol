@@ -4,7 +4,7 @@ import { ZpuFavorites } from "./favorites-client";
 export const metadata: Metadata = {
   title: { absolute: "ZPU's Favorites | Games, Movies, Anime, Books & More" },
   description:
-    "Everything ZPU (xZPUHigh) is into โ€” favorite games, movies, series, anime, manga, books, artists, cars and sports, all in one place.",
+    "Everything ZPU (xZPUHigh) is into — favorite games, movies, series, anime, manga, books, artists, cars and sports, all in one place.",
   keywords: [
     "ZPU favorites",
     "xZPUHigh favorites",
@@ -32,11 +32,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: "ZPU's Favorites | Games, Movies, Anime, Books & More",
     description:
-      "Everything ZPU (xZPUHigh) is into โ€” games, movies, series, anime, manga, books, artists, cars and sports.",
+      "Everything ZPU (xZPUHigh) is into — games, movies, series, anime, manga, books, artists, cars and sports.",
     url: "https://zpu.lol/favorites",
     type: "profile",
     images: [
-      { url: "https://spectrumcheat.com/images/benner_1.png", width: 6144, height: 1015, alt: "ZPU โ€” Favorites" },
+      { url: "https://spectrumcheat.com/images/benner_1.png", width: 6144, height: 1015, alt: "ZPU — Favorites" },
     ],
   },
   twitter: {
