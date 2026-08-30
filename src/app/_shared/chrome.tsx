@@ -126,14 +126,6 @@ export function ZpuTopbar({
         </nav>
 
         <div className="zpu-topbar-actions">
-          <a href="https://spectrumcheat.com" target="_blank" rel="noopener noreferrer" className="zpu-tb-btn" aria-label="Spectrum Cheat">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-              strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-              <path d="M3 11l9-8 9 8" />
-              <path d="M5 10v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V10" />
-              <path d="M9 21v-8h6v8" />
-            </svg>
-          </a>
           <button
             className="zpu-tb-btn"
             aria-label="Change language"
