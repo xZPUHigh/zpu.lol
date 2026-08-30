@@ -1020,7 +1020,7 @@ export function AboutZpu({ ytSubs, discordMembers }: { ytSubs?: number | null; d
                 <div className="zpu-fact-body">
                   {f.labelKey === "zpuFactsPassions" ? (
                     <div className="zpu-fact-chips">
-                      {t("zpuFactsPassionsV").split(/\s*[,ใ€]\s*/).map((x) => x.trim()).filter(Boolean).map((x) => (
+                      {t("zpuFactsPassionsV").split(/\s*[,、，;]\s*/).map((x) => x.trim()).filter(Boolean).map((x) => (
                         <span key={x} className="zpu-fact-chip">{x}</span>
                       ))}
                     </div>
