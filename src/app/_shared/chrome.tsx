@@ -91,15 +91,11 @@ export function ZpuTopbar({
   activeSection,
   theme,
   setTheme,
-  heroView,
-  setHeroView,
 }: {
   navItems: ZpuNavItem[];
   activeSection?: string;
   theme: "dark" | "light";
   setTheme: (fn: (prev: "dark" | "light") => "dark" | "light") => void;
-  heroView?: "brain" | "showcase";
-  setHeroView?: (fn: (prev: "brain" | "showcase") => "brain" | "showcase") => void;
 }) {
   const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
@@ -176,28 +172,7 @@ export function ZpuTopbar({
               <circle cx="18" cy="16" r="3" />
             </svg>
           </button>
-          {heroView && setHeroView && (
-            <button
-              className="zpu-tb-btn"
-              aria-label={heroView === "brain" ? "Show project" : "Show AI brain"}
-              title={heroView === "brain" ? "Show project" : "Show AI brain"}
-              onClick={() => setHeroView((v) => (v === "brain" ? "showcase" : "brain"))}
-            >
-              {heroView === "brain" ? (
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                  strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                  <rect x="3" y="3" width="7" height="7" /><rect x="14" y="3" width="7" height="7" />
-                  <rect x="14" y="14" width="7" height="7" /><rect x="3" y="14" width="7" height="7" />
-                </svg>
-              ) : (
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                  strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                  <path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z" />
-                  <path d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z" />
-                </svg>
-              )}
-            </button>
-          )}
+
         </div>
       </div>
     </header>
@@ -451,7 +426,7 @@ export function ZpuFooter({ explore }: { explore?: ZpuNavItem[] }) {
     { href: "#zpu-facts", label: t("zpuNavAbout") },
     { href: "#zpu-interests", label: t("zpuNavInterests") },
     { href: "#zpu-skills", label: t("zpuNavSkills") },
-    { href: "#zpu-items", label: t("zpuNavItems") },
+    // { href: "#zpu-items", label: t("zpuNavItems") }, // Hidden: My Everyday Carry & Accessories
     { href: "#zpu-works", label: t("zpuNavProjects") },
     { href: "#zpu-connect", label: t("zpuNavContact") },
   ];

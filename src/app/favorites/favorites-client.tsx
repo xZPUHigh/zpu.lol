@@ -309,7 +309,7 @@ export function ZpuFavorites() {
     { href: "/#zpu-facts", label: t("zpuNavAbout") },
     { href: "#fav-top", active: true, label: t("zpuNavInterests") },
     { href: "/#zpu-skills", label: t("zpuNavSkills") },
-    { href: "/#zpu-items", label: t("zpuNavItems") },
+    // { href: "/#zpu-items", label: t("zpuNavItems") }, // Hidden
     { href: "/#zpu-works", label: t("zpuNavProjects") },
     { href: "/#zpu-connect", label: t("zpuNavContact") },
   ];

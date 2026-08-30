@@ -9,10 +9,23 @@ import { SectionHead } from "./_shared/tiles";
 import { BIRTHDAY_18, FAV_TOPICS, FAV_TOTAL, ZPU, fmtPrice, si } from "./_shared/data";
 
 // Section order for the top nav, the scroll-spy and the footer's Explore column.
-const NAV_IDS = ["zpu-top", "zpu-facts", "zpu-interests", "zpu-skills", "zpu-items", "zpu-works", "zpu-connect"];
+const NAV_IDS = [
+  "zpu-top",
+  "zpu-facts",
+  "zpu-interests",
+  "zpu-skills",
+  // "zpu-items", // Hidden: My Everyday Carry & Accessories
+  "zpu-works",
+  "zpu-connect",
+];
 const NAV_LABEL_KEYS: TranslationKey[] = [
-  "zpuNavHome", "zpuNavAbout", "zpuNavInterests", "zpuNavSkills",
-  "zpuNavItems", "zpuNavProjects", "zpuNavContact",
+  "zpuNavHome",
+  "zpuNavAbout",
+  "zpuNavInterests",
+  "zpuNavSkills",
+  // "zpuNavItems", // Hidden: My Everyday Carry & Accessories
+  "zpuNavProjects",
+  "zpuNavContact",
 ];
 
 function LiveClock({ timezone }: { timezone: string }) {
@@ -767,303 +780,11 @@ function EdcRowGrid({
   );
 }
 
-// Short "what's on its mind" lines for the thought bubble above the brain —
-// same rotating-quote structure as QUOTES above.
-const THOUGHTS: Record<"en" | "th" | "zh" | "vi" | "pt", string>[] = [
-  { th: "กำลังคิดไอเดียใหม่...", en: "Thinking of a new idea...", zh: "正在构想新点子...", vi: "Đang nghĩ ý tưởng mới...", pt: "Pensando em uma nova ideia..." },
-  { th: "แก้บั๊กตัวร้ายอยู่...", en: "Hunting down a stubborn bug...", zh: "正在排查顽固的Bug...", vi: "Đang sửa một con bug khó...", pt: "Caçando um bug teimoso..." },
-  { th: "แปลงกาแฟเป็นโค้ด...", en: "Turning coffee into code...", zh: "正在把咖啡变成代码...", vi: "Đang biến cà phê thành code...", pt: "Transformando café em código..." },
-  { th: "วางแผนโปรเจกต์ต่อไป...", en: "Sketching the next project...", zh: "正在构思下一个项目...", vi: "Đang phác thảo dự án tiếp theo...", pt: "Esboçando o próximo projeto..." },
-  { th: "ยังไม่หยุดเรียนรู้...", en: "Still learning, always...", zh: "一直在不断学习...", vi: "Vẫn luôn học hỏi...", pt: "Sempre aprendendo..." },
-  { th: "คอมไพล์ความฝันอยู่...", en: "Compiling dreams into reality...", zh: "正在把梦想编译成现实...", vi: "Đang biến ước mơ thành hiện thực...", pt: "Compilando sonhos em realidade..." },
-  { th: "เชื่อมจุดต่าง ๆ เข้าด้วยกัน...", en: "Connecting the dots...", zh: "正在把碎片拼凑起来...", vi: "Đang kết nối các mảnh ghép...", pt: "Conectando os pontos..." },
-  { th: "ไล่ตามคำถาม 'ถ้า...จะเป็นยังไง'...", en: "Chasing a 'what if'...", zh: "正在探索'如果'的可能性...", vi: "Đang theo đuổi câu hỏi 'nếu như'...", pt: "Perseguindo um 'e se'..." },
-  { th: "กำลังคิดเรื่องคอมมูนิตี้...", en: "Thinking about the community...", zh: "正在想念社区里的大家...", vi: "Đang nghĩ về cộng đồng...", pt: "Pensando na comunidade..." },
-  { th: "รีชาร์จความคิดสร้างสรรค์...", en: "Recharging creativity...", zh: "正在给创造力充充电...", vi: "Đang nạp lại năng lượng sáng tạo...", pt: "Recarregando a criatividade..." },
-  { th: "เขียนกฎใหม่ให้ตัวเอง...", en: "Rewriting my own rules...", zh: "正在为自己重写规则...", vi: "Đang viết lại luật chơi của riêng mình...", pt: "Reescrevendo minhas próprias regras..." },
-  { th: "ฝันเป็นภาษาไบนารี...", en: "Dreaming in binary...", zh: "正在用二进制做梦...", vi: "Đang mơ bằng nhị phân...", pt: "Sonhando em binário..." },
-  { th: "สำหรับผม ทุกอย่างคือไบนารี ศูนย์กับหนึ่ง", en: "To me, everything is binary. Zeros and ones.", zh: "对我来说，一切都是二进制。零和一。", vi: "Với tôi, mọi thứ đều là nhị phân. Số 0 và 1.", pt: "Para mim, tudo é binário. Zeros e uns." },
-  { th: "กำลังต่อไอเดียเข้าด้วยกัน...", en: "Piecing ideas together...", zh: "正在把想法拼凑起来...", vi: "Đang ghép các ý tưởng lại với nhau...", pt: "Juntando as peças das ideias..." },
-  { th: "กำลังสร้างของเจ๋ง ๆ...", en: "Building something cool...", zh: "正在打造很酷的东西...", vi: "Đang tạo ra thứ gì đó thật ngầu...", pt: "Construindo algo incrível..." },
-  { th: "กำลังมองหาแรงบันดาลใจ...", en: "Looking for inspiration...", zh: "正在寻找灵感...", vi: "Đang tìm kiếm cảm hứng...", pt: "Buscando inspiração..." },
-  { th: "ปล่อยให้ไอเดียค่อย ๆ เติบโต...", en: "Letting ideas grow...", zh: "让想法慢慢生长...", vi: "Đang để ý tưởng lớn dần...", pt: "Deixando as ideias crescerem..." },
-  { th: "ร่างอนาคตทีละบรรทัด...", en: "Sketching the future line by line...", zh: "一行行地描摹未来...", vi: "Đang phác họa tương lai từng dòng một...", pt: "Esboçando o futuro linha por linha..." },
-  { th: "กำลังนึกภาพว่าอะไรจะเกิดขึ้นต่อไป...", en: "Imagining what comes next...", zh: "正在想象接下来会发生什么...", vi: "Đang hình dung điều gì sẽ đến tiếp theo...", pt: "Imaginando o que vem a seguir..." },
-  { th: "กำลังทดลองไอเดียใหม่ ๆ...", en: "Experimenting with new ideas...", zh: "正在尝试新想法...", vi: "Đang thử nghiệm những ý tưởng mới...", pt: "Experimentando novas ideias..." },
-  { th: "เปลี่ยนความคิดให้กลายเป็นความจริง...", en: "Turning thoughts into reality...", zh: "正在把想法变成现实...", vi: "Đang biến suy nghĩ thành hiện thực...", pt: "Transformando pensamentos em realidade..." },
-  { th: "กำลังสร้างจากศูนย์...", en: "Building from scratch...", zh: "正在从零开始搭建...", vi: "Đang xây dựng từ con số không...", pt: "Construindo do zero..." },
-  { th: "ไอเดียใหม่กำลังบูตขึ้นมา...", en: "Booting up new ideas...", zh: "新点子正在启动中...", vi: "Ý tưởng mới đang khởi động...", pt: "Inicializando novas ideias..." },
-  { th: "กำลังดีบั๊กชีวิต...", en: "Debugging life...", zh: "正在调试人生...", vi: "Đang gỡ lỗi cuộc sống...", pt: "Depurando a vida..." },
-  { th: "กำลังเขียนโค้ดอยู่ในความเงียบ...", en: "Coding in silence...", zh: "正在安静地写代码...", vi: "Đang lặng lẽ viết mã...", pt: "Programando em silêncio..." },
-  { th: "กำลังขัดเกลาบรรทัดสุดท้าย...", en: "Polishing the final lines...", zh: "正在打磨最后几行...", vi: "Đang trau chuốt những dòng cuối...", pt: "Lapidando as últimas linhas..." },
-  { th: "กำลังรีแฟคเตอร์ทุกอย่าง...", en: "Refactoring everything...", zh: "正在重构一切...", vi: "Đang tái cấu trúc mọi thứ...", pt: "Refatorando tudo..." },
-  { th: "กำลังคอมไพล์...", en: "Compiling...", zh: "正在编译中...", vi: "Đang biên dịch...", pt: "Compilando..." },
-  { th: "กำลังรันทุกความเป็นไปได้...", en: "Running every possibility...", zh: "正在尝试每一种可能...", vi: "Đang chạy mọi khả năng...", pt: "Executando todas as possibilidades..." },
-  { th: "กำลังพุชเวอร์ชันใหม่...", en: "Pushing a new version...", zh: "正在推送新版本...", vi: "Đang đẩy một phiên bản mới...", pt: "Enviando uma nova versão..." },
-  { th: "กำลังเคลียร์รายการสิ่งที่ต้องทำ...", en: "Clearing the to-do list...", zh: "正在清空待办清单...", vi: "Đang dọn danh sách việc cần làm...", pt: "Limpando a lista de tarefas..." },
-  { th: "กำลังจัดระเบียบความคิด...", en: "Organizing thoughts...", zh: "正在整理思绪...", vi: "Đang sắp xếp lại suy nghĩ...", pt: "Organizando os pensamentos..." },
-  { th: "กำลังรอให้บิลด์เสร็จ...", en: "Waiting for the build...", zh: "正在等待构建完成...", vi: "Đang chờ bản dựng hoàn tất...", pt: "Esperando a build terminar..." },
-  { th: "กำลังสร้างอนาคต...", en: "Building the future...", zh: "正在打造未来...", vi: "Đang xây dựng tương lai...", pt: "Construindo o futuro..." },
-  { th: "ทีละก้าว ทีละโปรเจกต์...", en: "One step, one project at a time...", zh: "一步一步，一个项目接一个项目...", vi: "Từng bước một, từng dự án một...", pt: "Um passo e um projeto de cada vez..." },
-  { th: "กำลังทำให้มันเกิดขึ้น...", en: "Making it happen...", zh: "正在让它成真...", vi: "Đang biến nó thành hiện thực...", pt: "Fazendo acontecer..." },
-  { th: "คิดให้น้อยลง สร้างให้มากขึ้น...", en: "Thinking less, building more...", zh: "少想一点，多做一点...", vi: "Nghĩ ít hơn, xây dựng nhiều hơn...", pt: "Pensando menos, construindo mais..." },
-  { th: "กำลังวางอิฐก้อนต่อไป...", en: "Laying the next brick...", zh: "正在放下下一块砖...", vi: "Đang đặt viên gạch tiếp theo...", pt: "Assentando o próximo tijolo..." },
-  { th: "ทำสิ่งเล็ก ๆ ให้มีความหมาย...", en: "Making small things matter...", zh: "让小事也变得有意义...", vi: "Đang khiến những điều nhỏ bé trở nên ý nghĩa...", pt: "Fazendo as pequenas coisas importarem..." },
-  { th: "กำลังสร้างสิ่งที่มีความหมาย...", en: "Building something meaningful...", zh: "正在打造有意义的东西...", vi: "Đang xây dựng điều gì đó có ý nghĩa...", pt: "Construindo algo significativo..." },
-  { th: "กำลังส่งเวอร์ชันใหม่ออกไป...", en: "Shipping another version...", zh: "正在发布另一个版本...", vi: "Đang phát hành một phiên bản mới...", pt: "Lançando mais uma versão..." },
-  { th: "ความก้าวหน้าสำคัญกว่าความสมบูรณ์แบบ...", en: "Progress over perfection...", zh: "进步胜过完美...", vi: "Tiến bộ quan trọng hơn hoàn hảo...", pt: "Progresso acima da perfeição..." },
-  { th: "เริ่มใหม่ให้ดีกว่าเดิม...", en: "Starting over, better...", zh: "重新开始，变得更好...", vi: "Bắt đầu lại theo cách tốt hơn...", pt: "Recomeçando, ainda melhor..." },
-  { th: "กำลังประมวลผล...", en: "Processing...", zh: "正在处理中...", vi: "Đang xử lý...", pt: "Processando..." },
-  { th: "กำลังประมวลผลความคิด...", en: "Processing thoughts...", zh: "正在整理思绪...", vi: "Đang xử lý suy nghĩ...", pt: "Processando pensamentos..." },
-  { th: "กำลังเรียนรู้แพทเทิร์นใหม่...", en: "Learning new patterns...", zh: "正在学习新的模式...", vi: "Đang học những mẫu mới...", pt: "Aprendendo novos padrões..." },
-  { th: "กำลังซิงค์ไอเดีย...", en: "Syncing ideas...", zh: "正在同步想法...", vi: "Đang đồng bộ ý tưởng...", pt: "Sincronizando ideias..." },
-  { th: "กำลังขยายขอบเขตความเป็นไปได้...", en: "Expanding possibilities...", zh: "正在拓展各种可能...", vi: "Đang mở rộng những khả năng...", pt: "Expandindo possibilidades..." },
-  { th: "กำลังฝึกมุมมองความคิดใหม่...", en: "Training a new way of thinking...", zh: "正在训练一种新的思维方式...", vi: "Đang rèn luyện một cách tư duy mới...", pt: "Treinando uma nova forma de pensar..." },
-  { th: "กำลังเชื่อมโยงไอเดีย...", en: "Linking ideas...", zh: "正在连结各种想法...", vi: "Đang liên kết các ý tưởng...", pt: "Ligando ideias..." },
-  { th: "กำลังจำลองวันพรุ่งนี้...", en: "Simulating tomorrow...", zh: "正在模拟明天...", vi: "Đang mô phỏng ngày mai...", pt: "Simulando o amanhã..." },
-  { th: "กำลังสำรวจเส้นทางใหม่...", en: "Exploring new paths...", zh: "正在探索新的路径...", vi: "Đang khám phá những con đường mới...", pt: "Explorando novos caminhos..." },
-  { th: "กำลังประมวลผลแรงบันดาลใจ...", en: "Processing inspiration...", zh: "正在处理灵感...", vi: "Đang xử lý nguồn cảm hứng...", pt: "Processando inspiração..." },
-  { th: "อยู่ในโหมดสร้างสรรค์...", en: "In creative mode...", zh: "已进入创意模式...", vi: "Đang ở chế độ sáng tạo...", pt: "No modo criativo..." },
-  { th: "กำลังโฟกัสสุดตัว...", en: "Locked in...", zh: "正在全神贯注...", vi: "Đang tập trung hết mức...", pt: "Totalmente focado..." },
-  { th: "ยังอยู่ระหว่างดำเนินการ...", en: "Work in progress...", zh: "仍在进行中...", vi: "Vẫn đang trong quá trình hoàn thiện...", pt: "Trabalho em andamento..." },
-  { th: "ทุกไอเดียเริ่มต้นที่นี่...", en: "Every idea starts here...", zh: "每个想法都从这里开始...", vi: "Mọi ý tưởng đều bắt đầu từ đây...", pt: "Toda ideia começa aqui..." },
-  { th: "กำลังคิดอย่างเงียบ ๆ...", en: "Thinking quietly...", zh: "正在安静地思考...", vi: "Đang lặng lẽ suy nghĩ...", pt: "Pensando em silêncio..." },
-  { th: "ยังสร้างต่อไป...", en: "Still building...", zh: "一直在持续搭建...", vi: "Vẫn đang tiếp tục xây dựng...", pt: "Ainda construindo..." },
-  { th: "กำลังก่อร่างเป็นรูปเป็นร่าง...", en: "In the making...", zh: "正在逐渐成型...", vi: "Đang dần thành hình...", pt: "Em construção..." },
-  { th: "สมองกำลังทำงาน...", en: "Mind at work...", zh: "大脑正在运作...", vi: "Bộ não đang hoạt động...", pt: "Mente trabalhando..." },
-  { th: "ใกล้เสร็จแล้ว...", en: "Almost there...", zh: "快完成了…", vi: "Sắp xong rồi...", pt: "Quase lá..." },
-  { th: "กำลังเติบโตทุกวัน...", en: "Growing every day...", zh: "每天都在成长...", vi: "Đang trưởng thành mỗi ngày...", pt: "Crescendo a cada dia..." },
-  { th: "กำลังอัปเกรดตัวเอง...", en: "Upgrading myself...", zh: "正在升级自己...", vi: "Đang nâng cấp bản thân...", pt: "Atualizando a mim mesmo..." },
-  { th: "กำลังคิดนอกกรอบ...", en: "Thinking outside the box...", zh: "正在跳出框架思考...", vi: "Đang suy nghĩ vượt khỏi khuôn khổ...", pt: "Pensando fora da caixa..." },
-  { th: "กำลังเปลี่ยนความสงสัยให้กลายเป็นคำตอบ...", en: "Turning curiosity into answers...", zh: "正在把好奇心变成答案...", vi: "Đang biến sự tò mò thành câu trả lời...", pt: "Transformando curiosidade em respostas..." },
-  { th: "กำลังทำให้ความยุ่งยากดูเรียบง่าย...", en: "Making complexity feel simple...", zh: "正在让复杂变得简单...", vi: "Đang khiến điều phức tạp trở nên đơn giản...", pt: "Fazendo o complexo parecer simples..." },
-  { th: "กำลังแก้ปัญหาทีละพิกเซล...", en: "Solving problems pixel by pixel...", zh: "正在一个个像素地解决问题...", vi: "Đang giải quyết vấn đề từng pixel một...", pt: "Resolvendo problemas pixel por pixel..." },
-  { th: "กำลังหาเวอร์ชันที่ดีกว่า...", en: "Searching for a better version...", zh: "正在寻找更好的版本...", vi: "Đang tìm kiếm một phiên bản tốt hơn...", pt: "Buscando uma versão melhor..." },
-  { th: "กำลังเปลี่ยนขอบเขตให้กลายเป็นโอกาส...", en: "Turning limits into possibilities...", zh: "正在把限制变成可能...", vi: "Đang biến giới hạn thành khả năng...", pt: "Transformando limites em possibilidades..." },
-  { th: "กำลังออกแบบประสบการณ์ใหม่...", en: "Designing a new experience...", zh: "正在设计全新的体验...", vi: "Đang thiết kế một trải nghiệm mới...", pt: "Criando uma nova experiência..." },
-  { th: "กำลังสร้างสิ่งที่อยากให้โลกนี้มี...", en: "Building what I want to see in the world...", zh: "正在打造我想在世界上看到的事物...", vi: "Đang xây dựng điều tôi muốn thấy trên thế giới...", pt: "Construindo o que quero ver no mundo..." },
-  { th: "กำลังเปิดแท็บใหม่ในหัว...", en: "Opening a new tab in my mind...", zh: "正在脑中开启新分页...", vi: "Đang mở một tab mới trong đầu...", pt: "Abrindo uma nova aba na mente..." },
-  { th: "กำลังโหลดมุมมองใหม่...", en: "Loading a new perspective...", zh: "正在载入新的观点...", vi: "Đang tải một góc nhìn mới...", pt: "Carregando uma nova perspectiva..." },
-  { th: "กำลังรีเซ็ตเพื่อก้าวต่อ...", en: "Resetting to move forward...", zh: "正在重置，准备继续前进...", vi: "Đang đặt lại để tiếp tục tiến lên...", pt: "Reiniciando para seguir em frente..." },
-  { th: "กำลังทดสอบขอบเขตของตัวเอง...", en: "Testing my limits...", zh: "正在测试自己的极限...", vi: "Đang thử thách giới hạn của bản thân...", pt: "Testando meus limites..." },
-  { th: "กำลังเขียนบทต่อไป...", en: "Writing the next chapter...", zh: "正在谱写下一个章节...", vi: "Đang viết chương tiếp theo...", pt: "Escrevendo o próximo capítulo..." },
-  { th: "กำลังสร้างจากความอยากรู้...", en: "Building from curiosity...", zh: "正在以好奇心为起点搭建...", vi: "Đang xây dựng từ sự tò mò...", pt: "Construindo a partir da curiosidade..." },
-  { th: "กำลังเปลี่ยนเสียงรบกวนให้กลายเป็นสัญญาณ...", en: "Turning noise into signal...", zh: "正在把噪音变成讯号...", vi: "Đang biến nhiễu thành tín hiệu...", pt: "Transformando ruído em sinal..." },
-  { th: "กำลังหาความเรียบง่ายในความซับซ้อน...", en: "Finding simplicity in complexity...", zh: "正在复杂中寻找简单...", vi: "Đang tìm sự đơn giản trong phức tạp...", pt: "Encontrando simplicidade na complexidade..." },
-  { th: "กำลังสร้างสะพานระหว่างไอเดีย...", en: "Building bridges between ideas...", zh: "正在为想法之间搭起桥梁...", vi: "Đang xây cầu nối giữa các ý tưởng...", pt: "Construindo pontes entre ideias..." },
-  { th: "กำลังปรับจูนวิสัยทัศน์...", en: "Fine-tuning the vision...", zh: "正在微调愿景...", vi: "Đang tinh chỉnh tầm nhìn...", pt: "Ajustando a visão..." },
-  { th: "กำลังอัปเดตระบบความคิด...", en: "Updating the thought system...", zh: "正在更新思维系统...", vi: "Đang cập nhật hệ thống tư duy...", pt: "Atualizando o sistema de pensamento..." },
-  { th: "กำลังเรนเดอร์อนาคต...", en: "Rendering the future...", zh: "正在渲染未来...", vi: "Đang kết xuất tương lai...", pt: "Renderizando o futuro..." },
-  { th: "กำลังสร้างต้นแบบของสิ่งที่จะเกิดต่อไป...", en: "Prototyping what comes next...", zh: "正在制作下一步的原型...", vi: "Đang tạo nguyên mẫu cho điều tiếp theo...", pt: "Prototipando o que vem a seguir..." },
-  { th: "กำลังเรียนรู้จากทุกความผิดพลาด...", en: "Learning from every mistake...", zh: "正在从每个错误中学习...", vi: "Đang học hỏi từ mỗi sai lầm...", pt: "Aprendendo com cada erro..." },
-  { th: "กำลังทดสอบสมมติฐานใหม่...", en: "Testing a new hypothesis...", zh: "正在测试新的假设...", vi: "Đang kiểm thử một giả thuyết mới...", pt: "Testando uma nova hipótese..." },
-  { th: "กำลังค้นหาความเป็นไปได้ที่ซ่อนอยู่...", en: "Searching for hidden possibilities...", zh: "正在寻找隐藏的可能性...", vi: "Đang tìm kiếm những khả năng ẩn giấu...", pt: "Buscando possibilidades escondidas..." },
-  { th: "กำลังบันทึกไอเดียก่อนมันหายไป...", en: "Saving an idea before it disappears...", zh: "正在趁想法消失前把它记下来...", vi: "Đang lưu một ý tưởng trước khi nó biến mất...", pt: "Salvando uma ideia antes que desapareça..." },
-  { th: "กำลังเปลี่ยนแรงบันดาลใจให้กลายเป็นการลงมือทำ...", en: "Turning inspiration into action...", zh: "正在把灵感化为行动...", vi: "Đang biến cảm hứng thành hành động...", pt: "Transformando inspiração em ação..." },
-  { th: "กำลังทำให้สิ่งที่เป็นไปไม่ได้ดูใกล้เข้ามา...", en: "Making the impossible feel closer...", zh: "正在让不可能变得更接近...", vi: "Đang khiến điều không thể trở nên gần hơn...", pt: "Fazendo o impossível parecer mais próximo..." },
-  { th: "กำลังหาเส้นทางที่ยังไม่มีใครสร้าง...", en: "Finding a path no one has built yet...", zh: "正在寻找尚未有人开辟的道路...", vi: "Đang tìm một con đường chưa ai tạo ra...", pt: "Encontrando um caminho que ninguém construiu ainda..." },
-  { th: "กำลังเรียนรู้ระหว่างลงมือทำ...", en: "Learning by building...", zh: "正在实作中学习...", vi: "Đang học bằng cách xây dựng...", pt: "Aprendendo ao construir..." },
-  { th: "ปล่อยให้ความอยากรู้นำทาง...", en: "Letting curiosity lead the way...", zh: "让好奇心带路...", vi: "Đang để sự tò mò dẫn đường...", pt: "Deixando a curiosidade guiar o caminho..." },
-  { th: "กำลังสร้างสิ่งใหม่จากเศษไอเดีย...", en: "Building something new from fragments...", zh: "正在从零碎的想法中创造新事物...", vi: "Đang tạo điều mới từ những mảnh ý tưởng...", pt: "Construindo algo novo a partir de fragmentos..." },
-  { th: "กำลังเพิ่มรายละเอียดที่ไม่มีใครสังเกต...", en: "Adding details no one notices...", zh: "正在加入没人注意到的细节...", vi: "Đang thêm những chi tiết không ai để ý...", pt: "Adicionando detalhes que ninguém percebe..." },
-  { th: "กำลังลดความซับซ้อนทีละชั้น...", en: "Removing complexity layer by layer...", zh: "正在一层一层移除复杂性...", vi: "Đang loại bỏ sự phức tạp từng lớp một...", pt: "Removendo a complexidade camada por camada..." },
-  { th: "กำลังหาจังหวะที่ลงตัว...", en: "Finding the right rhythm...", zh: "正在寻找恰到好处的节奏...", vi: "Đang tìm nhịp điệu phù hợp...", pt: "Encontrando o ritmo certo..." },
-  { th: "กำลังสร้างพื้นที่ให้ไอเดียใหม่...", en: "Making room for new ideas...", zh: "正在为新想法腾出空间...", vi: "Đang tạo chỗ cho những ý tưởng mới...", pt: "Abrindo espaço para novas ideias..." },
-  { th: "กำลังปรับเข็มทิศภายในใหม่...", en: "Recalibrating the inner compass...", zh: "正在重新校准内在的罗盘...", vi: "Đang hiệu chỉnh lại la bàn bên trong...", pt: "Recalibrando a bússola interior..." },
-];
-
-// Alternate hero visual — a traced circuit-board brain (public/images/ai-brain-circuit.svg,
-// adapted from Bryan C Guner's "Neural Network Visualization" CodePen, MIT) with a rotating
-// thought bubble, drifting data particles, and binary digits, meant to read as "always
-// thinking" rather than a static project shot.
-function AiBrainVisual() {
-  const { lang } = useLang();
-  const rootRef = useRef<HTMLDivElement>(null);
-  const assetRef = useRef<HTMLDivElement>(null);
-  const assetHostRef = useRef<HTMLDivElement>(null);
-  const thoughtRef = useRef<HTMLDivElement>(null);
-  const [particles, setParticles] = useState<{ left: number; delay: number; dur: number; size: number }[] | null>(null);
-  const [digits, setDigits] = useState<{ left: number; top: number; text: string; opacity: number; delay: number }[] | null>(null);
-  const [thoughtIdx, setThoughtIdx] = useState<number | null>(null);
-  const [connector, setConnector] = useState<{ path: string; nodes: [number, number][]; w: number; h: number } | null>(null);
-
-  useEffect(() => {
-    setThoughtIdx(Math.floor(Math.random() * THOUGHTS.length));
-    const id = setInterval(() => {
-      setThoughtIdx((prev) => {
-        if (THOUGHTS.length <= 1 || prev === null) return prev;
-        let next = Math.floor(Math.random() * THOUGHTS.length);
-        while (next === prev) next = Math.floor(Math.random() * THOUGHTS.length);
-        return next;
-      });
-    }, 4500);
-    return () => clearInterval(id);
-  }, []);
-
-  useEffect(() => {
-    setParticles(
-      Array.from({ length: 22 }, () => ({
-        left: Math.random() * 100,
-        delay: Math.random() * 8,
-        dur: 6 + Math.random() * 6,
-        size: 1 + Math.random() * 2,
-      }))
-    );
-    setDigits(
-      Array.from({ length: 7 }, (_, i) => ({
-        left: 2 + i * 6 + Math.random() * 3,
-        top: 28 + Math.random() * 58,
-        text: Array.from({ length: 4 }, () => (Math.random() < 0.5 ? "0" : "1")).join(""),
-        opacity: 0.15 + Math.random() * 0.5,
-        delay: Math.random() * 4,
-      }))
-    );
-  }, []);
-
-  // Fetch the traced brain SVG and inject it, then set up the same
-  // "draw the lines in" technique as the source pen: measure each path's
-  // real length so stroke-dashoffset has something to animate from.
-  useEffect(() => {
-    let cancelled = false;
-    fetch("/images/ai-brain-circuit.svg")
-      .then((r) => r.text())
-      .then((svgText) => {
-        const el = assetHostRef.current;
-        if (cancelled || !el) return;
-        el.innerHTML = svgText;
-        const svg = el.querySelector("svg");
-        if (!svg) return;
-        // Only a fraction of the traced elements actually animate — the SVG has
-        // ~440 paths/rects/circles, and animating stroke-dashoffset/opacity on all
-        // of them at once (each a non-composited, per-frame repaint) is what made
-        // this visual janky. The rest render as static fully-drawn lines/dots,
-        // which reads the same at a glance but costs nothing per frame.
-        svg.querySelectorAll("path").forEach((p, i) => {
-          if (i % 3 !== 0) return;
-          const len = p.getTotalLength();
-          p.style.strokeDasharray = `${len}`;
-          p.style.strokeDashoffset = `${len}`;
-          p.style.animationDelay = `${(Math.random() * 10 - 5).toFixed(2)}s`;
-          p.classList.add("zpu-brain-drawline");
-        });
-        svg.querySelectorAll("rect").forEach((r, i) => {
-          if (i % 2 !== 0) return;
-          (r as SVGElement).style.animationDelay = `${(Math.random() * 10 - 5).toFixed(2)}s`;
-          r.classList.add("zpu-brain-fade-rect");
-        });
-        svg.querySelectorAll("circle, ellipse").forEach((c, i) => {
-          if (i % 2 !== 0) return;
-          (c as SVGElement).style.animationDelay = `${(Math.random() * 10 - 5).toFixed(2)}s`;
-          c.classList.add("zpu-brain-pulse-dot");
-        });
-      })
-      .catch(() => { /* decorative — fine to no-op if it fails to load */ });
-    return () => { cancelled = true; };
-  }, []);
-
-  // Measure the bubble's and brain's actual on-screen boxes so the connector's
-  // endpoints touch both exactly — the bubble's width changes with every
-  // thought/language, so guessed percentages drift out of alignment.
-  useEffect(() => {
-    if (thoughtIdx === null) return;
-    const recompute = () => {
-      const root = rootRef.current, bubble = thoughtRef.current, brain = assetRef.current;
-      if (!root || !bubble || !brain) return;
-      const r = root.getBoundingClientRect();
-      const b = bubble.getBoundingClientRect();
-      const a = brain.getBoundingClientRect();
-      const start = { x: b.left - r.left + b.width * 0.22, y: b.bottom - r.top };
-      const end = { x: a.left - r.left + a.width * 0.5, y: a.top - r.top };
-      const midY = start.y + (end.y - start.y) * 0.45;
-      const bend1: [number, number] = [start.x, midY];
-      const bend2: [number, number] = [end.x, midY];
-      const path = `M${start.x.toFixed(1)},${start.y.toFixed(1)} L${bend1[0].toFixed(1)},${bend1[1].toFixed(1)} L${bend2[0].toFixed(1)},${bend2[1].toFixed(1)} L${end.x.toFixed(1)},${end.y.toFixed(1)}`;
-      setConnector({
-        path,
-        nodes: [[start.x, start.y], bend1, bend2, [end.x, end.y]],
-        w: r.width,
-        h: r.height,
-      });
-    };
-    // Run after layout settles (bubble width depends on the just-rendered text).
-    const raf = requestAnimationFrame(recompute);
-    window.addEventListener("resize", recompute);
-    return () => {
-      cancelAnimationFrame(raf);
-      window.removeEventListener("resize", recompute);
-    };
-  }, [thoughtIdx, lang]);
-
-  return (
-    <div className="zpu-brain" ref={rootRef}>
-      <div className="zpu-brain-glow-wrap">
-        <div className="zpu-brain-glow" />
-      </div>
-      <div className="zpu-brain-particles">
-        {particles?.map((p, i) => (
-          <span
-            key={i}
-            className="zpu-brain-particle"
-            style={{
-              left: `${p.left}%`,
-              width: p.size,
-              height: p.size,
-              animationDelay: `${p.delay}s`,
-              animationDuration: `${p.dur}s`,
-            }}
-          />
-        ))}
-      </div>
-      <div className="zpu-brain-digits">
-        {digits?.map((d, i) => (
-          <span
-            key={i}
-            className="zpu-brain-digit"
-            style={{ left: `${d.left}%`, top: `${d.top}%`, opacity: d.opacity, animationDelay: `${d.delay}s` }}
-          >
-            {d.text}
-          </span>
-        ))}
-      </div>
-      <div ref={assetRef} className="zpu-brain-asset">
-        <div ref={assetHostRef} className="zpu-brain-asset-inner" />
-      </div>
-      {thoughtIdx !== null && (
-        <>
-          {/* A jagged, right-angle circuit trace from the brain up to the
-              bubble — same visual language as the brain's own traces. The
-              endpoints come from measured DOM positions (see the effect
-              above), not guessed percentages, so they actually touch both
-              elements regardless of bubble width or screen size. */}
-          {connector && (
-            <svg className="zpu-brain-connector" viewBox={`0 0 ${connector.w} ${connector.h}`}>
-              <path d={connector.path} className="zpu-brain-connector-path" />
-              {connector.nodes.map(([x, y], i) => (
-                <circle key={i} cx={x} cy={y} r={2.2} className="zpu-brain-connector-node" />
-              ))}
-              <circle r={2} className="zpu-brain-connector-spark">
-                <animateMotion dur="2.2s" repeatCount="indefinite" path={connector.path} />
-              </circle>
-            </svg>
-          )}
-          <div className="zpu-brain-thought" ref={thoughtRef}>
-            <span className="zpu-brain-thought-corner zpu-brain-thought-corner-tl" />
-            <span className="zpu-brain-thought-corner zpu-brain-thought-corner-br" />
-            <span key={thoughtIdx} className="zpu-brain-thought-text">
-              {THOUGHTS[thoughtIdx][lang] || THOUGHTS[thoughtIdx].en}
-            </span>
-          </div>
-        </>
-      )}
-    </div>
-  );
-}
-
 export function AboutZpu({ ytSubs, discordMembers }: { ytSubs?: number | null; discordMembers?: number | null }) {
   const { t, lang } = useLang();
   const [showAllWorks, setShowAllWorks] = useState(false);
   const [showAllEdc, setShowAllEdc] = useState(false);
-  const [heroView, setHeroView] = useState<"brain" | "showcase">("brain");
+
   // Picked once per page load so the "Living in" fact card and the location
   // pill always agree — two independent random picks would show two cities.
   const [livingCity, setLivingCity] = useState<string | null>(null);
@@ -1114,8 +835,6 @@ export function AboutZpu({ ytSubs, discordMembers }: { ytSubs?: number | null; d
         activeSection={activeSection}
         theme={theme}
         setTheme={setTheme}
-        heroView={heroView}
-        setHeroView={setHeroView}
       />
 
       {/* Music player — mounted outside .zpu-wrap so its popup can layer above the header */}
@@ -1161,25 +880,15 @@ export function AboutZpu({ ytSubs, discordMembers }: { ytSubs?: number | null; d
 
           <div className="zpu-home-visual">
             <span className="zpu-home-accent" />
-            {/* key={heroView} forces a remount on switch, replaying the fade/scale-in
-                keyframe below — otherwise the two views just instantly swap. */}
-            <div key={heroView} className="zpu-hero-swap">
-              {heroView === "brain" ? (
-                <AiBrainVisual />
-              ) : (
-                <>
-                  <a
-                    href={ZPU.works[0].href}
-                    className="zpu-home-shot"
-                    target={ZPU.works[0].href.startsWith("http") ? "_blank" : undefined}
-                    rel="noreferrer"
-                  >
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={ZPU.works[0].image} alt={ZPU.works[0].name} loading="lazy" />
-                  </a>
-                </>
-              )}
-            </div>
+            <a
+              href={ZPU.works[0].href}
+              className="zpu-home-shot"
+              target={ZPU.works[0].href.startsWith("http") ? "_blank" : undefined}
+              rel="noreferrer"
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={ZPU.works[0].image} alt={ZPU.works[0].name} loading="lazy" />
+            </a>
           </div>
 
           <div className="zpu-home-line" aria-hidden="true">
@@ -1406,8 +1115,8 @@ export function AboutZpu({ ytSubs, discordMembers }: { ytSubs?: number | null; d
 
         <ActivityOverview />
 
-        {/* Everyday items */}
-        {ZPU.everyday.length > 0 && (
+        {/* Everyday items (Hidden) */}
+        {/* {ZPU.everyday.length > 0 && (
           <section className="zpu-stack-sec" id="zpu-items">
             <SectionHead title={t("zpuEdcTitle")} sub={t("zpuEdcSub")} />
             {(["current", "previous"] as const).map((st) => {
@@ -1435,10 +1144,10 @@ export function AboutZpu({ ytSubs, discordMembers }: { ytSubs?: number | null; d
               </button>
             )}
           </section>
-        )}
+        )} */}
 
-        {/* PC setup */}
-        {ZPU.setup.length > 0 && (
+        {/* PC setup / PC Specs (Hidden) */}
+        {/* {ZPU.setup.length > 0 && (
           <section className="zpu-stack-sec">
             <SectionHead title={t("zpuSetupTitle")} sub={t("zpuSetupSub")} />
             <DragScroll className="zpu-setup-marquee">
@@ -1472,10 +1181,10 @@ export function AboutZpu({ ytSubs, discordMembers }: { ytSubs?: number | null; d
               </span>
             </div>
           </section>
-        )}
+        )} */}
 
-        {/* Gaming gear / peripherals */}
-        {ZPU.gear.length > 0 && (
+        {/* Gaming gear / peripherals / PC Setup (Hidden) */}
+        {/* {ZPU.gear.length > 0 && (
           <section className="zpu-stack-sec">
             <SectionHead title={t("zpuGearTitle")} sub={t("zpuGearSub")} />
             <DragScroll className="zpu-setup-marquee">
@@ -1509,7 +1218,7 @@ export function AboutZpu({ ytSubs, discordMembers }: { ytSubs?: number | null; d
               </span>
             </div>
           </section>
-        )}
+        )} */}
 
         {/* Works */}
         <section className="zpu-works" id="zpu-works">
