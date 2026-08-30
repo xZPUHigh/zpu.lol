@@ -26,17 +26,17 @@ const instrumentSerif = Instrument_Serif({
 export const metadata: Metadata = {
   metadataBase: new URL("https://zpu.lol"),
   title: {
-    default: "ZPU (xZPUHigh) — Founder, Developer & Creator",
+    default: "ZPU (xZPUHigh) โ€” Founder, Developer & Creator",
     template: "%s | ZPU",
   },
   description:
-    "Official website of ZPU (xZPUHigh) — founder, developer, and entrepreneur building digital products, web experiences, and online businesses.",
+    "Official website of ZPU (xZPUHigh) โ€” founder, developer, and entrepreneur building digital products, web experiences, and online businesses.",
   keywords: [
     "ZPU",
     "xZPUHigh",
     "zpu.lol",
     "Who is ZPU",
-    "ใครคือ ZPU",
+    "เนเธเธฃเธเธทเธญ ZPU",
     "ZPU Chanon",
     "ZPU portfolio",
     "ZPU website",
@@ -44,30 +44,30 @@ export const metadata: Metadata = {
     "ZPU founder",
     "Spectrum Cheat founder",
   ],
-  alternates: {
+  icons: { icon: "/favicon.ico", shortcut: "/favicon.ico", apple: "/images/Spectrum Icon.png" },`n  alternates: {
     canonical: "https://zpu.lol",
   },
   openGraph: {
     type: "profile",
     url: "https://zpu.lol",
     siteName: "ZPU",
-    title: "ZPU (xZPUHigh) — Founder, Developer & Creator",
+    title: "ZPU (xZPUHigh) โ€” Founder, Developer & Creator",
     description:
-      "Meet ZPU (xZPUHigh) — founder, developer, and entrepreneur building digital products and online businesses.",
+      "Meet ZPU (xZPUHigh) โ€” founder, developer, and entrepreneur building digital products and online businesses.",
     images: [
       {
         url: "/images/benner_1.png",
         width: 6144,
         height: 1015,
-        alt: "ZPU — Founder & Developer",
+        alt: "ZPU โ€” Founder & Developer",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "ZPU (xZPUHigh) — Founder, Developer & Creator",
+    title: "ZPU (xZPUHigh) โ€” Founder, Developer & Creator",
     description:
-      "Meet ZPU (xZPUHigh) — founder, developer, and entrepreneur building digital products and online businesses.",
+      "Meet ZPU (xZPUHigh) โ€” founder, developer, and entrepreneur building digital products and online businesses.",
     images: ["/images/benner_1.png"],
   },
 };
@@ -120,3 +120,4 @@ export default function RootLayout({
     </html>
   );
 }
+
